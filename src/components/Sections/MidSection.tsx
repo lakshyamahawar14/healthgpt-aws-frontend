@@ -54,7 +54,7 @@ export const MidSection = (props: any) => {
       {isLoading ? (
         <>
           <Loader startTop={false} />
-          {firstLaunch && <PreloadContent />}
+          {/* {firstLaunch && <PreloadContent />} */}
         </>
       ) : (
         <div id="midsection">
@@ -64,7 +64,13 @@ export const MidSection = (props: any) => {
               <ChatBotAnimation />
               <p> Mental Health Support For Everyone.</p>
               <button
-                onClick={isLoggedIn ? props.onShowChat : redirectToRegister}
+                onClick={
+                  isLoggedIn
+                    ? () => {
+                        props.onShowChat && props.onShowChat();
+                      }
+                    : redirectToRegister
+                }
               >
                 Chat with Lux
               </button>

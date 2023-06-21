@@ -6,6 +6,7 @@ import { topPathsArray } from "../../config/constant";
 import { useRecoilState } from "recoil";
 import { FirstLaunch, LoggedInstate } from "../../config/atoms";
 import Loader from "../Layouts/Loader";
+import Header from "../Layouts/Header";
 
 const TestPage = () => {
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
@@ -170,10 +171,11 @@ const TestPage = () => {
       ) : (
         test?.questions && (
           <div className={styles.test}>
-            <div className={styles.testTitle}>
-              <p>{test?.title}</p>
-            </div>
+            <Header />
             <div className={styles.testContainer}>
+              <div className={styles.testTitle}>
+                <p>{test?.title}</p>
+              </div>
               {test?.questions.map((question, index) => (
                 <div key={index} className={styles.questionContainer}>
                   <p>{question}</p>

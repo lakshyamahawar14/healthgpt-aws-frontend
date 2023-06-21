@@ -4,16 +4,21 @@
 header {
   display: flex;
   justify-content: space-between;
-  padding: 3vh 6vw;
-  background-color: transparent;
-  height: 10vh;
+  padding: 0vh 6vw;
+  background-color: rgb(21, 66, 246);
+  height: auto;
   min-height: 10vh;
   font-family: poppins;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 
   .burger {
     display: none;
     position: absolute;
-    padding: 3vh 3vw;
+    padding: 0vh 6vw;
     height: 10vh;
     top: 0;
     right: 0;
@@ -47,7 +52,8 @@ header {
       flex-direction: column;
       position: relative;
       height: 50vh;
-      width: 100%;
+      width: 100vw;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
       display: none;
     }
 
@@ -56,7 +62,7 @@ header {
       justify-content: center;
       align-items: center;
       position: absolute;
-      padding: 3vh 3vw;
+      padding: 0vh 6vw;
       height: 10vh;
       top: 0;
       left: 0;
@@ -84,7 +90,7 @@ header {
     justify-content: flex-start;
     padding-top: 0;
     width: 10vw;
-    max-width: 8vw;
+    max-width: 100px;
     position: relative;
     min-width: 75px;
   }

@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { topPathsArray } from "../../config/constant";
 import Loader from "../Layouts/Loader";
 import { Bar } from "react-chartjs-2";
+import Header from "../Layouts/Header";
 
 const ScorePage = () => {
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
@@ -147,6 +148,7 @@ const ScorePage = () => {
       ) : (
         <>
           <div className={styles.scoreContainer}>
+            <Header />
             <div className={styles.scoreTitle}>
               <p>
                 {url ? url.slice(1).charAt(0).toUpperCase() + url.slice(2) : ""}{" "}

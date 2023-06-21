@@ -56,6 +56,7 @@ export const MidSection = (props: any) => {
       {isLoading ? (
         <>
           <Loader startTop={false} />
+          {firstLaunch && <PreloadContent />}
         </>
       ) : (
         <div id="midsection">

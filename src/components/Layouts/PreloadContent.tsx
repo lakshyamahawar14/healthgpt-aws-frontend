@@ -17,6 +17,9 @@ import "../../styles/HomeSection.module.scss";
 import "../../styles/Header.module.scss";
 import "../../styles/TestSection.module.scss";
 import "../../styles/TypingAnimation.module.scss";
+import { Img } from "react-image";
+import AssessmentPage from "../Sections/AssessmentSection";
+import { BlogPage } from "../Sections/BlogSection";
 
 const images = [
   "src\\assets\\images\\luxlogobot.svg",
@@ -33,7 +36,15 @@ const images = [
 ];
 
 function PreloadContent() {
-  return <></>;
+  return (
+    <>
+      {images.map((image, index) => (
+        <Img key={index} src={image} alt="" />
+      ))}
+      <AssessmentPage />
+      <BlogPage />
+    </>
+  );
 }
 
 export default PreloadContent;

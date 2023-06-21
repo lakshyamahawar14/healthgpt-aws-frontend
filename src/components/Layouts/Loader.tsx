@@ -30,8 +30,8 @@ const Loader = (props: any) => {
         `http://13.235.81.90:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
       )
       .then((response) => {
-        console.log(response);
         if (response.data.status === "failure") {
+          alert("You have been Logged-Out. Please Login Again");
           localStorage.setItem("UserId", "");
           localStorage.setItem("AccessToken", "");
           setLoggedIn(false);
@@ -62,7 +62,6 @@ const Loader = (props: any) => {
           </div>
         </div>
       )}
-      {/* {firstLaunch && <PreloadContent />} */}
     </>
   );
 };

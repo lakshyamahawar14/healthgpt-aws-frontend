@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap");
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 3vh 3vw;
+  background-color: transparent;
+  height: 10vh;
+  min-height: 10vh;
+  font-family: poppins;
+
+  .burger {
+    display: none;
+    position: absolute;
+    padding: 3vh 3vw;
+    height: 10vh;
+    top: 0;
+    right: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1E2260;
+    z-index: 2;
+  }
+
+  .divbtn {
+    display: flex;
+    width: auto;
+    justify-content: space-evenly;
+    align-content: center;
+  }
+
+  .divLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 525px) {
+    flex-direction: column;
+    height: auto;
+    justify-content: flex-start;
+    align-items: center;
+
+    .divbtn {
+      flex-direction: column;
+      position: relative;
+      height: 50vh;
+      width: 100%;
+      display: none;
+    }
+
+    .divLogo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      padding: 3vh 3vw;
+      height: 10vh;
+      top: 0;
+      left: 0;
+    }
+
+    .burger {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+    }
+
+    .burger span {
+      margin: 0;
+      padding: 0;
+      line-height: 5px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+
+  .logo {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 0;
+    width: 10vw;
+    max-width: 8vw;
+    position: relative;
+    min-width: 100px;
+  }
+
+
+
+  .btn1 {
+    margin: 0 1.5vw;
+    display: flex;
+    letter-spacing: 0.1em;
+    justify-content: center;
+    align-content: center;
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #1E2260;
+    font-weight: 700;
+  }
+
+  button:hover {
+    text-decoration: underline;
+    color: black;
+  }
+}
+
+.topbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topbtn a button {
+  cursor: pointer;
+}

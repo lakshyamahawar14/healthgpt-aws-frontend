@@ -1,0 +1,66 @@
+.topContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: transparent;
+
+    .loaderContainer {
+        display: flex;
+        justify-content: center;
+        width: auto;
+
+        p {
+            font-size: 1.2rem;
+            color: #1E2260;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: flex-start;
+            padding-top: 0;
+            width: 5vw;
+            max-width: 10vw;
+            position: relative;
+            width: 50px;
+        }
+    }
+}
+
+.midContainer {
+    height: 100vh;
+    width: 100vw;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(109.6deg,
+            rgb(65, 142, 250) 11.2%,
+            rgb(21, 66, 246) 91.1%);
+    background-size: auto auto, 100%;
+    background-position: bottom;
+    background-repeat: no-repeat, no-repeat;
+
+    .loaderContainer {
+        display: flex;
+        justify-content: center;
+        width: auto;
+
+        p {
+            font-size: 1.2rem;
+            color: #1E2260;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: flex-start;
+            padding-top: 0;
+            width: 5vw;
+            max-width: 10vw;
+            position: relative;
+            width: 50px;
+        }
+    }
+}

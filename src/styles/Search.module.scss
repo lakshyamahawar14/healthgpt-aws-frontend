@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+.container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .searchContainer{
+        display: flex;
+        justify-content: center;
+        margin: 10vh 0vw;
+        margin-top: 0;
+        width: 100%;
+        max-width: 500px;
+        min-width: 300px;
+        font-family: poppins;
+        
+        .searchQuery{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 1vw;
+
+            input {
+                font-weight: 600;
+                color: #1E2260;
+            }
+            
+            input:nth-child(2){
+                width: auto;
+                min-width: 100px;
+                max-width: 200px;
+                padding: 10px 8px;
+                outline: none;
+                border: 1px solid #cccccc;
+                border-radius: 30px;
+                margin: 0 1vw;
+            }
+            
+            label{
+                width: auto;
+                min-width: 50px;
+                color: #1E2260;
+                text-align: center;
+                font-weight: 600;
+            }
+            
+            input:nth-child(3){
+                display: inline-block;
+                padding: 7px 15px;
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+                text-decoration: none;
+                border-radius: 30px;
+                color: #ffffff;
+                background: none;
+                outline: none;
+                cursor: pointer;
+                border: 2px solid #1E2260;
+                max-width: 100px;
+                background-color: #1E2260;
+            }
+    
+            input:nth-child(3):hover{
+                background-color: white;
+                border: 2px solid white;
+                color: #1E2260;
+            }
+    
+            @media (max-width: 400px) {
+                label{
+                    width: 60px;
+                    font-size: 0.8rem;
+                }
+                
+                input:nth-child(3){
+                    width: 75px;
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+
+
+}
+

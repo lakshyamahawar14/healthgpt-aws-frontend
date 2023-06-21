@@ -1,0 +1,58 @@
+.scoreContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    background-image: linear-gradient(109.6deg,
+            rgb(65, 142, 250) 11.2%,
+            rgb(21, 66, 246) 91.1%);
+    background-size: auto auto, 100%;
+    background-position: bottom;
+    background-repeat: no-repeat, no-repeat;
+
+    .scoreTitle p {
+        font-family: poppins;
+        font-weight: 600;
+        color: black;
+        font-size: 1.5rem;
+        padding: 0;
+    }
+}
+
+input:nth-child(1) {
+    display: inline-block;
+    padding: 7px 15px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 30px;
+    color: #ffffff;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #1E2260;
+    max-width: 100px;
+    background-color: #1E2260;
+}
+
+input:nth-child(1):hover {
+    background-color: white;
+    border: 2px solid white;
+    color: #1E2260;
+}
+
+.chartContainer {
+    margin: 3vh 3vw;
+    height: 50vh;
+    min-width: 350px;
+    width: 50%;
+    color: black;
+}
+
+@media (max-width: 400px) {
+    .chartContainer {
+        min-width: 300px;
+    }
+}

@@ -1,0 +1,245 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.wrapper {
+  margin: auto;
+  margin: 0 3vw;
+  padding-bottom: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  height: auto;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  background: #ffffff;
+}
+
+.login .colleft,
+.login .colright {
+  padding: 30px;
+  display: flex;
+}
+
+.login .colleft {
+  width: 60%;
+  clip-path: polygon(0 0, 0% 100%, 90% 0);
+  background: linear-gradient(109.6deg,
+      rgb(57, 63, 168) 31.2%,
+      rgb(30, 34, 96) 91.1%);
+}
+
+.login .colright {
+  width: 50%;
+  margin-left: -10%;
+}
+
+.login .logintext {
+  position: relative;
+  width: 100%;
+  color: #ffffff;
+}
+
+.login .logintext h2 {
+  margin: 0 0 15px 0;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.login .logintext p {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.login .logintext .btn {
+  display: inline-block;
+  font-family: poppins;
+  padding: 7px 20px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 30px;
+  color: #ffffff;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  max-width: 100px;
+  font-weight: 600;
+}
+
+.login .logintext .btn:hover {
+  color: #1E2260;
+  background-color: white;
+}
+
+.login .loginform {
+  position: relative;
+  width: 100%;
+}
+
+.login .loginform h2 {
+  margin: 0 0 15px 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.login .loginform p {
+  margin: 0 0 10px 0;
+  text-align: left;
+  color: #1E2260;
+  font-size: 15px;
+}
+
+.login .loginform p:last-child {
+  margin: 0;
+  padding-top: 3px;
+}
+
+.login .loginform p a {
+  color: #03adfc;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.login .loginform label {
+  display: block;
+  width: 100%;
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: #1E2260;
+}
+
+.login .loginform p:last-child label {
+  width: 60%;
+  float: left;
+}
+
+.login .loginform label span {
+  color: #ff574e;
+  padding-left: 2px;
+}
+
+.login .loginform input {
+  display: block;
+  width: 100%;
+  height: 35px;
+  padding: 0 10px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #1E2260;
+  font-weight: 600;
+}
+
+.login .loginform input:nth-child(1) {
+  max-width: 100px;
+}
+
+.login .loginform input:focus {
+  border-color: #1a1818;
+}
+
+.login .loginform button,
+.login .loginform input[type="submit"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  color: #1E2260;
+  background-color: #ffffff;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border: 2px solid #1E2260;
+  border-radius: 30px;
+}
+
+.login .loginform p {
+  color: #1E2260;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.login .loginform p:hover {
+  color: black;
+}
+
+.login .loginform button:hover,
+.login .loginform input[type="submit"]:hover,
+.login .loginform input[type="submit"]:focus {
+  color: #ffffff;
+  background-color: #1E2260;
+}
+
+@media (max-width: 575px) {
+  .login .container {
+    flex-direction: column;
+  }
+
+  .login .colleft {
+    width: 100%;
+    margin: 0;
+    clip-path: none;
+    padding: 0;
+
+    .logintext {
+      margin: 1.5em;
+    }
+  }
+
+  .login .colright {
+    width: 80%;
+    margin: 0;
+    clip-path: none;
+    padding: 0;
+
+    .loginform {
+      margin: 1.5em;
+    }
+  }
+}
+
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select {
+  width: 50%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 10px;
+  padding-right: 22px;
+  border: 2px solid #cccccc;
+  border-radius: 5px;
+  outline: none;
+  background-color: #ffffff;
+  font-size: 0.8rem;
+  font-family: poppins;
+  color: #1a1818;
+}
+
+.select:hover,
+.select:focus {
+  border: 2px solid #1a1818;
+}
+
+.selectArrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  margin-left: 9px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}

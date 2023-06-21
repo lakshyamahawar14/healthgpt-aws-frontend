@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .skipperContainer{
+        display: flex;
+        justify-content: center;
+        margin: 5vh 0vw;
+        width: 100%;
+        max-width: 500px;
+        min-width: 300px;
+        color: #1E2260;
+        font-weight: 600;
+        font-family: poppins;
+
+        div:nth-child(2){
+            width: 100px;
+            text-align: center;
+            margin: 0 2vw;
+        }
+        
+        div:nth-child(1){
+            text-align: center;
+            cursor: pointer;
+        }
+
+        div:nth-child(1):hover{
+            color: black;
+        }
+
+        div:nth-child(3){
+            text-align: center;
+            cursor: pointer;
+        }
+
+        div:nth-child(3):hover{
+            color: black;
+        }
+    }
+}

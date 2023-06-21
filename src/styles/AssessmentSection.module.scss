@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap");
+
+.assessmentContainer {
+    background-size: auto auto, 100%;
+    background-position: bottom;
+    background-repeat: no-repeat, no-repeat;
+    height: auto;
+    padding: 5vh 3vw;
+}
+
+.main {
+    background-image: linear-gradient(109.6deg,
+            rgb(65, 142, 250) 11.2%,
+            rgb(21, 66, 246) 91.1%);
+    background-size: auto auto, 100%;
+    background-position: bottom;
+    background-repeat: no-repeat, no-repeat;
+    height: auto;
+    min-height: 100vh;
+}
+
+.tests {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 12px;
+}
+
+.tests::after {
+    content: "";
+    width: 20px;
+}
+
+.testsContainer {
+    margin: 0 3vw;
+}
+
+.testsContainer p {
+    font-family: poppins;
+    font-size: 1.5rem;
+    color: black;
+    padding-bottom: 20px;
+    padding-left: 10px;
+}
+
+.testcard {
+    background-image: linear-gradient(109.6deg,
+            rgba(223, 234, 247, 1) 11.2%,
+            rgba(244, 248, 252, 1) 91.1%);
+    border: 1px solid #dddddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    min-height: 20vh;
+}
+
+.testcard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    color: #1E2260;
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.description {
+    color: rgba(0, 0, 0, 0.7);
+    font-family: poppins;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: start;
+}
+
+.blogcard Link {
+    text-decoration: none;
+    color: inherit;
+}

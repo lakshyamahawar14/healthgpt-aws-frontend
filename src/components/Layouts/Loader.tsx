@@ -62,7 +62,7 @@ const Loader = (props: any) => {
           </div>
         </div>
       )}
-      {firstLaunch && <PreloadContent />}
+      {/* {firstLaunch && <PreloadContent />} */}
     </>
   );
 };

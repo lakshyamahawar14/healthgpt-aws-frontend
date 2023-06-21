@@ -21,7 +21,7 @@
     }
 }
 
-input:nth-child(1) {
+.scoreContainer input:nth-child(1) {
     display: inline-block;
     padding: 7px 15px;
     font-size: 0.9rem;
@@ -37,7 +37,7 @@ input:nth-child(1) {
     background-color: #1E2260;
 }
 
-input:nth-child(1):hover {
+.scoreContainer input:nth-child(1):hover {
     background-color: white;
     border: 2px solid white;
     color: #1E2260;

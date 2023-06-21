@@ -4,7 +4,7 @@
 header {
   display: flex;
   justify-content: space-between;
-  padding: 3vh 3vw;
+  padding: 3vh 6vw;
   background-color: transparent;
   height: 10vh;
   min-height: 10vh;
@@ -20,6 +20,7 @@ header {
     font-size: 1.5rem;
     font-weight: 600;
     color: #1E2260;
+    cursor: pointer;
     z-index: 2;
   }
 
@@ -85,7 +86,7 @@ header {
     width: 10vw;
     max-width: 8vw;
     position: relative;
-    min-width: 100px;
+    min-width: 75px;
   }
 
 

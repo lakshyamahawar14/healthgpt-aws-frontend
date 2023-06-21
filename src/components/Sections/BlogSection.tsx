@@ -132,30 +132,36 @@ export const BlogPage = () => {
             <Loader startTop={true} />
           ) : (
             blogsArray.length > 0 && (
-              <div id="blogs" className={styles.blogsContainer}>
-                <p>Recommended Blogs</p>
-                <div className={styles.blogs}>
-                  {blogsArray.map((blog, index) => (
-                    <a
-                      key={index}
-                      href={blog.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.blogcard}
-                    >
-                      {/* <img src={'https://www.healthkart.com/connect/wp-content/uploads/2021/09/900x500_banner_HK-Connect_How-to-Improve-Heart-Health-_-Points-To-Keep-In-Mind.jpg'} alt={blog.title} /> */}
-                      <div className={styles.title}>{blog.title}</div>
-                      <div className={styles.description}>
-                        {blog.description}
-                      </div>
-                      <div className={styles.author}>{blog.date || ""}</div>
-                    </a>
-                  ))}
+              <>
+                <div id="blogs" className={styles.blogsContainer}>
+                  <p>Recommended Blogs</p>
+                  <div className={styles.blogs}>
+                    {blogsArray.map((blog, index) => (
+                      <a
+                        key={index}
+                        href={blog.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.blogcard}
+                      >
+                        {/* <img src={'https://www.healthkart.com/connect/wp-content/uploads/2021/09/900x500_banner_HK-Connect_How-to-Improve-Heart-Health-_-Points-To-Keep-In-Mind.jpg'} alt={blog.title} /> */}
+                        <div className={styles.title}>{blog.title}</div>
+                        <div className={styles.description}>
+                          {blog.description}
+                        </div>
+                        <div className={styles.author}>{blog.date || ""}</div>
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+                <Skipper
+                  onNext={handleOnNext}
+                  onPrev={handleOnPrev}
+                  page={pageNum}
+                />
+              </>
             )
           )}
-          <Skipper onNext={handleOnNext} onPrev={handleOnPrev} page={pageNum} />
         </div>
       </div>
     </>

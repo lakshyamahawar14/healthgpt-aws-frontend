@@ -34,6 +34,7 @@ const Loader = (props: any) => {
           alert("You have been Logged-Out. Please Login Again");
           localStorage.setItem("UserId", "");
           localStorage.setItem("AccessToken", "");
+          localStorage.setItem("IsLoggedIn", "false");
           setLoggedIn(false);
           resetMessages();
           resetBlogs();

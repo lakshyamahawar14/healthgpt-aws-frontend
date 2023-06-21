@@ -34,13 +34,14 @@ body {
   text-align: center;
   margin: auto;
   color: $Blueinsidecall-to-actiongradient;
-  padding: 20vh 10vw;
-  padding-top: 0;
+  padding: 10vh 10vw;
+  padding-top: 5vh;
 
   p {
     font-family: "Poppins", sans-serif;
     margin: 2vh 2vw;
     font-size: 2rem;
+
   }
 
   img {
@@ -84,6 +85,11 @@ body {
     color: white;
     background-color: #1E2260;
     cursor: pointer;
+
+    @media (max-width: 500px) {
+      font-size: 0.9rem;
+      width: 10rem;
+    }
   }
 
   button:hover {
@@ -98,7 +104,6 @@ body {
   max-width: 70%;
   margin: auto;
   padding: 20vh 10vw;
-  padding-top: 0;
   row-gap: 1vh;
   column-gap: 10vw;
   position: relative;
@@ -129,16 +134,11 @@ body {
 }
 
 #blue {
-  margin-top: -1rem;
-  background-color: $Bluemainbackground;
+  background-color: rgb(193, 255, 191);
 }
 
 .top {
-  background-image: url(../assets/images/wave3.svg),
-    linear-gradient(109.6deg, rgb(65, 142, 250) 11.2%, rgb(21, 66, 246) 91.1%);
-  background-size: auto auto, 100%;
-  background-position: bottom;
-  background-repeat: no-repeat, no-repeat;
+  background-color: rgb(21, 66, 246);
 }
 
 @media (max-width: 720px) {
@@ -156,7 +156,6 @@ body {
   grid-template-columns: 1fr 1fr;
   max-width: 70%;
   padding: 20vh 10vw;
-  padding-top: 0;
   column-gap: 5vw;
   position: relative;
   text-align: end;
@@ -209,13 +208,20 @@ body {
   color: $Yellow;
   grid-column-gap: 2rem;
   padding: 20vh 10vw;
-  padding-top: 0;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1000px) {
   .article3 {
     display: flex;
     flex-direction: column;
+  }
+
+  .article3 .box1 {
+    margin-bottom: 20px;
+  }
+
+  .article3 .box2 {
+    margin-bottom: 20px;
   }
 }
 
@@ -298,60 +304,4 @@ body {
   width: 2.5rem;
   border-radius: 100%;
   margin-top: 1rem;
-}
-
-.footer {
-  background-color: $Bluefooterbackground;
-  padding: 20px;
-  color: rgb(222, 228, 228);
-}
-
-.footerContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.footerColumn {
-  flex: 1 1 300px;
-  margin-bottom: 20px;
-  justify-content: center;
-  text-align: center;
-}
-
-.footerColumn h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.footerColumn p {
-  margin: 0;
-}
-
-.socialIcons a {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.socialIcons img {
-  width: 30px;
-  height: 30px;
-}
-
-.footerBottom {
-  text-align: center;
-  margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-  .footerColumn {
-    flex-basis: 50%;
-  }
-}
-
-@media (max-width: 480px) {
-  .footerColumn {
-    flex-basis: 100%;
-  }
 }

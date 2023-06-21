@@ -9,9 +9,6 @@ import bgQuotes from "../../assets/images/bg-quotes.png";
 import profile1 from "../../assets/images/profile-1.jpg";
 import profile2 from "../../assets/images/profile-2.jpg";
 import profile3 from "../../assets/images/profile-3.jpg";
-import github from "../../assets/images/Github.svg";
-import Instagram from "../../assets/images/Instagram.svg";
-import Facebook from "../../assets/images/Facebook.svg";
 import ChatBotAnimation from "../../UI/ChatBotAnimation";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +18,7 @@ import Loader from "../Layouts/Loader";
 import { LoggedInstate, FirstLaunch } from "../../config/atoms";
 import { useRecoilState } from "recoil";
 import PreloadContent from "../Layouts/PreloadContent";
+import Footer from "../Layouts/Footer";
 
 export const MidSection = (props: any) => {
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
@@ -42,7 +40,7 @@ export const MidSection = (props: any) => {
     const timer = setTimeout(() => {
       setIsLoading(false);
       firstLaunch && setFirstLaunch(false);
-    }, 2500);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -204,44 +202,7 @@ export const MidSection = (props: any) => {
               </div>
             </article>
           </section>
-          <footer className={styles.footer}>
-            <div className={styles.footerContainer}>
-              <div className={styles.footerColumn}>
-                <h3>About Us</h3>
-                <p>HealthGPT</p>
-                <p>Indian Institute of Technology, Roorkee</p>
-                <p>Uttarakhand-247667, India</p>
-              </div>
-
-              <div className={styles.footerColumn}>
-                <h3>Contact</h3>
-                <p>Phone: +91 1234567890</p>
-                <p>Email: healthgpt@gmail.com</p>
-              </div>
-
-              <div className={styles.footerColumn}>
-                <h3>Follow Us</h3>
-                <div className={styles.socialIcons}>
-                  <a href="#">
-                    <img src={github} alt="Facebook" />
-                  </a>
-                  <a href="#">
-                    <img src={Instagram} alt="Twitter" />
-                  </a>
-                  <a href="#">
-                    <img src={Facebook} alt="Instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.footerBottom}>
-              <p>
-                &copy; {new Date().getFullYear()} HealthGPT. All rights
-                reserved.
-              </p>
-            </div>
-          </footer>
+          <Footer />
         </div>
       )}
     </>

@@ -75,27 +75,29 @@ const Header = () => {
     const burgerElement = document.getElementById("burger");
     const divbtnElement = document.getElementById("divbtn");
     if (burgerElement?.innerHTML === `<span>-<br>-<br>-</span>`) {
-      burgerElement.innerHTML = `<span>|||</span>`;
-    } else if (burgerElement?.innerHTML === `<span>|||</span>`) {
+      burgerElement.innerHTML = `<span>×</span>`;
+    } else if (burgerElement?.innerHTML === `<span>×</span>`) {
       burgerElement.innerHTML = `<span>-<br>-<br>-</span>`;
     }
 
     if (divbtnElement) {
-      divbtnElement.style.transition = "opacity 0.3s ease-in-out";
+      // divbtnElement.style.transition = "opacity 0.3s ease-in-out";
 
       if (
         divbtnElement.style.display === "none" ||
         divbtnElement.style.display === ""
       ) {
         divbtnElement.style.display = "flex";
-        setTimeout(() => {
-          divbtnElement.style.opacity = "1";
-        }, 10);
+        divbtnElement.style.opacity = "1";
+        // setTimeout(() => {
+        //   divbtnElement.style.opacity = "1";
+        // }, 10);
       } else {
         divbtnElement.style.opacity = "0";
-        setTimeout(() => {
-          divbtnElement.style.display = "none";
-        }, 300);
+        divbtnElement.style.display = "none";
+        // setTimeout(() => {
+        //   divbtnElement.style.display = "none";
+        // }, 300);
       }
     }
   };

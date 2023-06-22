@@ -27,7 +27,7 @@ const Header = () => {
     try {
       axios
         .get(
-          `http://13.235.81.90:5000/api/v1/auth/signout?userId=${userId}&accessToken=${accessToken}`
+          `http://192.168.9.234:5000/api/v1/auth/signout?userId=${userId}&accessToken=${accessToken}`
         )
         .then(() => {
           setLoggedIn(false);
@@ -127,6 +127,14 @@ const Header = () => {
               to={topPathsArray.blogPath}
             >
               <button className={styles.btn1}> Blogs</button>
+            </Link>
+          </div>
+          <div className={styles.topbtn}>
+            <Link
+              style={{ textDecoration: "none" }}
+              to={topPathsArray.forumPath}
+            >
+              <button className={styles.btn1}> Community</button>
             </Link>
           </div>
           <div className={styles.topbtn}>

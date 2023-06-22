@@ -8,6 +8,7 @@ import TestPage from "./components/Sections/TestSection";
 import ScorePage from "./components/Sections/ScoreSection";
 import TrackerPage from "./components/Sections/TrackerSection";
 import "./styles/_scrollbar.scss";
+import ForumPage from "./components/Sections/ForumSection";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path={topPathsArray.scorePath} element={<ScorePage />} />
         <Route path={topPathsArray.trackerPath} element={<TrackerPage />} />
         <Route path={topPathsArray.blogPath} element={<BlogPage />} />
+        <Route path={topPathsArray.forumPath} element={<ForumPage />} />
         <Route
           path={topPathsArray.signupPath}
           element={<AuthPage signup={true} />}

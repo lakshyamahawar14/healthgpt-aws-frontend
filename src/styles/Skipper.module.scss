@@ -13,7 +13,7 @@
         width: 100%;
         max-width: 500px;
         min-width: 300px;
-        color: $violet;
+        color: $dirtwhite;
         font-weight: 600;
         font-family: $poppins;
 
@@ -29,7 +29,7 @@
         }
 
         div:nth-child(1):hover {
-            color: $black;
+            color: $violet;
         }
 
         div:nth-child(3) {
@@ -38,7 +38,7 @@
         }
 
         div:nth-child(3):hover {
-            color: $black;
+            color: $violet;
         }
     }
 }

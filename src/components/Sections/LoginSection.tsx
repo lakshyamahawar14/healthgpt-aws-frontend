@@ -30,7 +30,7 @@ export const LoginPage = React.memo((props: any) => {
       try {
         axios
           .get(
-            `http://13.235.81.90:5000/api/v1/auth/login?email=${email.current?.value}&password=${password.current?.value}`
+            `http://192.168.9.234:5000/api/v1/auth/login?email=${email.current?.value}&password=${password.current?.value}`
           )
           .then((userCredential) => {
             if (userCredential.data.status === "failure") {
@@ -72,7 +72,7 @@ export const LoginPage = React.memo((props: any) => {
       try {
         axios
           .get(
-            `http://13.235.81.90:5000/api/v1/auth/reset?email=${email.current.value}`
+            `http://192.168.9.234:5000/api/v1/auth/reset?email=${email.current.value}`
           )
           .then(() => {
             alert("Password Reset Link sent to your registered email!");

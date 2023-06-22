@@ -1,8 +1,10 @@
+@import './colors';
+
 ::-webkit-scrollbar {
     width: 0px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #1E2260;
+    background-color: $violet;
     border-radius: 2px;
 }

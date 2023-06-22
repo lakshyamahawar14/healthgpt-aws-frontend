@@ -17,7 +17,7 @@ const AssessmentPage = () => {
   const getTests = async () => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:7000/api/v1/assessment/`
+        `http://192.168.9.234:7000/api/v1/assessment/`
       );
       return res.data.data.tests;
     } catch (error) {

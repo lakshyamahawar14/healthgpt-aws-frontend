@@ -25,7 +25,7 @@ const TestPage = () => {
   const getTest = async (path: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:7000/api/v1/assessment${path}`
+        `http://192.168.9.234:7000/api/v1/assessment${path}`
       );
       return res.data.data.test;
     } catch (error) {
@@ -36,7 +36,7 @@ const TestPage = () => {
   const getScore = async (userId: any, accessToken: any, url: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
+        `http://192.168.9.234:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
       const scoreType = url.slice(1) + "Score";
       return res.data.data[scoreType];
@@ -82,9 +82,9 @@ const TestPage = () => {
 
   const evaluateScore = async (url: any, responses: any) => {
     try {
-      let requestUrl = `http://13.235.81.90:7000/api/v1/assessment/evaluate`;
+      let requestUrl = `http://192.168.9.234:7000/api/v1/assessment/evaluate`;
       if (url === "/general") {
-        requestUrl = `http://13.235.81.90:7000/api/v1/assessment/general/evaluate`;
+        requestUrl = `http://192.168.9.234:7000/api/v1/assessment/general/evaluate`;
       }
       const res = await axios.get(requestUrl, {
         params: {
@@ -105,12 +105,15 @@ const TestPage = () => {
     score: any
   ) => {
     try {
-      const res = await axios.post(`http://13.235.81.90:4000/api/v1/db/score`, {
-        userId: userId,
-        accessToken: accessToken,
-        url: url,
-        score: score,
-      });
+      const res = await axios.post(
+        `http://192.168.9.234:4000/api/v1/db/score`,
+        {
+          userId: userId,
+          accessToken: accessToken,
+          url: url,
+          score: score,
+        }
+      );
       return res.data.message;
     } catch (error) {
       console.log(error);

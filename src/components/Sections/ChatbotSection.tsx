@@ -25,7 +25,7 @@ export const ChatbotPage = (props: any) => {
     let accessToken = localStorage.getItem("AccessToken");
     axios
       .get(
-        `http://13.235.81.90:4000/api/v1/db/user?userId=${userId}&accessToken=${accessToken}`
+        `http://192.168.9.234:4000/api/v1/db/user?userId=${userId}&accessToken=${accessToken}`
       )
       .then((response) => {
         setUserCred({
@@ -57,7 +57,7 @@ export const ChatbotPage = (props: any) => {
 
     try {
       const res = await axios.get(
-        `http://13.235.81.90:9000/api/v1/gpt/response/turbo?userId=${userId}&userInput=${userInputVal}&accessToken=${accessToken}&numberOfMessages=${
+        `http://192.168.9.234:9000/api/v1/gpt/response/turbo?userId=${userId}&userInput=${userInputVal}&accessToken=${accessToken}&numberOfMessages=${
           msgCount + 1
         }`
       );
@@ -81,7 +81,7 @@ export const ChatbotPage = (props: any) => {
         return { ...prev, chat: d };
       });
       axios
-        .post(`http://13.235.81.90:4000/api/v1/db/chat`, {
+        .post(`http://192.168.9.234:4000/api/v1/db/chat`, {
           userId: userId,
           accessToken: accessToken,
           chatObject: {
@@ -97,14 +97,14 @@ export const ChatbotPage = (props: any) => {
         .then(() => {
           axios
             .get(
-              `http://13.235.81.90:9000/api/v1/gpt/belief/davinci?userId=${userId}&accessToken=${accessToken}&numberOfMessages=${
+              `http://192.168.9.234:9000/api/v1/gpt/belief/davinci?userId=${userId}&accessToken=${accessToken}&numberOfMessages=${
                 msgCount + 1
               }`
             )
             .then((response) => {
               let belief = response.data.data.belief.toLowerCase().trim();
               axios
-                .post(`http://13.235.81.90:4000/api/v1/db/belief`, {
+                .post(`http://192.168.9.234:4000/api/v1/db/belief`, {
                   userId: userId,
                   accessToken: accessToken,
                   belief: belief || "no",
@@ -112,7 +112,7 @@ export const ChatbotPage = (props: any) => {
                 .then(() => {
                   axios
                     .get(
-                      `http://13.235.81.90:9000/api/v1/gpt/symptom/davinci?userId=${userId}&accessToken=${accessToken}&numberOfMessages=${
+                      `http://192.168.9.234:9000/api/v1/gpt/symptom/davinci?userId=${userId}&accessToken=${accessToken}&numberOfMessages=${
                         msgCount + 1
                       }`
                     )
@@ -207,7 +207,7 @@ export const ChatbotPage = (props: any) => {
                       let symptom = extractSymptom(symptomText);
 
                       axios
-                        .post(`http://13.235.81.90:4000/api/v1/db/symptom`, {
+                        .post(`http://192.168.9.234:4000/api/v1/db/symptom`, {
                           userId: userId,
                           accessToken: accessToken,
                           symptom: symptom,

@@ -27,7 +27,7 @@ const Loader = React.memo((props: any) => {
     }
     axios
       .get(
-        `http://13.235.81.90:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
+        `http://192.168.9.234:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
       )
       .then((response) => {
         if (response.data.status === "failure") {

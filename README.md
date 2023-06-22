@@ -1,3 +1,5 @@
-### run ```npm install``` to install all the dependencies
-### run ```npm start``` to start the development server
-### run ```node server/server.js``` to start backend server
+### Backend for HealthGPT
+
+##### Run `npm install` to install necessary dependencies
+
+##### Run `npm start` to start the server

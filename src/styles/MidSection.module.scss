@@ -1,31 +1,20 @@
-$Yellow: #faffaf;
-$Bluemainbackground: #95d1cc;
-$Bluefooterbackground: #2155cd;
-$Bluetestimonialsbackground: #2155cd;
-$Cyaninsidecall-to-actiongradient: #205375;
-$Blueinsidecall-to-actiongradient: #112b3c;
-$LightRederror: hsl(0, 100%, 63%);
-$White: hsl(0, 0%, 100%);
-$Grad: rgba(255, 0, 0, 0);
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import './fonts';
+@import './colors';
 
 html {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: $opensans;
   font-weight: 700;
-  color: $Bluefooterbackground;
-  background-color: $Grad;
+  color: $blue;
+  background-color: $blue;
   margin: 0;
 }
 
 .centered {
-  font-family: "Open Sans", sans-serif;
+  font-family: $opensans;
   font-weight: 700;
   font-size: 2.25rem;
   max-width: 30ch;
@@ -33,7 +22,7 @@ body {
   flex-direction: column;
   text-align: center;
   margin: auto;
-  color: $Blueinsidecall-to-actiongradient;
+  color: $white;
   padding: 15vh 5vw;
   padding-bottom: 0;
 
@@ -47,10 +36,10 @@ body {
   }
 
   p {
-    font-family: "Poppins", sans-serif;
+    font-family: $poppins;
     margin: 2vh 2vw;
     font-size: 2rem;
-
+    -webkit-text-stroke: 1px $violet;
   }
 
   img {
@@ -63,7 +52,7 @@ body {
     margin: auto;
     margin-top: 3vh;
     margin-bottom: 3vh;
-    font-family: "Open Sans", sans-serif;
+    font-family: $opensans;
     font-weight: 400;
     font-size: 1rem;
     display: flex;
@@ -80,7 +69,7 @@ body {
   }
 
   button {
-    font-family: "Open Sans", sans-serif;
+    font-family: $opensans;
     font-weight: 700;
     font-size: 1rem;
     padding: 1em;
@@ -91,8 +80,8 @@ body {
     border-radius: 25px;
     outline: none;
     border: none;
-    color: white;
-    background-color: #1E2260;
+    color: $white;
+    background-color: $violet;
     cursor: pointer;
 
     @media (max-width: 500px) {
@@ -103,7 +92,7 @@ body {
 
   button:hover {
     text-decoration: underline;
-    background-color: black;
+    background-color: $black;
   }
 }
 
@@ -130,7 +119,7 @@ body {
   font-weight: 700;
   text-align: justify;
   font-size: 1rem;
-  color: black;
+  color: $black;
 }
 
 .blocks span {
@@ -143,11 +132,11 @@ body {
 }
 
 #blue {
-  background-color: rgb(193, 255, 191);
+  background-color: $lightgreen;
 }
 
 .top {
-  background-color: rgb(21, 66, 246);
+  background-color: $blue;
   height: auto;
   min-height: 100vh;
 }
@@ -197,7 +186,7 @@ body {
   text-align: justify;
   font-size: 1rem;
   line-height: 1.4em;
-  color: black;
+  color: $black;
 }
 
 .article2 .block2 span {
@@ -208,7 +197,7 @@ body {
 }
 
 .article2 .block2 a {
-  color: $Cyaninsidecall-to-actiongradient;
+  color: $violet;
 }
 
 .article3 {
@@ -249,9 +238,9 @@ body {
 }
 
 .article3 .box1 {
-  font-family: poppins;
-  background-color: #1E2260;
-  color: #ffffff;
+  font-family: $poppins;
+  background-color: $violet;
+  color: $white;
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
   position: relative;
@@ -259,16 +248,16 @@ body {
 }
 
 .article3 .box2 {
-  font-family: poppins;
-  background-color: #1E2260;
-  color: #ffffff;
+  font-family: $poppins;
+  background-color: $violet;
+  color: $white;
   grid-column: 2 / span 1;
 }
 
 .article3 .box3 {
-  font-family: poppins;
-  background-color: #1E2260;
-  color: #ffffff;
+  font-family: $poppins;
+  background-color: $violet;
+  color: $white;
   grid-column: 3 / span 1;
 }
 
@@ -297,9 +286,9 @@ body {
 
 .article3 div {
   height: auto;
-  background-color: $Bluetestimonialsbackground;
+  background-color: $blue;
   padding: 1rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: $opensans;
   font-weight: 400;
   border-radius: 0.5em;
 }

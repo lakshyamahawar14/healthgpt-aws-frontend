@@ -1,3 +1,5 @@
+@import './colors';
+
 .topContainer {
     height: 100%;
     width: 100%;
@@ -5,7 +7,7 @@
     justify-content: center;
     align-items: flex-start;
     background: transparent;
-    padding: 20px 0;
+    margin-top: 50px;
 
     .loaderContainer {
         display: flex;
@@ -14,7 +16,7 @@
 
         p {
             font-size: 1.2rem;
-            color: #1E2260;
+            color: $dirtwhite;
         }
 
         .logo {
@@ -37,7 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(21, 66, 246);
+    background-color: $blue;
 
     .loaderContainer {
         display: flex;
@@ -46,7 +48,7 @@
 
         p {
             font-size: 1.2rem;
-            color: #1E2260;
+            color: $dirtwhite;
         }
 
         .logo {

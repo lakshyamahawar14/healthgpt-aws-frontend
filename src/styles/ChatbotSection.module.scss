@@ -1,14 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Caladea:wght@400;700&display=swap");
-
-::-webkit-scrollbar {
-  width: 0px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #1E2260;
-  border-radius: 2px;
-}
+@import './fonts';
+@import './colors';
 
 .msgContainer {
   position: relative;
@@ -78,10 +69,7 @@
   background: white;
   width: 100%;
   opacity: 1;
-  // top: 60px;
-  // top: 10%;
-  font-family: "Montserrat", sans-serif;
-  // font-family: "Caladea", serif;
+  font-family: $montserrat;
   font-weight: 500;
   word-spacing: 0.15ch;
   line-height: 2.5ch;
@@ -89,13 +77,8 @@
   flex: auto;
   max-height: calc(100% - 60px);
   overflow: auto;
-  // scrollbar-width: none;
 }
 
-// .bottomscroll {
-//   position: relative;
-//   top: 100%;
-// }
 .bottombar {
   position: relative;
   width: 100%;
@@ -123,7 +106,7 @@
   left: 15px;
 
   p {
-    color: white;
+    color: $white;
     margin: 7px 10px;
   }
 }
@@ -132,7 +115,7 @@
   position: absolute;
   top: 22px;
   text-transform: uppercase;
-  color: black;
+  color: $black;
   font-size: 0.8em;
   letter-spacing: 2px;
   font-weight: 800;
@@ -145,7 +128,6 @@
   padding: 10px;
   top: 5px;
   right: 21px;
-  //margin: 12% auto;
   cursor: pointer;
 
   .fas {
@@ -161,11 +143,11 @@
 }
 
 path {
-  color: #1e2260;
+  color: $violet;
 }
 
 .cross {
-  color: #1e2260;
+  color: $violet;
   padding: 10px;
   padding: 5px;
   transform: scale(1.5);
@@ -188,21 +170,18 @@ path {
 .bubble {
   position: relative;
   display: inline-block;
-  // margin-bottom: 5px;
   margin: 5px 20px;
-  color: white;
-
+  color: $white;
   padding: 10px 10px 10px 12px;
   border-radius: 20px;
+}
 
-  // font-size: 11pt;
-  // line-height: 18pt;
+.bottombar form div input {
+  font-family: $karla;
 }
 
 .incoming {
   position: relative;
-  // width: 50%;
-  // height: 100%;
   display: flex;
   flex-direction: column;
   padding: 0.3rem;
@@ -211,43 +190,24 @@ path {
   width: auto;
   float: left;
 
-  // padding: 20px;
   .bubble {
-    background-color: rgb(239, 239, 239);
-    color: black;
+    background-color: $dirtwhite;
+    color: $black;
     font-weight: 600;
   }
 }
 
-// .typing {
-//   position: absolute;
-//   top: 67%;
-//   left: 20px;
-//   .bubble {
-//     background: lighten($dark, 45%);
-//     // padding: 8px 13px 9px 13px;
-//   }
-// }
-
-// .lower {
-//   margin-top: 45px;
-// }
-
 .outgoing {
   position: relative;
-  // padding: 20px;
   right: 0;
-  // top: 15%;
   padding: 0.3rem;
   border-radius: 0 6px 6px 0;
   max-width: 80%;
   width: auto;
   float: right;
 
-  // width: 50%;
-  // height: 100%;
   .bubble {
-    background-color: rgb(138, 40, 197);
+    background-color: $purple;
     float: right;
     font-weight: 600;
   }
@@ -264,19 +224,19 @@ path {
   position: absolute;
   border: 0;
   top: 13px;
-  font-family: "Montserrat", sans-serif;
+  font-family: $montserrat;
   font-weight: 500;
   font-size: 11pt;
   background: white;
-  color: #1E2260;
+  color: $violet;
 }
 
 .chatinput input::placeholder {
-  color: #1E2260;
+  color: $violet;
 }
 
 .chatinput input:focus {
-  color: black;
+  color: $black;
   outline: 0;
 }
 
@@ -284,7 +244,7 @@ path {
   position: absolute;
   border: 0;
   font-size: 1em;
-  color: #1E2260;
+  color: $violet;
   top: 19px;
   opacity: 0.8;
   right: 17px;
@@ -296,7 +256,7 @@ path {
   &:hover {
     transform: scale(2);
     transition: all 0.1s ease-in-out;
-    color: #1E2260;
+    color: $violet;
   }
 }
 
@@ -321,7 +281,8 @@ path {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: $black;
+  opacity: 0.75;
 }
 
 @keyframes bounce {
@@ -342,101 +303,3 @@ path {
     opacity: 0.5;
   }
 }
-
-// .messages {
-//   position: relative;
-//   background: white;
-//   opacity: 0.5;
-//   width: 30%;
-//   height: 70%;
-//   top: 2.5%;
-//   left: 5%;
-//   border-radius: 10px 0 0 10px;
-//   box-shadow: -5px 5px 10px rgba($dark, 0.5);
-// }
-
-/*chat messages */
-// .people {
-//   position: relative;
-//   list-style-type: none;
-//   width: 30.2%;
-//   left: -10px;
-//   top: 24.7%;
-//   line-height: 0.7em;
-//   .title {
-//     text-transform: uppercase;
-//     font-size: 0.7em;
-//     margin-left: 14px;
-//     letter-spacing: 1px;
-//     color: $dark;
-//   }
-//   .time {
-//     font-size: 0.3em;
-//     color: $dark;
-//     position: arelative;
-//     right: 10px;
-//     margin-top: 2px;
-//   }
-//   .preview {
-//     color: #1E2260;
-//     margin-left: 14px;
-//     font-size: 0.5em;
-//   }
-// }
-
-// .person {
-//   padding: 12px 0 12px 12px;
-//   border-bottom: 1px solid #1E2260;
-//   cursor: pointer;
-//   &:hover {
-//     background: white;
-//     transition: all 0.3s ease-in-out;
-//   }
-// }
-
-// .focus {
-//   background: white;
-//   margin-left: 1px;
-// }
-
-// .profile {
-//   position: relative;
-//   left: 16%;
-//   top: 7%;
-// }
-
-// .name2 {
-//   position: relative;
-//   top: 50px;
-//   left: 2px;
-//   text-transform: uppercase;
-//   color: #1E2260;
-//   font-size: 0.8em;
-//   letter-spacing: 2px;
-//   font-weight: 500;
-// }
-// .email {
-//   color: white;
-//   font-size: 0.5em;
-//   margin-left: -30px;
-//   margin-top: 2px;
-// }
-
-// .ellipsis {
-//   width: 5px;
-//   height: 5px;
-//   display: inline-block;
-//   background: lighten($dark, 25%);
-//   border-radius: 50%;
-//   animation: bounce 1.3s linear infinite;
-// }
-
-// .one {
-//   animation-delay: 0.6s;
-// }
-// .two {
-//   animation-delay: 0.5s;
-// }
-// .three {
-//   animation-delay: 0.8s;
-// }

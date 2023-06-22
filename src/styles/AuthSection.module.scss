@@ -1,16 +1,19 @@
+@import './fonts';
+@import './colors';
+
 .authContainer {
   margin: auto;
-  font-family: poppins;
+  font-family: $poppins;
   font-size: 1rem;
   font-weight: 400;
-  color: #1E2260;
+  color: $violet;
   height: auto;
   padding: 15vh 0vw;
   padding-bottom: 5vh;
 }
 
 .main {
-  background-color: rgb(21, 66, 246);
+  background-color: $blue;
   height: auto;
   min-height: 100vh;
 }

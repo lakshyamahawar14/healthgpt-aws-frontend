@@ -120,7 +120,6 @@ export const ChatbotPage = (props: any) => {
                       let symptomText = response.data.data.symptom
                         .toLowerCase()
                         .trim();
-                      console.log("symptom text", symptomText);
                       const extractSymptom = (symptomText: any) => {
                         if (symptomText.includes("no")) {
                           return "no";
@@ -194,7 +193,6 @@ export const ChatbotPage = (props: any) => {
 
                         symptomArray.forEach((symp) => {
                           const simil = similarity(symptomText, symp);
-                          console.log(symptomText, symp, simil);
                           if (simil >= maxSimilarity) {
                             mostLikelySymptom = symp;
                             maxSimilarity = simil;
@@ -207,7 +205,6 @@ export const ChatbotPage = (props: any) => {
                       };
 
                       let symptom = extractSymptom(symptomText);
-                      console.log("most likely", symptom);
 
                       axios
                         .post(`http://13.235.81.90:4000/api/v1/db/symptom`, {

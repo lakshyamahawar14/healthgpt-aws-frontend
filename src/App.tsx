@@ -7,6 +7,7 @@ import AssessmentPage from "./components/Sections/AssessmentSection";
 import TestPage from "./components/Sections/TestSection";
 import ScorePage from "./components/Sections/ScoreSection";
 import TrackerPage from "./components/Sections/TrackerSection";
+import "./styles/_scrollbar.scss";
 
 function App() {
   return (

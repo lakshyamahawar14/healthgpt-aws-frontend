@@ -9,7 +9,7 @@ import {
   tests,
 } from "../../config/atoms";
 import axios from "axios";
-import logo from "../../assets/images/luxlogofinal.svg";
+import logo from "../../assets/images/luxlogobot.svg";
 import styles from "../../styles/Header.module.scss";
 
 const Header = () => {
@@ -81,23 +81,13 @@ const Header = () => {
     }
 
     if (divbtnElement) {
-      // divbtnElement.style.transition = "opacity 0.3s ease-in-out";
-
       if (
         divbtnElement.style.display === "none" ||
         divbtnElement.style.display === ""
       ) {
         divbtnElement.style.display = "flex";
-        divbtnElement.style.opacity = "1";
-        // setTimeout(() => {
-        //   divbtnElement.style.opacity = "1";
-        // }, 10);
       } else {
-        divbtnElement.style.opacity = "0";
         divbtnElement.style.display = "none";
-        // setTimeout(() => {
-        //   divbtnElement.style.display = "none";
-        // }, 300);
       }
     }
   };
@@ -107,6 +97,7 @@ const Header = () => {
       <header>
         <div className={styles.divLogo}>
           <img className={styles.logo} src={logo} alt="" />
+          <p>LUX</p>
         </div>
         <div id="burger" className={styles.burger} onClick={handleMenu}>
           <span>

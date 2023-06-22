@@ -1,7 +1,10 @@
+@import './colors';
+@import './fonts';
+
 .footer {
-    background-color: rgb(21, 66, 246);
+    background-color: $blue;
     padding: 20px;
-    color: rgb(222, 228, 228);
+    color: $white;
 }
 
 .footerContainer {
@@ -25,11 +28,14 @@
 }
 
 .footerColumn h3 {
-    font-size: 18px;
+    font-size: 1rem;
+    font-family: $karla;
     margin-bottom: 10px;
 }
 
 .footerColumn p {
+    font-family: $karla;
+    font-weight: 400;
     margin: 0;
 }
 
@@ -46,6 +52,10 @@
 .footerBottom {
     text-align: center;
     margin-top: 20px;
+}
+
+.footerBottom p {
+    font-family: $karla;
 }
 
 @media (max-width: 768px) {

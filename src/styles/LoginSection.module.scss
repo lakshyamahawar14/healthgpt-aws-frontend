@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import './fonts';
+@import './colors';
 
 .wrapper {
   margin: auto;
@@ -16,7 +17,7 @@
   width: 100%;
   max-width: 600px;
   display: flex;
-  background: #ffffff;
+  background: $white;
 }
 
 .login .colleft,
@@ -28,7 +29,7 @@
 .login .colleft {
   width: 60%;
   clip-path: polygon(0 0, 0% 100%, 90% 0);
-  background-color: rgb(30, 34, 96);
+  background-color: $violet;
 }
 
 .login .colright {
@@ -39,7 +40,7 @@
 .login .logintext {
   position: relative;
   width: 100%;
-  color: #ffffff;
+  color: $white;
 }
 
 .login .logintext h2 {
@@ -57,23 +58,23 @@
 
 .login .logintext .btn {
   display: inline-block;
-  font-family: poppins;
+  font-family: $poppins;
   padding: 7px 20px;
   font-size: 0.9rem;
   letter-spacing: 1px;
   text-decoration: none;
   border-radius: 30px;
-  color: #ffffff;
+  color: $white;
   outline: none;
   cursor: pointer;
-  border: 2px solid #ffffff;
+  border: 2px solid $white;
   max-width: 100px;
   font-weight: 600;
 }
 
 .login .logintext .btn:hover {
-  color: #1E2260;
-  background-color: white;
+  color: $violet;
+  background-color: $white;
 }
 
 .login .loginform {
@@ -90,7 +91,7 @@
 .login .loginform p {
   margin: 0 0 10px 0;
   text-align: left;
-  color: #1E2260;
+  color: $violet;
   font-size: 15px;
 }
 
@@ -100,7 +101,7 @@
 }
 
 .login .loginform p a {
-  color: #03adfc;
+  color: $blue;
   font-size: 14px;
   text-decoration: none;
 }
@@ -111,7 +112,7 @@
   margin-bottom: 2px;
   letter-spacing: 0.5px;
   font-weight: 600;
-  color: #1E2260;
+  color: $violet;
 }
 
 .login .loginform p:last-child label {
@@ -120,7 +121,7 @@
 }
 
 .login .loginform label span {
-  color: #ff574e;
+  color: $red;
   padding-left: 2px;
 }
 
@@ -140,7 +141,7 @@
 }
 
 .login .loginform input:focus {
-  border-color: #1a1818;
+  border-color: $violet;
 }
 
 .login .loginform button,
@@ -151,30 +152,30 @@
   align-items: center;
   width: 100%;
   margin-top: 10px;
-  color: #1E2260;
-  background-color: #ffffff;
+  color: $white;
+  background-color: $violet;
   font-size: 0.9rem;
   letter-spacing: 1px;
   cursor: pointer;
-  border: 2px solid #1E2260;
+  border: 2px solid $violet;
   border-radius: 30px;
 }
 
 .login .loginform p {
-  color: #1E2260;
+  color: $violet;
   font-weight: 800;
   cursor: pointer;
 }
 
 .login .loginform p:hover {
-  color: black;
+  color: $black;
 }
 
 .login .loginform button:hover,
 .login .loginform input[type="submit"]:hover,
 .login .loginform input[type="submit"]:focus {
-  color: #ffffff;
-  background-color: #1E2260;
+  color: $white;
+  background-color: $violet;
 }
 
 @media (max-width: 575px) {
@@ -216,18 +217,18 @@
   padding-bottom: 8px;
   padding-left: 10px;
   padding-right: 22px;
-  border: 2px solid #cccccc;
+  border: 2px solid $dirtwhite;
   border-radius: 5px;
   outline: none;
-  background-color: #ffffff;
+  background-color: $white;
   font-size: 0.8rem;
-  font-family: poppins;
-  color: #1a1818;
+  font-family: $poppins;
+  color: $violet;
 }
 
 .select:hover,
 .select:focus {
-  border: 2px solid #1a1818;
+  border: 2px solid $violet;
 }
 
 .selectArrow {

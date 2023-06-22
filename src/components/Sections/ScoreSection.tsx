@@ -32,7 +32,7 @@ const ScorePage = () => {
   const getScore = async (userId: any, accessToken: any, url: any) => {
     try {
       const res = await axios.get(
-        `http://192.168.9.234:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
+        `http://13.235.81.90:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
       const scoreType = url.slice(1) + "Score";
       return res.data.data[scoreType];

@@ -8,6 +8,7 @@ import {
   LoggedInstate,
   blogs,
   numMessagesState,
+  posts,
   tests,
 } from "../../config/atoms";
 import Success from "../Layouts/Success";
@@ -20,6 +21,7 @@ export const SignupPage = React.memo((props: any) => {
   const resetMessages = useResetRecoilState(numMessagesState);
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
+  const resetPosts = useResetRecoilState(posts);
 
   let email = useRef<HTMLInputElement>(null);
   let userName = useRef<HTMLInputElement>(null);
@@ -37,7 +39,7 @@ export const SignupPage = React.memo((props: any) => {
     ) {
       try {
         axios
-          .post(`http://192.168.9.234:5000/api/v1/auth/signup`, {
+          .post(`http://13.235.81.90:5000/api/v1/auth/signup`, {
             email: email.current?.value,
             username: userName.current?.value,
             password: password.current?.value,
@@ -52,7 +54,7 @@ export const SignupPage = React.memo((props: any) => {
             setSuccessMessage("Sign-Up Successful");
             axios
               .get(
-                `http://192.168.9.234:5000/api/v1/auth/login?email=${email.current?.value}&password=${password.current?.value}`
+                `http://13.235.81.90:5000/api/v1/auth/login?email=${email.current?.value}&password=${password.current?.value}`
               )
               .then((userCredential) => {
                 setSuccessMessage("Logging In...");
@@ -70,6 +72,7 @@ export const SignupPage = React.memo((props: any) => {
                 resetMessages();
                 resetBlogs();
                 resetTests();
+                resetPosts();
 
                 const timer = setTimeout(() => {
                   navigate(topPathsArray.homePath, { replace: true });

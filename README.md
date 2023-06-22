@@ -1,4 +1,4 @@
-### Backend for HealthGPT
+### Frontend for HealthGPT
 
 ##### Run `npm install` to install necessary dependencies
 

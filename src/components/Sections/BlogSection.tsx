@@ -23,7 +23,7 @@ export const BlogPage = () => {
   const getBlogs = async (searchQuery: any, numberOfResults: any) => {
     try {
       const res = await axios.get(
-        `http://192.168.9.234:8000/api/v1/news/news?searchQuery=${searchQuery}&numberOfResults=${numberOfResults}`
+        `http://13.235.81.90:8000/api/v1/news/news?searchQuery=${searchQuery}&numberOfResults=${numberOfResults}`
       );
       return res.data.data.articles;
     } catch (error) {
@@ -34,7 +34,7 @@ export const BlogPage = () => {
   const getSymptom = async (userId: any, accessToken: any) => {
     try {
       const res = await axios.get(
-        `http://192.168.9.234:4000/api/v1/db/symptom?userId=${userId}&accessToken=${accessToken}`
+        `http://13.235.81.90:4000/api/v1/db/symptom?userId=${userId}&accessToken=${accessToken}`
       );
       return res.data.data.symptom;
     } catch (error) {

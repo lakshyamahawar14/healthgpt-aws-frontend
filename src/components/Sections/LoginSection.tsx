@@ -9,6 +9,7 @@ import {
   numMessagesState,
   blogs,
   tests,
+  posts,
 } from "../../config/atoms";
 import Error from "../Layouts/Error";
 import Success from "../Layouts/Success";
@@ -20,6 +21,7 @@ export const LoginPage = React.memo((props: any) => {
   const resetMessages = useResetRecoilState(numMessagesState);
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
+  const resetPosts = useResetRecoilState(posts);
 
   let email = useRef<HTMLInputElement>(null);
   let password = useRef<HTMLInputElement>(null);
@@ -30,7 +32,7 @@ export const LoginPage = React.memo((props: any) => {
       try {
         axios
           .get(
-            `http://192.168.9.234:5000/api/v1/auth/login?email=${email.current?.value}&password=${password.current?.value}`
+            `http://13.235.81.90:5000/api/v1/auth/login?email=${email.current?.value}&password=${password.current?.value}`
           )
           .then((userCredential) => {
             if (userCredential.data.status === "failure") {
@@ -49,6 +51,7 @@ export const LoginPage = React.memo((props: any) => {
             resetMessages();
             resetBlogs();
             resetTests();
+            resetPosts();
 
             const timer = setTimeout(() => {
               navigate(topPathsArray.homePath, { replace: true });
@@ -72,7 +75,7 @@ export const LoginPage = React.memo((props: any) => {
       try {
         axios
           .get(
-            `http://192.168.9.234:5000/api/v1/auth/reset?email=${email.current.value}`
+            `http://13.235.81.90:5000/api/v1/auth/reset?email=${email.current.value}`
           )
           .then(() => {
             alert("Password Reset Link sent to your registered email!");

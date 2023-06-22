@@ -7,6 +7,7 @@ import {
   numMessagesState,
   blogs,
   tests,
+  posts,
 } from "../../config/atoms";
 import axios from "axios";
 import logo from "../../assets/images/luxlogobot.svg";
@@ -16,6 +17,7 @@ const Header = () => {
   const resetMessages = useResetRecoilState(numMessagesState);
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
+  const resetPosts = useResetRecoilState(posts);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const Header = () => {
     try {
       axios
         .get(
-          `http://192.168.9.234:5000/api/v1/auth/signout?userId=${userId}&accessToken=${accessToken}`
+          `http://13.235.81.90:5000/api/v1/auth/signout?userId=${userId}&accessToken=${accessToken}`
         )
         .then(() => {
           setLoggedIn(false);
@@ -53,6 +55,7 @@ const Header = () => {
     resetMessages();
     resetBlogs();
     resetTests();
+    resetPosts();
 
     const timer = setTimeout(() => {
       setIsLoggingOut(false);

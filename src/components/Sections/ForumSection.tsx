@@ -7,20 +7,27 @@ import Loader from "../Layouts/Loader";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
+import Success from "../Layouts/Success";
+import Error from "../Layouts/Error";
+import Search from "../Layouts/Search";
 
 const ForumPage = () => {
   const [postsArray, setPostsArray] = useRecoilState(posts);
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [isLoading, setIsLoading] = useState(firstLaunch);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   let title = useRef<HTMLInputElement>(null);
   let description = useRef<HTMLTextAreaElement>(null);
+  let tags = useRef<HTMLInputElement>(null);
+
   const navigate = useNavigate();
 
   const getPosts = async () => {
     try {
       const res = await axios.get(
-        `http://192.168.9.234:1000/api/v1/forum/posts`
+        `http://13.235.81.90:4500/api/v1/forum/posts`
       );
       return res.data.data.communityposts;
     } catch (error) {
@@ -61,10 +68,10 @@ const ForumPage = () => {
     date: any,
     title: any,
     description: any,
-    url: any
+    tags: any
   ) => {
     axios
-      .post(`http://192.168.9.234:4000/api/v1/db/posts`, {
+      .post(`http://13.235.81.90:4000/api/v1/db/posts`, {
         userId: userId,
         accessToken: accessToken,
         postObject: {
@@ -74,7 +81,7 @@ const ForumPage = () => {
           date: date,
           title: title,
           description: description,
-          url: url,
+          tags: tags,
         },
       })
       .then((response) => {})
@@ -82,6 +89,19 @@ const ForumPage = () => {
         console.log(error.message);
       });
   };
+
+  function truncateDescription(description: any, wordLimit: any) {
+    if (!description) return "";
+
+    const words = description.split(" ");
+    if (words.length <= wordLimit) {
+      return description;
+    } else {
+      const truncatedWords = words.slice(0, wordLimit);
+      const truncatedDescription = truncatedWords.join(" ") + "...";
+      return truncatedDescription;
+    }
+  }
 
   const handlePost = () => {
     if (!isLoggedIn) {
@@ -93,6 +113,24 @@ const ForumPage = () => {
     }
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
+
+    let tagsText = tags.current?.value;
+    let tagsArray: (string | undefined)[] = [];
+
+    if (tagsText === "") {
+      tagsArray.push("/general");
+    } else {
+      tagsText?.split(" ").forEach((tag) => {
+        if (tagsArray.length === 3) {
+          return;
+        }
+        if (tag.charAt(0) !== "/") {
+          tag = "/" + tag;
+        }
+        tagsArray.push(tag);
+      });
+    }
+
     updatePosts(
       userId,
       accessToken,
@@ -101,28 +139,34 @@ const ForumPage = () => {
       "22 June, 2023",
       title.current?.value,
       description.current?.value,
-      "/general"
+      tagsArray
     ).then(() => {
       const timer = setTimeout(() => {
         getPosts().then((response) => {
           setPostsArray(response);
+          setSuccessMessage("Post Added Successfully");
         });
-      }, 1500);
+      }, 2000);
 
       return () => clearTimeout(timer);
     });
+  };
+
+  const handleSearch = () => {
+    console.log("implement filter here");
   };
 
   return (
     <>
       <div className={styles.main}>
         <Header />
-        <div className={styles.forumContainer}>
-          {isLoading ? (
-            <Loader startTop={true} />
-          ) : (
-            postsArray.length > 0 && (
-              <>
+        <Search onSearch={handleSearch} />
+        {isLoading ? (
+          <Loader startTop={true} />
+        ) : (
+          postsArray.length > 0 && (
+            <>
+              <div className={styles.forumContainer}>
                 <div className={styles.forumTitle}>
                   <p>Community Posts</p>
                 </div>
@@ -155,11 +199,20 @@ const ForumPage = () => {
                           </div>
                           <div className={styles.title}>{post.title}</div>
                           <div className={styles.description}>
-                            {post.description}
+                            {truncateDescription(post.description, 50)}
                           </div>
+
                           <div className={styles.postcardbottom}>
                             catagory:{" "}
-                            <span className={styles.url}>{post.url}</span>
+                            <div className={styles.tags}>
+                              {post.tags.map((tag, index) => {
+                                return (
+                                  <span key={index} className={styles.tag}>
+                                    {tag}
+                                  </span>
+                                );
+                              })}
+                            </div>
                           </div>
                         </Link>
                       );
@@ -185,6 +238,17 @@ const ForumPage = () => {
                     </p>
                     <p>
                       {" "}
+                      <label>Post Tags</label>{" "}
+                      <input
+                        type="text"
+                        required
+                        name="tags"
+                        placeholder="/general"
+                        ref={tags}
+                      />
+                    </p>
+                    <p>
+                      {" "}
                       <label>
                         Description<span>*</span>
                       </label>{" "}
@@ -198,17 +262,23 @@ const ForumPage = () => {
                     <p>
                       <input
                         type="submit"
-                        name="search"
-                        value="Search"
+                        name="post"
+                        value="Post"
                         onClick={handlePost}
                       />
+                      {(errorMessage.length > 0 || successMessage.length > 0) &&
+                        (successMessage.length > 0 ? (
+                          <Success successMessage={successMessage} />
+                        ) : (
+                          <Error errorMessage={errorMessage} />
+                        ))}
                     </p>
                   </div>
                 </div>
-              </>
-            )
-          )}
-        </div>
+              </div>
+            </>
+          )
+        )}
       </div>
     </>
   );

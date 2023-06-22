@@ -8,6 +8,7 @@ import {
   FirstLaunch,
   blogs,
   numMessagesState,
+  posts,
   tests,
 } from "../../config/atoms";
 import { LoggedInstate } from "../../config/atoms";
@@ -18,6 +19,7 @@ const Loader = React.memo((props: any) => {
   const resetMessages = useResetRecoilState(numMessagesState);
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
+  const resetPosts = useResetRecoilState(posts);
 
   useEffect(() => {
     const userId = localStorage.getItem("UserId");
@@ -27,7 +29,7 @@ const Loader = React.memo((props: any) => {
     }
     axios
       .get(
-        `http://192.168.9.234:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
+        `http://13.235.81.90:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
       )
       .then((response) => {
         if (response.data.status === "failure") {
@@ -39,6 +41,8 @@ const Loader = React.memo((props: any) => {
           resetMessages();
           resetBlogs();
           resetTests();
+          resetPosts();
+        } else {
         }
       })
       .catch((error) => {

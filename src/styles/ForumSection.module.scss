@@ -5,7 +5,6 @@
     padding: 15vh 6vw;
     padding-bottom: 0;
     height: auto;
-    min-height: 100vh;
 
     .forumContainer {
         height: auto;
@@ -71,8 +70,8 @@
             text-decoration: none;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 20vh;
+            justify-content: space-between;
+            min-height: 30vh;
 
             .postcardtop {
                 display: flex;
@@ -99,15 +98,23 @@
                 align-items: center;
                 width: 100%;
 
-                .url {
-                    margin: 0 10px;
+                .tags {
                     font-size: 0.8rem;
-                    padding: 5px 5px;
                     color: $white;
-                    background-color: $blue;
                     border: none;
-                    border-radius: 5px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-wrap: wrap;
+
+                    .tag {
+                        background-color: $blue;
+                        padding: 5px;
+                        border-radius: 5px;
+                        margin: 5px;
+                    }
                 }
+
             }
         }
 
@@ -187,17 +194,24 @@
                         min-height: 30vh;
                         padding: 10px;
                     }
+
+                    label span {
+                        color: $red;
+                        padding-left: 2px;
+                        opacity: 0.75;
+                    }
                 }
 
-                p:nth-child(3) {
+                p:nth-child(4) {
                     display: flex;
                     justify-content: center;
+                    flex-direction: column;
+                    align-items: center;
                     margin: 0;
                     padding: 0;
 
                     input[type="submit"] {
                         display: inline-block;
-                        padding: 7px 15px;
                         font-size: 0.9rem;
                         letter-spacing: 1px;
                         text-decoration: none;
@@ -207,8 +221,15 @@
                         outline: none;
                         cursor: pointer;
                         border: 2px solid $violet;
-                        max-width: 100px;
+                        min-width: 100px;
+                        max-width: 200px;
                         background-color: $violet;
+                        margin: 0;
+
+                        @media (max-width: 400px) {
+                            width: 75px;
+                            font-size: 0.7rem;
+                        }
                     }
 
                     input[type="submit"]:hover {

@@ -61,5 +61,5 @@ export interface Posts {
   date: string;
   title: string;
   description: string;
-  url: string;
+  tags: Array<string>;
 }

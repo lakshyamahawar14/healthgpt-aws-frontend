@@ -1,6 +1,6 @@
 import axios from "axios";
 import styles from "../../styles/SignupSection.module.scss";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
@@ -13,7 +13,7 @@ import {
 import Success from "../Layouts/Success";
 import Error from "../Layouts/Error";
 
-export const SignupPage = (props: any) => {
+export const SignupPage = React.memo((props: any) => {
   const setLoggedIn = useSetRecoilState(LoggedInstate);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -96,10 +96,10 @@ export const SignupPage = (props: any) => {
 
   return (
     <>
-      <div className={`${styles.wrapper} ${styles.login}`}>
+      <div className={`${styles.wrapper} ${styles.signup}`}>
         <div className={styles.container}>
           <div className={styles.colleft}>
-            <div className={styles.logintext}>
+            <div className={styles.signuptext}>
               <h2>Welcome!</h2>
               <p>
                 Already have an <br />
@@ -111,7 +111,7 @@ export const SignupPage = (props: any) => {
             </div>
           </div>
           <div className={styles.colright}>
-            <div className={styles.loginform}>
+            <div className={styles.signupform}>
               <h2>Sign Up</h2>
               <p>
                 <label>
@@ -188,4 +188,4 @@ export const SignupPage = (props: any) => {
       </div>
     </>
   );
-};
+});

@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import axios from "axios";
 import styles from "../../styles/Loader.module.scss";
 import logo from "../../assets/images/luxlogobot.svg";
@@ -9,10 +10,9 @@ import {
   numMessagesState,
   tests,
 } from "../../config/atoms";
-import { useEffect } from "react";
 import { LoggedInstate } from "../../config/atoms";
 
-const Loader = (props: any) => {
+const Loader = React.memo((props: any) => {
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const resetMessages = useResetRecoilState(numMessagesState);
@@ -65,6 +65,6 @@ const Loader = (props: any) => {
       )}
     </>
   );
-};
+});
 
 export default Loader;

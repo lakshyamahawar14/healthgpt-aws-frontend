@@ -86,7 +86,7 @@ export const MidSection = (props: any) => {
 
                 <p>
                   The ability to use a smartphone, tablet, or computer to access
-                  Lux means you can use it anywhere.
+                  web application means you can use HealthGPT from any device.
                 </p>
               </div>
               <div id={styles.security} className={styles.blocks}>
@@ -98,9 +98,9 @@ export const MidSection = (props: any) => {
 
                 <p>
                   {" "}
-                  2-factor authentication and user-controlled encryption are
-                  just a couple of the security features we allow to help secure
-                  your files.
+                  We keep our users' data private and anonymous. 2-factor
+                  authentication and user-controlled encryptions are couple of
+                  security features.
                 </p>
               </div>
               <div className={styles.blocks}>
@@ -111,8 +111,9 @@ export const MidSection = (props: any) => {
                 <span className={styles.bold}> Verified Experts</span>
 
                 <p>
-                  Masters or higher degree, solid practice experience & 2 step
-                  background verification.
+                  Our psychologists and psychiatrists have Masters or higher
+                  degree and solid practice experience. Feel free to consult
+                  them about your mental health.
                 </p>
               </div>
               <div className={styles.blocks}>
@@ -124,7 +125,8 @@ export const MidSection = (props: any) => {
 
                 <p>
                   Ask anything & initiate discussions with a community of
-                  like-minded users and psychologists
+                  like-minded users. Take help from other users and provide help
+                  to other users.
                 </p>
               </div>
             </article>

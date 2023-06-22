@@ -1,6 +1,6 @@
 import axios from "axios";
 import styles from "../../styles/LoginSection.module.scss";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
 import { useRecoilState, useResetRecoilState } from "recoil";
@@ -13,7 +13,7 @@ import {
 import Error from "../Layouts/Error";
 import Success from "../Layouts/Success";
 
-export const LoginPage = (props: any) => {
+export const LoginPage = React.memo((props: any) => {
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -160,4 +160,4 @@ export const LoginPage = (props: any) => {
       </div>
     </>
   );
-};
+});

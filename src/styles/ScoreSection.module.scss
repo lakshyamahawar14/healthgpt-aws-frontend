@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@600;700&display=swap');
+
 .scoreContainer {
     display: flex;
     justify-content: center;
@@ -8,7 +10,7 @@
     background-color: rgb(21, 66, 246);
 
     .scoreTitle p {
-        font-family: poppins;
+        font-family: 'Karla', sans-serif;
         font-weight: 600;
         color: black;
         font-size: 1.5rem;
@@ -41,6 +43,7 @@
 .chartContainer {
     margin: 3vh 3vw;
     height: 50vh;
+    max-height: 350px;
     min-width: 350px;
     width: 50%;
     color: black;

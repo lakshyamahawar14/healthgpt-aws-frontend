@@ -2,8 +2,9 @@ import { useRef } from "react";
 import styles from "../../styles/Search.module.scss";
 import { searchText } from "../../config/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import React from "react";
 
-const Search = (props: any) => {
+const Search = React.memo((props: any) => {
   let search = useRef<HTMLInputElement>(null);
   const setSearchText = useSetRecoilState(searchText);
 
@@ -26,7 +27,7 @@ const Search = (props: any) => {
       <div className={styles.container}>
         <div className={styles.searchContainer}>
           <div className={styles.searchQuery}>
-            <label htmlFor="searchquery">Search:</label>
+            {/* <label htmlFor="search">Search:</label> */}
             <input
               type="text"
               id="search"
@@ -46,6 +47,6 @@ const Search = (props: any) => {
       </div>
     </>
   );
-};
+});
 
 export default Search;

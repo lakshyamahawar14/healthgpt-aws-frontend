@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@600;700;800&display=swap');
 
 header {
   display: flex;
@@ -8,7 +9,6 @@ header {
   background-color: rgb(21, 66, 246);
   height: auto;
   min-height: 10vh;
-  font-family: poppins;
   position: fixed;
   top: 0;
   left: 0;
@@ -42,7 +42,7 @@ header {
     align-items: center;
   }
 
-  @media (max-width: 525px) {
+  @media (max-width: 580px) {
     flex-direction: column;
     height: auto;
     justify-content: flex-start;
@@ -90,7 +90,7 @@ header {
     justify-content: flex-start;
     padding-top: 0;
     width: 10vw;
-    max-width: 100px;
+    max-width: 90px;
     position: relative;
     min-width: 75px;
   }
@@ -98,12 +98,14 @@ header {
 
 
   .btn1 {
+    font-family: 'Karla', sans-serif;
     margin: 0 1.5vw;
     display: flex;
     letter-spacing: 0.1em;
     justify-content: center;
     align-content: center;
-    font-size: clamp(0.8rem, 1vw, 1.2rem);
+    // font-size: clamp(0.8rem, 1vw, 1.2rem);
+    font-size: 1rem;
     background-color: transparent;
     outline: none;
     border: none;

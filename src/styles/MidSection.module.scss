@@ -34,8 +34,17 @@ body {
   text-align: center;
   margin: auto;
   color: $Blueinsidecall-to-actiongradient;
-  padding: 20vh 10vw;
-  padding-top: 15vh;
+  padding: 15vh 5vw;
+  padding-bottom: 0;
+
+  @media (max-width: 420px) {
+    padding-top: 10vh;
+  }
+
+  svg {
+    height: 50vh;
+    min-width: 250px;
+  }
 
   p {
     font-family: "Poppins", sans-serif;
@@ -139,6 +148,8 @@ body {
 
 .top {
   background-color: rgb(21, 66, 246);
+  height: auto;
+  min-height: 100vh;
 }
 
 @media (max-width: 720px) {
@@ -205,7 +216,6 @@ body {
   max-width: 80%;
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
-  color: $Yellow;
   grid-column-gap: 2rem;
   padding: 20vh 10vw;
 }
@@ -223,9 +233,25 @@ body {
   .article3 .box2 {
     margin-bottom: 20px;
   }
+
+  .article3 .box1 span {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .article3 .box2 span {
+    justify-content: space-between;
+  }
+
+  .article3 .box3 span {
+    justify-content: space-between;
+  }
 }
 
 .article3 .box1 {
+  font-family: poppins;
+  background-color: #1E2260;
+  color: #ffffff;
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
   position: relative;
@@ -233,11 +259,29 @@ body {
 }
 
 .article3 .box2 {
+  font-family: poppins;
+  background-color: #1E2260;
+  color: #ffffff;
   grid-column: 2 / span 1;
 }
 
 .article3 .box3 {
+  font-family: poppins;
+  background-color: #1E2260;
+  color: #ffffff;
   grid-column: 3 / span 1;
+}
+
+.article3 .box1 p {
+  font-size: 0.9rem;
+}
+
+.article3 .box2 p {
+  font-size: 0.9rem;
+}
+
+.article3 .box3 p {
+  font-size: 0.9rem;
 }
 
 .article3 .quotes {

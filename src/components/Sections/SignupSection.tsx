@@ -68,6 +68,10 @@ export const SignupPage = React.memo((props: any) => {
                   "UserId",
                   userCredential.data.data.user.uid
                 );
+                localStorage.setItem(
+                  "UserName",
+                  userCredential.data.data.user.displayName
+                );
 
                 resetMessages();
                 resetBlogs();

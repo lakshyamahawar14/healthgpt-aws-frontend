@@ -47,6 +47,10 @@ export const LoginPage = React.memo((props: any) => {
               userCredential.data.data.user.stsTokenManager.accessToken
             );
             localStorage.setItem("UserId", userCredential.data.data.user.uid);
+            localStorage.setItem(
+              "UserName",
+              userCredential.data.data.user.displayName
+            );
 
             resetMessages();
             resetBlogs();

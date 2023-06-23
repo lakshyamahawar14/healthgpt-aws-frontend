@@ -36,12 +36,14 @@ const Header = () => {
           localStorage.setItem("IsLoggedIn", "false");
           localStorage.setItem("UserId", "");
           localStorage.setItem("AccessToken", "");
+          localStorage.setItem("UserName", "");
         })
         .catch((error) => {
           setLoggedIn(false);
           localStorage.setItem("IsLoggedIn", "false");
           localStorage.setItem("UserId", "");
           localStorage.setItem("AccessToken", "");
+          localStorage.setItem("UserName", "");
           console.log(error.message);
         });
     } catch (error) {

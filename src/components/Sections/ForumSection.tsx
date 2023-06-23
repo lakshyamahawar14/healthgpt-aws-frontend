@@ -10,12 +10,18 @@ import { topPathsArray } from "../../config/constant";
 import Success from "../Layouts/Success";
 import Error from "../Layouts/Error";
 import Search from "../Layouts/Search";
+import Skipper from "../Layouts/Skipper";
 
 const ForumPage = () => {
   const [postsArray, setPostsArray] = useRecoilState(posts);
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [isLoading, setIsLoading] = useState(firstLaunch);
+  const [searchText, setSearchText] = useState("");
+  const [searchNum, setSearchNum] = useState(6);
+  const [next, setNext] = useState(false);
+  const [prev, setPrev] = useState(false);
+  const [pageNum, setPageNum] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   let title = useRef<HTMLInputElement>(null);
@@ -24,10 +30,10 @@ const ForumPage = () => {
 
   const navigate = useNavigate();
 
-  const getPosts = async () => {
+  const getPosts = async (numberOfResults: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4500/api/v1/forum/posts`
+        `http://13.235.81.90:4500/api/v1/forum/posts?searchQuery=${searchText}&numberOfResults=${numberOfResults}`
       );
       return res.data.data.communityposts;
     } catch (error) {
@@ -40,7 +46,7 @@ const ForumPage = () => {
       return () => {};
     }
     setIsLoading(true);
-    getPosts().then((response) => {
+    getPosts(searchNum).then((response) => {
       setPostsArray(response);
     });
   }, []);
@@ -113,6 +119,7 @@ const ForumPage = () => {
     }
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
+    const username = localStorage.getItem("UserName");
 
     let tagsText = tags.current?.value;
     let tagsArray: (string | undefined)[] = [];
@@ -131,18 +138,24 @@ const ForumPage = () => {
       });
     }
 
+    const currentDate = new Date().toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
     updatePosts(
       userId,
       accessToken,
       1,
-      "anonymous",
-      "22 June, 2023",
+      username,
+      currentDate,
       title.current?.value,
       description.current?.value,
       tagsArray
     ).then(() => {
       const timer = setTimeout(() => {
-        getPosts().then((response) => {
+        getPosts(searchNum).then((response) => {
           setPostsArray(response);
           setSuccessMessage("Post Added Successfully");
         });
@@ -152,15 +165,68 @@ const ForumPage = () => {
     });
   };
 
-  const handleSearch = () => {
-    console.log("implement filter here");
+  useEffect(() => {
+    if (searchText === "") {
+      return () => {};
+    }
+
+    if (pageNum !== 1 && next === false && prev === false) {
+      return () => {};
+    }
+
+    getPosts(searchNum).then((response) => {
+      if (next === true) {
+        response = response.slice(-6);
+        setNext(false);
+      } else if (prev === true) {
+        response = response.slice(-6);
+        setPrev(false);
+      }
+      setPostsArray(response);
+    });
+  }, [searchText, next, prev]);
+
+  const handleSearch = (searchQuery: any) => {
+    if (searchQuery === searchText) {
+      return;
+    }
+    setIsLoading(true);
+    setSearchText(searchQuery);
+  };
+
+  useEffect(() => {
+    if (postsArray.length > 0 && isLoading === true) {
+      setIsLoading(false);
+      firstLaunch && setFirstLaunch(false);
+    }
+  }, [postsArray]);
+
+  const handleOnNext = (props: any) => {
+    setIsLoading(true);
+    setSearchNum(searchNum + props);
+    setPageNum(pageNum + 1);
+    setNext(true);
+  };
+
+  const handleOnPrev = (props: any) => {
+    if (pageNum === 1) {
+      return;
+    }
+    setIsLoading(true);
+    setSearchNum(searchNum - props);
+    setPageNum(pageNum - 1);
+    setPrev(true);
   };
 
   return (
     <>
       <div className={styles.main}>
         <Header />
-        <Search onSearch={handleSearch} />
+        <Search
+          onSearch={handleSearch}
+          isBlogSearch={false}
+          isPostSearch={true}
+        />
         {isLoading ? (
           <Loader startTop={true} />
         ) : (
@@ -181,7 +247,7 @@ const ForumPage = () => {
                           to={
                             isLoggedIn
                               ? {
-                                  pathname: "/post",
+                                  pathname: "/forum/post",
                                   search: `?url=${encodeURIComponent(
                                     post.postId
                                   )}`,
@@ -218,6 +284,11 @@ const ForumPage = () => {
                       );
                     })}
                 </div>
+                <Skipper
+                  onNext={handleOnNext}
+                  onPrev={handleOnPrev}
+                  page={pageNum}
+                />
                 <div className={styles.addforumTitle}>
                   <p>Add a Community Post</p>
                 </div>

@@ -16,13 +16,8 @@ export const numMessagesState = atom<number>({
   default: numMessages,
 });
 
-export const searchText = atom<string>({
-  key: "searchText",
-  default: "",
-});
-
 export const FirstLaunch = atom<boolean>({
-  key: "firstLaunch",
+  key: "FirstLaunch",
   default: true,
 });
 
@@ -39,6 +34,16 @@ export const blogs = atom<Blogs[]>({
 export const posts = atom<Posts[]>({
   key: "posts",
   default: [],
+});
+
+export const blogsSearchQuery = atom<string>({
+  key: "blogsSearchQuery",
+  default: "",
+});
+
+export const postsSearchQuery = atom<string>({
+  key: "postsSearchQuery",
+  default: "",
 });
 
 export interface Blogs {

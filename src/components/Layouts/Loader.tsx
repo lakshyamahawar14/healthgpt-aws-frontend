@@ -37,6 +37,7 @@ const Loader = React.memo((props: any) => {
           localStorage.setItem("UserId", "");
           localStorage.setItem("AccessToken", "");
           localStorage.setItem("IsLoggedIn", "false");
+          localStorage.setItem("UserName", "");
           setLoggedIn(false);
           resetMessages();
           resetBlogs();

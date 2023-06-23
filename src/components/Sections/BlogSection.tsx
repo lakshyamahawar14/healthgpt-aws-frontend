@@ -5,13 +5,16 @@ import Header from "../Layouts/Header";
 import Search from "../Layouts/Search";
 import Loader from "../Layouts/Loader";
 import Skipper from "../Layouts/Skipper";
-import { FirstLaunch, LoggedInstate } from "../../config/atoms";
+import {
+  FirstLaunch,
+  LoggedInstate,
+  blogsSearchQuery,
+} from "../../config/atoms";
 import { useRecoilState } from "recoil";
 import { blogs } from "../../config/atoms";
 
 export const BlogPage = () => {
   const [blogsArray, setBlogsArray] = useRecoilState(blogs);
-  const [searchText, setSearchText] = useState("");
   const [searchNum, setSearchNum] = useState(6);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
@@ -19,6 +22,7 @@ export const BlogPage = () => {
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoading, setIsLoading] = useState(firstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const [searchText, setSearchText] = useRecoilState(blogsSearchQuery);
 
   const getBlogs = async (searchQuery: any, numberOfResults: any) => {
     try {
@@ -127,7 +131,11 @@ export const BlogPage = () => {
       <div className={styles.main}>
         <Header />
         <div className={styles.blogContainer}>
-          <Search onSearch={handleSearch} />
+          <Search
+            onSearch={handleSearch}
+            isBlogSearch={true}
+            isPostSearch={false}
+          />
           {isLoading ? (
             <Loader startTop={true} />
           ) : (

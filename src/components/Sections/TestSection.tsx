@@ -11,7 +11,6 @@ import Header from "../Layouts/Header";
 const TestPage = () => {
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
-  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const url = new URLSearchParams(location.search).get("url");
   const navigate = useNavigate();
@@ -49,7 +48,6 @@ const TestPage = () => {
     if (!url || !isLoggedIn) {
       navigate(topPathsArray.loginPath, { replace: true });
     }
-    setIsLoading(true);
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
 
@@ -63,22 +61,10 @@ const TestPage = () => {
         }
         getTest(url).then((res) => {
           setTest(res);
-          setIsLoading(false);
         });
       });
     }
   }, []);
-
-  useEffect(() => {
-    if (isLoading === true) {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        firstLaunch && setFirstLaunch(false);
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading]);
 
   const evaluateScore = async (url: any, responses: any) => {
     try {
@@ -166,51 +152,52 @@ const TestPage = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Loader startTop={false} />
-      ) : (
-        test?.questions && (
-          <div className={styles.test}>
-            <Header />
-            <div className={styles.testContainer}>
-              <div className={styles.testTitle}>
-                <p>{test?.title}</p>
-              </div>
-              {test?.questions.map((question, index) => (
-                <div key={index} className={styles.questionContainer}>
-                  <p>{question}</p>
-                  <div className={styles.optionsContainer}>
-                    <label>
-                      <input
-                        type="radio"
-                        name={`question_${index}`}
-                        value="yes"
-                      />
-                      Yes
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name={`question_${index}`}
-                        value="no"
-                      />
-                      No
-                    </label>
-                  </div>
+      <div className={styles.main}>
+        {!test?.questions ? (
+          <Loader startTop={false} />
+        ) : (
+          test?.questions && (
+            <div className={styles.test}>
+              <div className={styles.testContainer}>
+                <div className={styles.testTitle}>
+                  <p>{test?.title}</p>
                 </div>
-              ))}
-              <p>
-                <input
-                  type="submit"
-                  name="evaluate"
-                  value="Evaluate"
-                  onClick={handleSubmit}
-                />
-              </p>
+                {test?.questions.map((question, index) => (
+                  <div key={index} className={styles.questionContainer}>
+                    <p>{question}</p>
+                    <div className={styles.optionsContainer}>
+                      <label>
+                        <input
+                          type="radio"
+                          name={`question_${index}`}
+                          value="yes"
+                        />
+                        Yes
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name={`question_${index}`}
+                          value="no"
+                        />
+                        No
+                      </label>
+                    </div>
+                  </div>
+                ))}
+                <p>
+                  <input
+                    type="submit"
+                    name="evaluate"
+                    value="Evaluate"
+                    onClick={handleSubmit}
+                  />
+                </p>
+              </div>
             </div>
-          </div>
-        )
-      )}
+          )
+        )}
+      </div>
     </>
   );
 };

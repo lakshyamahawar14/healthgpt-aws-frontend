@@ -1,6 +1,12 @@
 @import './fonts';
 @import './colors';
 
+.main {
+    background-color: $blue;
+    height: auto;
+    min-height: 100vh;
+}
+
 .scoreContainer {
     display: flex;
     justify-content: center;

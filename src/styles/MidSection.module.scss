@@ -1,6 +1,12 @@
 @import './fonts';
 @import './colors';
 
+.main {
+  background-color: $blue;
+  height: auto;
+  min-height: 100vh;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -135,11 +141,6 @@ body {
   background-color: $lightgreen;
 }
 
-.top {
-  background-color: $blue;
-  height: auto;
-  min-height: 100vh;
-}
 
 @media (max-width: 720px) {
   .article1 {

@@ -67,15 +67,6 @@ const Header = () => {
     return () => clearTimeout(timer);
   };
 
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (isLoading === true) {
-      setIsLoading(false);
-      document.getElementsByTagName("header")[0].style.display = "flex";
-    }
-  }, [isLoggedIn]);
-
   const handleMenu = () => {
     const burgerElement = document.getElementById("burger");
     const divbtnElement = document.getElementById("divbtn");

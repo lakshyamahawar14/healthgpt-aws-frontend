@@ -22,7 +22,6 @@ export const AuthPage = (props: any) => {
   return (
     <>
       <div className={styles.main}>
-        <Header />
         <div className={styles.authContainer}>
           {isRegistered ? (
             props.login ? (

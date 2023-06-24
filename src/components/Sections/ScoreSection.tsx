@@ -19,7 +19,6 @@ import Header from "../Layouts/Header";
 const ScorePage = () => {
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
-  const [isLoading, setIsLoading] = useState(true);
   const [score, setScore] = useState<{ name: string; score: number }[]>([]);
   const location = useLocation();
   const url = new URLSearchParams(location.search).get("url");
@@ -45,7 +44,7 @@ const ScorePage = () => {
     if (!url || !isLoggedIn) {
       navigate(topPathsArray.loginPath, { replace: true });
     }
-    setIsLoading(true);
+
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
     getScore(userId, accessToken, url).then((score) => {
@@ -58,17 +57,6 @@ const ScorePage = () => {
       return () => {};
     }
   }, [score]);
-
-  useEffect(() => {
-    if (isLoading === true) {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        firstLaunch && setFirstLaunch(false);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading]);
 
   const chartData = {
     labels: [...score.map((s) => s.name), "Others"],
@@ -143,32 +131,35 @@ const ScorePage = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Loader startTop={false} />
-      ) : (
-        <>
-          <div className={styles.scoreContainer}>
-            <Header />
-            <div className={styles.scoreTitle}>
-              <p>
-                {url ? url.slice(1).charAt(0).toUpperCase() + url.slice(2) : ""}{" "}
-                Test Score
-              </p>
+      <div className={styles.main}>
+        {!score ? (
+          <Loader startTop={false} />
+        ) : (
+          <>
+            <div className={styles.scoreContainer}>
+              <div className={styles.scoreTitle}>
+                <p>
+                  {url
+                    ? url.slice(1).charAt(0).toUpperCase() + url.slice(2)
+                    : ""}{" "}
+                  Test Score
+                </p>
+              </div>
+              <div className={styles.chartContainer}>
+                <Bar data={chartData} options={chartOptions} />
+              </div>
+              <div>
+                <input
+                  type="submit"
+                  name="tracker"
+                  value="Tracker"
+                  onClick={handleClick}
+                />
+              </div>
             </div>
-            <div className={styles.chartContainer}>
-              <Bar data={chartData} options={chartOptions} />
-            </div>
-            <div>
-              <input
-                type="submit"
-                name="tracker"
-                value="Tracker"
-                onClick={handleClick}
-              />
-            </div>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </>
   );
 };

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import styles from "../../styles/Loader.module.scss";
 import logo from "../../assets/images/luxlogobot.svg";
-import PreloadContent from "./PreloadContent";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import {
   FirstLaunch,
@@ -25,6 +24,7 @@ const Loader = React.memo((props: any) => {
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
     if (!userId || !firstLaunch) {
+      firstLaunch && setFirstLaunch(false);
       return () => {};
     }
     axios
@@ -45,9 +45,7 @@ const Loader = React.memo((props: any) => {
           resetPosts();
         } else {
         }
-      })
-      .catch((error) => {
-        console.log(error.message);
+        firstLaunch && setFirstLaunch(false);
       });
   }, []);
 
@@ -57,14 +55,14 @@ const Loader = React.memo((props: any) => {
         <div id="loader" className={styles.topContainer}>
           <div className={styles.loaderContainer}>
             <img className={styles.logo} src={logo} alt="" />
-            <p>Loading...</p>
+            {/* <p>Loading...</p> */}
           </div>
         </div>
       ) : (
         <div id="loader" className={styles.midContainer}>
           <div className={styles.loaderContainer}>
             <img className={styles.logo} src={logo} alt="" />
-            <p>Loading...</p>
+            {/* <p>Loading...</p> */}
           </div>
         </div>
       )}

@@ -30,7 +30,7 @@
   flex: 0 0 auto;
   height: 60px;
   background: #40434e;
-  border-top: 1px solid #2671ff;
+  border-top: 1px solid $blue;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 
@@ -98,7 +98,7 @@
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  background: #2671ff;
+  background: $blue;
   margin: 0 10px 10px 0;
 }
 
@@ -143,7 +143,7 @@
 
 .msgSelf .msgBox {
   border-radius: 6px 0 0 6px;
-  background: #2671ff;
+  background: $blue;
   float: right;
 }
 

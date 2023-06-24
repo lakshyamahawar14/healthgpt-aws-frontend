@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../../styles/BlogSection.module.scss";
-import Header from "../Layouts/Header";
 import Search from "../Layouts/Search";
 import Loader from "../Layouts/Loader";
 import Skipper from "../Layouts/Skipper";
-import {
-  FirstLaunch,
-  LoggedInstate,
-  blogsSearchQuery,
-} from "../../config/atoms";
+import { LoggedInstate, blogsSearchQuery } from "../../config/atoms";
 import { useRecoilState } from "recoil";
 import { blogs } from "../../config/atoms";
 
@@ -19,8 +14,6 @@ export const BlogPage = () => {
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
   const [pageNum, setPageNum] = useState(1);
-  const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
-  const [isLoading, setIsLoading] = useState(firstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [searchText, setSearchText] = useRecoilState(blogsSearchQuery);
 
@@ -51,8 +44,6 @@ export const BlogPage = () => {
       return () => {};
     }
 
-    setIsLoading(true);
-
     if (isLoggedIn) {
       let userId = localStorage.getItem("UserId");
       let accessToken = localStorage.getItem("AccessToken");
@@ -60,12 +51,8 @@ export const BlogPage = () => {
         response = response.toLowerCase().trim();
         if (response.length > 0 && !response.includes("no")) {
           setSearchText(response);
-        } else {
-          setSearchText("mental health");
         }
       });
-    } else {
-      setSearchText("mental health");
     }
   }, []);
 
@@ -94,19 +81,11 @@ export const BlogPage = () => {
     if (searchQuery === searchText) {
       return;
     }
-    setIsLoading(true);
+    setBlogsArray([]);
     setSearchText(searchQuery);
   };
 
-  useEffect(() => {
-    if (blogsArray.length > 0 && isLoading === true) {
-      setIsLoading(false);
-      firstLaunch && setFirstLaunch(false);
-    }
-  }, [blogsArray]);
-
   const handleOnNext = (props: any) => {
-    setIsLoading(true);
     setSearchNum(searchNum + props);
     setPageNum(pageNum + 1);
     setNext(true);
@@ -116,7 +95,6 @@ export const BlogPage = () => {
     if (pageNum === 1) {
       return;
     }
-    setIsLoading(true);
     setSearchNum(searchNum - props);
     setPageNum(pageNum - 1);
     setPrev(true);
@@ -129,14 +107,13 @@ export const BlogPage = () => {
   return (
     <>
       <div className={styles.main}>
-        <Header />
         <div className={styles.blogContainer}>
           <Search
             onSearch={handleSearch}
             isBlogSearch={true}
             isPostSearch={false}
           />
-          {isLoading ? (
+          {blogsArray.length === 0 ? (
             <Loader startTop={true} />
           ) : (
             blogsArray.length > 0 && (

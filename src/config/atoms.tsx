@@ -38,7 +38,7 @@ export const posts = atom<Posts[]>({
 
 export const blogsSearchQuery = atom<string>({
   key: "blogsSearchQuery",
-  default: "",
+  default: "mental health",
 });
 
 export const postsSearchQuery = atom<string>({

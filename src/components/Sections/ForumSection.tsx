@@ -16,7 +16,6 @@ const ForumPage = () => {
   const [postsArray, setPostsArray] = useRecoilState(posts);
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
-  const [isLoading, setIsLoading] = useState(firstLaunch);
   const [searchText, setSearchText] = useState("");
   const [searchNum, setSearchNum] = useState(6);
   const [next, setNext] = useState(false);
@@ -33,7 +32,7 @@ const ForumPage = () => {
   const getPosts = async (numberOfResults: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4500/api/v1/forum/posts?searchQuery=${searchText}&numberOfResults=${numberOfResults}`
+        `http://192.168.9.234:4500/api/v1/forum/posts?searchQuery=${searchText}&numberOfResults=${numberOfResults}`
       );
       return res.data.data.communityposts;
     } catch (error) {
@@ -45,16 +44,14 @@ const ForumPage = () => {
     if (postsArray.length !== 0) {
       return () => {};
     }
-    setIsLoading(true);
     getPosts(searchNum).then((response) => {
       setPostsArray(response);
     });
   }, []);
 
   useEffect(() => {
-    if (postsArray.length > 0 && isLoading === true) {
+    if (postsArray.length > 0) {
       const timer = setTimeout(() => {
-        setIsLoading(false);
         firstLaunch && setFirstLaunch(false);
       }, 1000);
 
@@ -77,7 +74,7 @@ const ForumPage = () => {
     tags: any
   ) => {
     axios
-      .post(`http://13.235.81.90:4000/api/v1/db/posts`, {
+      .post(`http://192.168.9.234:4000/api/v1/db/posts`, {
         userId: userId,
         accessToken: accessToken,
         postObject: {
@@ -88,6 +85,7 @@ const ForumPage = () => {
           title: title,
           description: description,
           tags: tags,
+          comments: "",
         },
       })
       .then((response) => {})
@@ -115,6 +113,7 @@ const ForumPage = () => {
       return;
     }
     if (title.current?.value === "" || description.current?.value === "") {
+      setErrorMessage("Please fill the form");
       return;
     }
     const userId = localStorage.getItem("UserId");
@@ -190,19 +189,17 @@ const ForumPage = () => {
     if (searchQuery === searchText) {
       return;
     }
-    setIsLoading(true);
+    setPostsArray([]);
     setSearchText(searchQuery);
   };
 
   useEffect(() => {
-    if (postsArray.length > 0 && isLoading === true) {
-      setIsLoading(false);
+    if (postsArray.length > 0) {
       firstLaunch && setFirstLaunch(false);
     }
   }, [postsArray]);
 
   const handleOnNext = (props: any) => {
-    setIsLoading(true);
     setSearchNum(searchNum + props);
     setPageNum(pageNum + 1);
     setNext(true);
@@ -212,7 +209,6 @@ const ForumPage = () => {
     if (pageNum === 1) {
       return;
     }
-    setIsLoading(true);
     setSearchNum(searchNum - props);
     setPageNum(pageNum - 1);
     setPrev(true);
@@ -221,13 +217,12 @@ const ForumPage = () => {
   return (
     <>
       <div className={styles.main}>
-        <Header />
         <Search
           onSearch={handleSearch}
           isBlogSearch={false}
           isPostSearch={true}
         />
-        {isLoading ? (
+        {postsArray.length === 0 ? (
           <Loader startTop={true} />
         ) : (
           postsArray.length > 0 && (

@@ -3,6 +3,8 @@ import { useState } from "react";
 import styles from "../../styles/HomeSection.module.scss";
 import { ChatbotPage } from "./ChatbotSection";
 import { useRef } from "react";
+import Header from "../Layouts/Header";
+import Footer from "../Layouts/Footer";
 export const HomePage = (props: any) => {
   const [botIsShown, setbotIsShown] = useState(false);
 
@@ -24,11 +26,11 @@ export const HomePage = (props: any) => {
           storeSummaryRef={storeSummaryRef}
         />
       )}
-
       <MidSection
         onShowChat={showbotHandler}
         storeSummary={storeSummaryRef.current}
       />
+      <Footer />
     </>
   );
 };

@@ -1,15 +1,15 @@
 @import './fonts';
 @import './colors';
 
-.blogContainer {
-  height: auto;
-  padding-top: 15vh;
-}
-
 .main {
   background-color: $blue;
   min-height: 100vh;
   height: auto;
+}
+
+.blogContainer {
+  height: auto;
+  padding-top: 15vh;
 }
 
 .blogs {

@@ -126,7 +126,7 @@ const ScorePage = () => {
   };
 
   const handleClick = () => {
-    navigate(topPathsArray.trackerPath, { replace: true });
+    navigate(`/tracker?url=%2F${url?.slice(1)}`, { replace: true });
   };
 
   return (

@@ -16,23 +16,19 @@
 
   .testTitle {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;
-    max-height: 10vh;
-    width: auto;
+    justify-content: flex-start;
   }
 
   .testTitle p {
     font-family: $karla;
-    font-weight: 600;
-    color: $dirtwhite;
     font-size: 1.5rem;
-    padding: 0;
-  }
+    color: $dirtwhite;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    font-weight: 700;
 
-  @media(max-width: 420px) {
-    .testTitle p {
+    @media (max-width: 420px) {
       font-size: 1.3rem;
     }
   }
@@ -41,6 +37,7 @@
     min-height: 90vh;
     height: auto;
     padding: 15vh 6vw;
+    padding-bottom: 5vh;
     display: flex;
     flex-direction: column;
   }
@@ -48,6 +45,19 @@
   .testContainer p:last-child {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+  }
+
+  .testContainer .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .testContainer .button p {
+    text-align: center;
   }
 
   .questionContainer {

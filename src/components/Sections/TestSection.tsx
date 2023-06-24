@@ -6,11 +6,14 @@ import { topPathsArray } from "../../config/constant";
 import { useRecoilState } from "recoil";
 import { FirstLaunch, LoggedInstate } from "../../config/atoms";
 import Loader from "../Layouts/Loader";
-import Header from "../Layouts/Header";
+import Success from "../Layouts/Success";
+import Error from "../Layouts/Error";
 
 const TestPage = () => {
   const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const location = useLocation();
   const url = new URLSearchParams(location.search).get("url");
   const navigate = useNavigate();
@@ -131,7 +134,7 @@ const TestPage = () => {
     });
 
     if (unansweredQuestions && unansweredQuestions.length > 0) {
-      console.log("Please answer all the questions.");
+      setErrorMessage("Please fill the form");
     } else {
       const answers = test?.questions.map((_, index) => {
         const selectedOption = document.querySelector(
@@ -142,6 +145,7 @@ const TestPage = () => {
 
       evaluateScore(url, answers).then((response) => {
         setScore(response);
+        setSuccessMessage("Success");
       });
     }
   };
@@ -153,50 +157,60 @@ const TestPage = () => {
   return (
     <>
       <div className={styles.main}>
-        {!test?.questions ? (
-          <Loader startTop={false} />
-        ) : (
-          test?.questions && (
-            <div className={styles.test}>
-              <div className={styles.testContainer}>
-                <div className={styles.testTitle}>
-                  <p>{test?.title}</p>
-                </div>
-                {test?.questions.map((question, index) => (
-                  <div key={index} className={styles.questionContainer}>
-                    <p>{question}</p>
-                    <div className={styles.optionsContainer}>
-                      <label>
-                        <input
-                          type="radio"
-                          name={`question_${index}`}
-                          value="yes"
-                        />
-                        Yes
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name={`question_${index}`}
-                          value="no"
-                        />
-                        No
-                      </label>
-                    </div>
+        <div className={styles.test}>
+          <div className={styles.testContainer}>
+            {!test?.questions ? (
+              <Loader startTop={true} />
+            ) : (
+              test?.questions && (
+                <>
+                  <div className={styles.testTitle}>
+                    <p>{test?.title}</p>
                   </div>
-                ))}
-                <p>
-                  <input
-                    type="submit"
-                    name="evaluate"
-                    value="Evaluate"
-                    onClick={handleSubmit}
-                  />
-                </p>
-              </div>
-            </div>
-          )
-        )}
+                  {test?.questions.map((question, index) => (
+                    <div key={index} className={styles.questionContainer}>
+                      <p>{question}</p>
+                      <div className={styles.optionsContainer}>
+                        <label>
+                          <input
+                            type="radio"
+                            name={`question_${index}`}
+                            value="yes"
+                          />
+                          Yes
+                        </label>
+                        <label>
+                          <input
+                            type="radio"
+                            name={`question_${index}`}
+                            value="no"
+                          />
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                  <div className={styles.button}>
+                    <p>
+                      <input
+                        type="submit"
+                        name="evaluate"
+                        value="Evaluate"
+                        onClick={handleSubmit}
+                      />
+                      {(errorMessage.length > 0 || successMessage.length > 0) &&
+                        (successMessage.length > 0 ? (
+                          <Success successMessage={successMessage} />
+                        ) : (
+                          <Error errorMessage={errorMessage} />
+                        ))}
+                    </p>
+                  </div>
+                </>
+              )
+            )}
+          </div>
+        </div>
       </div>
     </>
   );

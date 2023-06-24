@@ -34,7 +34,7 @@ const PostPage = () => {
   ) => {
     try {
       const res = await axios.get(
-        `http://192.168.9.234:4500/api/v1/forum/post?userId=${userId}&accessToken=${accessToken}&postId=${postId}`
+        `http://13.235.81.90:4500/api/v1/forum/post?userId=${userId}&accessToken=${accessToken}&postId=${postId}`
       );
       return res.data.data.post;
     } catch (error) {
@@ -64,7 +64,7 @@ const PostPage = () => {
     comment: any
   ) => {
     axios
-      .post(`http://192.168.9.234:4500/api/v1/forum/post/comments`, {
+      .post(`http://13.235.81.90:4500/api/v1/forum/post/comments`, {
         userId: userId,
         accessToken: accessToken,
         postId: postId,

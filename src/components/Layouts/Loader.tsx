@@ -23,30 +23,38 @@ const Loader = React.memo((props: any) => {
   useEffect(() => {
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
-    if (!userId || !firstLaunch) {
-      firstLaunch && setFirstLaunch(false);
-      return () => {};
+
+    if (userId && firstLaunch) {
+      axios
+        .get(
+          `http://13.235.81.90:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
+        )
+        .then((response) => {
+          if (response.data.status === "failure") {
+            alert("You have been Logged-Out. Please Login Again");
+            localStorage.setItem("UserId", "");
+            localStorage.setItem("AccessToken", "");
+            localStorage.setItem("IsLoggedIn", "false");
+            localStorage.setItem("UserName", "");
+            setLoggedIn(false);
+            resetMessages();
+            resetBlogs();
+            resetTests();
+            resetPosts();
+          }
+        });
+      if (firstLaunch) {
+        setTimeout(() => {
+          setFirstLaunch(false);
+        }, 1000);
+      }
+    } else {
+      if (firstLaunch) {
+        setTimeout(() => {
+          setFirstLaunch(false);
+        }, 1500);
+      }
     }
-    axios
-      .get(
-        `http://13.235.81.90:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
-      )
-      .then((response) => {
-        if (response.data.status === "failure") {
-          alert("You have been Logged-Out. Please Login Again");
-          localStorage.setItem("UserId", "");
-          localStorage.setItem("AccessToken", "");
-          localStorage.setItem("IsLoggedIn", "false");
-          localStorage.setItem("UserName", "");
-          setLoggedIn(false);
-          resetMessages();
-          resetBlogs();
-          resetTests();
-          resetPosts();
-        } else {
-        }
-        firstLaunch && setFirstLaunch(false);
-      });
   }, []);
 
   return (

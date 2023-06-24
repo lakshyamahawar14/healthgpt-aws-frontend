@@ -23,8 +23,8 @@ function App() {
     <>
       {firstLaunch ? (
         <>
-          <PreloadContent />
           <Loader startTop={false} />
+          <PreloadContent />
         </>
       ) : (
         <>

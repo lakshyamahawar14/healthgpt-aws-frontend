@@ -32,7 +32,7 @@ const ForumPage = () => {
   const getPosts = async (numberOfResults: any) => {
     try {
       const res = await axios.get(
-        `http://192.168.9.234:4500/api/v1/forum/posts?searchQuery=${searchText}&numberOfResults=${numberOfResults}`
+        `http://13.235.81.90:4500/api/v1/forum/posts?searchQuery=${searchText}&numberOfResults=${numberOfResults}`
       );
       return res.data.data.communityposts;
     } catch (error) {
@@ -74,7 +74,7 @@ const ForumPage = () => {
     tags: any
   ) => {
     axios
-      .post(`http://192.168.9.234:4000/api/v1/db/posts`, {
+      .post(`http://13.235.81.90:4000/api/v1/db/posts`, {
         userId: userId,
         accessToken: accessToken,
         postObject: {

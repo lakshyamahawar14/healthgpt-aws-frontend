@@ -4,13 +4,12 @@ import styles from "../../styles/TestSection.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
 import { useRecoilState } from "recoil";
-import { FirstLaunch, LoggedInstate } from "../../config/atoms";
+import { LoggedInstate } from "../../config/atoms";
 import Loader from "../Layouts/Loader";
 import Success from "../Layouts/Success";
 import Error from "../Layouts/Error";
 
 const TestPage = () => {
-  const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");

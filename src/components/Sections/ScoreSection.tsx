@@ -9,7 +9,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../../styles/ScoreSection.module.scss";
 import { useRecoilState } from "recoil";
-import { FirstLaunch, LoggedInstate } from "../../config/atoms";
+import { LoggedInstate } from "../../config/atoms";
 import { useEffect, useState } from "react";
 import { topPathsArray } from "../../config/constant";
 import Loader from "../Layouts/Loader";
@@ -17,7 +17,6 @@ import { Bar } from "react-chartjs-2";
 import Header from "../Layouts/Header";
 
 const ScorePage = () => {
-  const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [score, setScore] = useState<{ name: string; score: number }[]>([]);
   const location = useLocation();

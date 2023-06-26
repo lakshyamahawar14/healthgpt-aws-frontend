@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import styles from "../../styles/ChatbotSection.module.scss";
 import TypingAnimation from "../../UI/TypingAnimation";
+import styles from "../../styles/ChatbotSection.module.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

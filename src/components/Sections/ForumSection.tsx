@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import styles from "../../styles/ForumSection.module.scss";
 import Header from "../Layouts/Header";
-import { FirstLaunch, LoggedInstate, posts } from "../../config/atoms";
+import { LoggedInstate, posts } from "../../config/atoms";
 import Loader from "../Layouts/Loader";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,7 +14,6 @@ import Skipper from "../Layouts/Skipper";
 
 const ForumPage = () => {
   const [postsArray, setPostsArray] = useRecoilState(posts);
-  const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [searchText, setSearchText] = useState("");
   const [searchNum, setSearchNum] = useState(6);
@@ -51,9 +50,7 @@ const ForumPage = () => {
 
   useEffect(() => {
     if (postsArray.length > 0) {
-      const timer = setTimeout(() => {
-        firstLaunch && setFirstLaunch(false);
-      }, 1000);
+      const timer = setTimeout(() => {}, 1000);
 
       return () => clearTimeout(timer);
     }
@@ -192,12 +189,6 @@ const ForumPage = () => {
     setPostsArray([]);
     setSearchText(searchQuery);
   };
-
-  useEffect(() => {
-    if (postsArray.length > 0) {
-      firstLaunch && setFirstLaunch(false);
-    }
-  }, [postsArray]);
 
   const handleOnNext = (props: any) => {
     setSearchNum(searchNum + props);

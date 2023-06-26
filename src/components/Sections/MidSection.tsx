@@ -13,18 +13,16 @@ import ChatBotAnimation from "../../UI/ChatBotAnimation";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
-import Loader from "../Layouts/Loader";
 import { LoggedInstate, FirstLaunch } from "../../config/atoms";
 import { useRecoilState } from "recoil";
 
 export const MidSection = (props: any) => {
-  const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
 
   const navigate = useNavigate();
 
   const redirectToRegister = () => {
-    navigate(topPathsArray.signupPath);
+    navigate(topPathsArray.loginPath, { replace: true });
   };
 
   useEffect(() => {

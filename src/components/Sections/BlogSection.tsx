@@ -86,6 +86,7 @@ export const BlogPage = () => {
   };
 
   const handleOnNext = (props: any) => {
+    setBlogsArray([]);
     setSearchNum(searchNum + props);
     setPageNum(pageNum + 1);
     setNext(true);
@@ -95,6 +96,7 @@ export const BlogPage = () => {
     if (pageNum === 1) {
       return;
     }
+    setBlogsArray([]);
     setSearchNum(searchNum - props);
     setPageNum(pageNum - 1);
     setPrev(true);

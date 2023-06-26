@@ -16,11 +16,6 @@ export const numMessagesState = atom<number>({
   default: numMessages,
 });
 
-export const FirstLaunch = atom<boolean>({
-  key: "FirstLaunch",
-  default: true,
-});
-
 export const tests = atom<Tests[]>({
   key: "tests",
   default: [],

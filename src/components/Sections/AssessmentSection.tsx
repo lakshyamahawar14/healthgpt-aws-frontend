@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "../../styles/AssessmentSection.module.scss";
-import { FirstLaunch, LoggedInstate, tests } from "../../config/atoms";
+import { LoggedInstate, tests } from "../../config/atoms";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import Loader from "../Layouts/Loader";
@@ -9,7 +9,6 @@ import { topPathsArray } from "../../config/constant";
 
 const AssessmentPage = () => {
   const [testsArray, setTestsArray] = useRecoilState(tests);
-  const [firstLaunch, setFirstLaunch] = useRecoilState(FirstLaunch);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
 
   const getTests = async () => {
@@ -33,7 +32,6 @@ const AssessmentPage = () => {
 
   useEffect(() => {
     if (testsArray.length > 0) {
-      setFirstLaunch(false);
       window.scrollTo(0, 0);
     }
   }, [testsArray]);

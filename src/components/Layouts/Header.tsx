@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
 import { useRecoilState, useResetRecoilState } from "recoil";
@@ -13,7 +13,7 @@ import axios from "axios";
 import logo from "../../assets/images/luxlogobot.svg";
 import styles from "../../styles/Header.module.scss";
 
-const Header = () => {
+const Header = React.memo(() => {
   const resetMessages = useResetRecoilState(numMessagesState);
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
@@ -105,6 +105,11 @@ const Header = () => {
             <Link
               style={{ textDecoration: "none" }}
               to={topPathsArray.homePath}
+              onClick={() => {
+                if (window.innerWidth < 750) {
+                  handleMenu();
+                }
+              }}
             >
               <button className={styles.btn1}>Home</button>
             </Link>
@@ -113,6 +118,11 @@ const Header = () => {
             <Link
               style={{ textDecoration: "none" }}
               to={topPathsArray.assessmentPath}
+              onClick={() => {
+                if (window.innerWidth < 750) {
+                  handleMenu();
+                }
+              }}
             >
               <button className={styles.btn1}>Assessment</button>
             </Link>
@@ -121,6 +131,11 @@ const Header = () => {
             <Link
               style={{ textDecoration: "none" }}
               to={topPathsArray.blogPath}
+              onClick={() => {
+                if (window.innerWidth < 750) {
+                  handleMenu();
+                }
+              }}
             >
               <button className={styles.btn1}> Blogs</button>
             </Link>
@@ -129,6 +144,11 @@ const Header = () => {
             <Link
               style={{ textDecoration: "none" }}
               to={topPathsArray.forumPath}
+              onClick={() => {
+                if (window.innerWidth < 750) {
+                  handleMenu();
+                }
+              }}
             >
               <button className={styles.btn1}> Community</button>
             </Link>
@@ -144,6 +164,11 @@ const Header = () => {
               <Link
                 to={topPathsArray.loginPath}
                 style={{ textDecoration: "none" }}
+                onClick={() => {
+                  if (window.innerWidth < 750) {
+                    handleMenu();
+                  }
+                }}
               >
                 <button className={styles.btn1}>Log In</button>
               </Link>
@@ -153,6 +178,6 @@ const Header = () => {
       </header>
     </>
   );
-};
+});
 
 export default Header;

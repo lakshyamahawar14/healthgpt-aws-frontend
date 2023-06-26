@@ -148,19 +148,21 @@
 
 .signup .signupform button,
 .signup .signupform input[type="submit"] {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90px;
-    margin-top: 10px;
-    color: $white;
-    background-color: $violet;
-    font-size: 0.9rem;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 0.8rem;
     letter-spacing: 1px;
-    cursor: pointer;
-    border: 2px solid $violet;
+    text-decoration: none;
     border-radius: 30px;
+    color: $violet;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border: 2px solid $violet;
+    max-width: 80px;
+    height: auto;
+    background-color: $white;
 }
 
 .signup .signupform p {
@@ -176,8 +178,8 @@
 .signup .signupform button:hover,
 .signup .signupform input[type="submit"]:hover,
 .signup .signupform input[type="submit"]:focus {
-    color: $violet;
-    background-color: $white;
+    color: $white;
+    background-color: $violet;
 }
 
 @media (max-width: 575px) {

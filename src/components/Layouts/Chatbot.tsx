@@ -1,14 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import TypingAnimation from "../../UI/TypingAnimation";
 import styles from "../../styles/ChatbotSection.module.scss";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPhone,
-  faVideo,
-  faPaperPlane,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { FaPhoneAlt, FaVideo } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import { BsFillSendFill } from "react-icons/bs";
 const Chatbot = React.memo(
   ({ onFormChange, onFormSubmit, onFormClear, onClose, data }: PropsForm) => {
     const formRef: any = useRef();
@@ -82,13 +77,10 @@ const Chatbot = React.memo(
             <div className={styles.avatar}></div>
             <div className={styles.name}>LUX</div>
             <div className={styles.icons}>
-              <FontAwesomeIcon icon={faPhone} className={styles.fas} />
-              <FontAwesomeIcon icon={faVideo} className={styles.fas} />
+              <FaPhoneAlt className={styles.fas} />
+              <FaVideo className={styles.fas} />
               <button className={styles.exitbutton} onClick={onClose}>
-                <FontAwesomeIcon
-                  icon={faTimes}
-                  className={` ${styles.cross} `}
-                />
+                <IoMdClose className={` ${styles.cross} `} />
               </button>
             </div>
           </div>
@@ -113,7 +105,7 @@ const Chatbot = React.memo(
                 />
 
                 <button type="submit">
-                  <FontAwesomeIcon icon={faPaperPlane} className={styles.fas} />
+                  <BsFillSendFill className={styles.fas} />
                 </button>
               </div>
             </form>

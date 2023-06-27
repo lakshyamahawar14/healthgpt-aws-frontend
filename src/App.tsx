@@ -20,11 +20,10 @@ import {
 } from "./config/atoms";
 import Loader from "./components/Layouts/Loader";
 import PostPage from "./components/Sections/PostSection";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 function App() {
-  const [showLoader, setShowLoader] = useState(true);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const resetMessages = useResetRecoilState(numMessagesState);
   const resetBlogs = useResetRecoilState(blogs);
@@ -54,66 +53,62 @@ function App() {
             resetPosts();
           }
         });
-
-      const timer = setTimeout(() => {
-        setShowLoader(false);
-        const appElement = document.getElementById("app");
-        if (appElement) {
-          appElement.style.opacity = "1";
-        }
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    } else {
-      const timer = setTimeout(() => {
-        setShowLoader(false);
-        const appElement = document.getElementById("app");
-        if (appElement) {
-          appElement.style.opacity = "1";
-        }
-      }, 2000);
-
-      return () => clearTimeout(timer);
     }
+  }, []);
+
+  useEffect(() => {
+    const appElement = document.getElementById("app");
+    const loaderElement = document.getElementById("loader");
+    const timer = setTimeout(() => {
+      if (appElement) {
+        appElement.style.opacity = "1";
+        appElement.style.maxHeight = "none";
+        appElement.style.overflow = "none";
+      }
+      if (loaderElement) {
+        loaderElement.style.display = "none";
+      }
+      window.scrollTo(0, 0);
+    }, 2000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {showLoader ? (
-        <>
-          <Loader startTop={false} />
-        </>
-      ) : (
-        <>
-          <div id="app" style={{ opacity: 0 }}>
-            <Header />
-            <Routes>
-              <Route path={topPathsArray.homePath} element={<HomePage />} />
-              <Route
-                path={topPathsArray.assessmentPath}
-                element={<AssessmentPage />}
-              />
-              <Route path={topPathsArray.testPath} element={<TestPage />} />
-              <Route path={topPathsArray.scorePath} element={<ScorePage />} />
-              <Route
-                path={topPathsArray.trackerPath}
-                element={<TrackerPage />}
-              />
-              <Route path={topPathsArray.blogPath} element={<BlogPage />} />
-              <Route path={topPathsArray.forumPath} element={<ForumPage />} />
-              <Route path={topPathsArray.postPath} element={<PostPage />} />
-              <Route
-                path={topPathsArray.signupPath}
-                element={<AuthPage signup={true} />}
-              />
-              <Route
-                path={topPathsArray.loginPath}
-                element={<AuthPage login={true} />}
-              />
-            </Routes>
-          </div>
-        </>
-      )}
+      <div id="loader">
+        <Loader startTop={false} />
+      </div>
+      <div
+        id="app"
+        style={{
+          opacity: 0,
+          maxHeight: 0,
+          overflow: "hidden",
+        }}
+      >
+        <Header />
+        <Routes>
+          <Route path={topPathsArray.homePath} element={<HomePage />} />
+          <Route
+            path={topPathsArray.assessmentPath}
+            element={<AssessmentPage />}
+          />
+          <Route path={topPathsArray.testPath} element={<TestPage />} />
+          <Route path={topPathsArray.scorePath} element={<ScorePage />} />
+          <Route path={topPathsArray.trackerPath} element={<TrackerPage />} />
+          <Route path={topPathsArray.blogPath} element={<BlogPage />} />
+          <Route path={topPathsArray.forumPath} element={<ForumPage />} />
+          <Route path={topPathsArray.postPath} element={<PostPage />} />
+          <Route
+            path={topPathsArray.signupPath}
+            element={<AuthPage signup={true} />}
+          />
+          <Route
+            path={topPathsArray.loginPath}
+            element={<AuthPage login={true} />}
+          />
+        </Routes>
+      </div>
     </>
   );
 }

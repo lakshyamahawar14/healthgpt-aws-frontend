@@ -13,9 +13,9 @@
         width: 100%;
         max-width: 500px;
         min-width: 300px;
-        color: $dirtwhite;
+        color: $white;
         font-weight: 600;
-        font-family: $poppins;
+        font-family: $karla;
 
         div:nth-child(2) {
             width: 100px;
@@ -29,7 +29,7 @@
         }
 
         div:nth-child(1):hover {
-            color: $violet;
+            color: $orange;
         }
 
         div:nth-child(3) {
@@ -38,7 +38,7 @@
         }
 
         div:nth-child(3):hover {
-            color: $violet;
+            color: $orange;
         }
     }
 }

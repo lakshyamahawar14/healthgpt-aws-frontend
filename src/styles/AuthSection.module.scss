@@ -2,18 +2,18 @@
 @import './colors';
 
 .main {
-  background-color: $blue;
+  background-color: $dark;
   height: auto;
   min-height: 100vh;
 }
 
 .authContainer {
   margin: auto;
-  font-family: $poppins;
+  font-family: $karla;
   font-size: 1rem;
   font-weight: 400;
-  color: $violet;
+  color: $orange;
   height: auto;
-  padding: 20vh 6vw;
+  padding: 15vh 6vw;
   padding-bottom: 5vh;
 }

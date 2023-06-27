@@ -30,7 +30,7 @@
   flex: 0 0 auto;
   height: 60px;
   background: #40434e;
-  border-top: 1px solid $blue;
+  border-top: 1px solid $dark;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 
@@ -51,7 +51,7 @@
   float: right;
   outline: 0 none;
   border: none;
-  background: white;
+  background: transparent;
   opacity: 0.25;
   height: 40px;
   width: 40px;
@@ -63,7 +63,7 @@
 
 .chatInput input[good]+button {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
-  background-color: $blue;
+  background-color: $dark;
 }
 
 .chatInput input[good]+button:hover {
@@ -98,7 +98,7 @@
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  background: $blue;
+  background: $dark;
   margin: 0 10px 10px 0;
 }
 
@@ -143,7 +143,7 @@
 
 .msgSelf .msgBox {
   border-radius: 6px 0 0 6px;
-  background: $blue;
+  background: $dark;
   float: right;
 }
 

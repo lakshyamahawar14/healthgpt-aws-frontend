@@ -16,7 +16,7 @@
 
         p {
             font-size: 1.2rem;
-            color: $dirtwhite;
+            color: $white;
         }
 
         .logo {
@@ -32,6 +32,9 @@
 }
 
 .midContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100vh;
     width: 100vw;
     min-height: 100vh;
@@ -39,7 +42,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $blue;
+    background-color: $dark;
 
     .loaderContainer {
         display: flex;
@@ -48,7 +51,7 @@
 
         p {
             font-size: 1.2rem;
-            color: $dirtwhite;
+            color: $white;
         }
 
         .logo {

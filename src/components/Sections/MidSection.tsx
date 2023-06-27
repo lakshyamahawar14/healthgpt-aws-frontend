@@ -1,11 +1,5 @@
 import styles from "../../styles/MidSection.module.scss";
-import AccessIcon from "../../assets/icons/icon-access-anywhere";
-import IconSecurity from "../../assets/icons/icon-security";
-import CollabrationIcon from "../../assets/icons/icon-collaboration";
-import AnyFileIcon from "../../assets/icons/icon-any-file";
-import StayProdIllustration from "../../assets/images/OurStoryIllustration.svg";
-import iconArrow from "../../assets/images/icon-arrow.svg";
-import bgQuotes from "../../assets/images/bg-quotes.png";
+import OurStoryIllustration from "../../assets/images/OurStoryIllustration.svg";
 import profile1 from "../../assets/images/profile-1.jpg";
 import profile2 from "../../assets/images/profile-2.jpg";
 import profile3 from "../../assets/images/profile-3.jpg";
@@ -13,8 +7,10 @@ import ChatBotAnimation from "../../UI/ChatBotAnimation";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
-import { LoggedInstate, FirstLaunch } from "../../config/atoms";
+import { LoggedInstate } from "../../config/atoms";
 import { useRecoilState } from "recoil";
+import { MdSecurity, MdVerified, MdDevices } from "react-icons/md";
+import { GoCommentDiscussion } from "react-icons/go";
 
 export const MidSection = (props: any) => {
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
@@ -53,7 +49,7 @@ export const MidSection = (props: any) => {
           <article className={styles.article1}>
             <div className={styles.blocks}>
               <div className={styles.img}>
-                <AccessIcon />
+                <MdDevices size={100} />
               </div>
               <span className={styles.bold}> Access anywhere</span>
 
@@ -65,7 +61,7 @@ export const MidSection = (props: any) => {
             <div id={styles.security} className={styles.blocks}>
               <div className={styles.img}>
                 {" "}
-                <IconSecurity />
+                <MdSecurity size={100} />
               </div>
               <span className={styles.bold}> Security you can trust</span>
 
@@ -79,7 +75,7 @@ export const MidSection = (props: any) => {
             <div className={styles.blocks}>
               <div className={styles.img}>
                 {" "}
-                <CollabrationIcon />
+                <MdVerified size={100} />
               </div>
               <span className={styles.bold}> Verified Experts</span>
 
@@ -92,7 +88,7 @@ export const MidSection = (props: any) => {
             <div className={styles.blocks}>
               <div className={styles.img}>
                 {" "}
-                <AnyFileIcon />
+                <GoCommentDiscussion size={100} />
               </div>
               <span className={styles.bold}> Discussion Forum</span>
 
@@ -105,9 +101,7 @@ export const MidSection = (props: any) => {
           </article>
           <article className={styles.article2}>
             <div className={styles.block2}>
-              {/* <div className={styles.illustration}> */}
-              <img className={styles.img} src={StayProdIllustration} alt="" />
-              {/* </div> */}
+              <img className={styles.img} src={OurStoryIllustration} alt="" />
             </div>
             <div className={styles.block2}>
               {" "}
@@ -119,16 +113,12 @@ export const MidSection = (props: any) => {
                 Blended with professional human support, Lux provides 24/7
                 high-quality mental health support.
               </p>
-              <a href="">
-                {" "}
-                See how Lux works <img src={iconArrow} alt="" />
-              </a>
+              <a href=""> See how Lux works</a>
             </div>
           </article>
 
           <article className={styles.article3}>
             <div className={styles.box1}>
-              <img className={styles.quotes} src={bgQuotes} alt="" />
               <p>
                 We have long believed that mental well-being should be treated
                 as seriously as physical health. By accelerating our

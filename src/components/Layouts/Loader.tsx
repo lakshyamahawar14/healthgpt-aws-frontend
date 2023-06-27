@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "../../styles/Loader.module.scss";
 import logo from "../../assets/images/luxlogobot.svg";
 
@@ -9,7 +9,6 @@ const Loader = React.memo((props: any) => {
         <div id="loader" className={styles.topContainer}>
           <div className={styles.loaderContainer}>
             <img className={styles.logo} src={logo} alt="" />
-            {/* <p>Loading...</p> */}
           </div>
         </div>
       ) : (

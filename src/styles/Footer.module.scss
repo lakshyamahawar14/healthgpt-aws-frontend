@@ -2,7 +2,7 @@
 @import './fonts';
 
 .footer {
-    background-color: $blue;
+    background-color: $dark;
     padding: 20px;
     color: $white;
 }
@@ -25,28 +25,34 @@
     justify-content: center;
     text-align: center;
 
+    .socialIcons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            margin: 0 5px;
+        }
+    }
 }
 
 .footerColumn h3 {
     font-size: 1rem;
     font-family: $karla;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        padding: 0 5px;
+    }
 }
 
 .footerColumn p {
     font-family: $karla;
     font-weight: 400;
     margin: 0;
-}
-
-.socialIcons a {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.socialIcons img {
-    width: 30px;
-    height: 30px;
 }
 
 .footerBottom {

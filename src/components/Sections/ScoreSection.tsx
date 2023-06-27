@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { topPathsArray } from "../../config/constant";
 import Loader from "../Layouts/Loader";
 import { Bar } from "react-chartjs-2";
-import Header from "../Layouts/Header";
 
 const ScorePage = () => {
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
@@ -83,7 +82,7 @@ const ScorePage = () => {
         display: false,
       },
       datalabels: {
-        color: "black",
+        color: "#f5fb8d",
         anchor: "end",
         align: "start",
         font: {
@@ -96,7 +95,7 @@ const ScorePage = () => {
       y: {
         ticks: {
           callback: (value: any) => `${value}%`,
-          color: "black",
+          color: "#f5fb8d",
           font: {
             weight: "bold",
           },
@@ -104,7 +103,7 @@ const ScorePage = () => {
       },
       x: {
         ticks: {
-          color: "black",
+          color: "#f5fb8d",
           font: {
             weight: "bold",
           },

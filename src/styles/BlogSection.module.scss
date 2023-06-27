@@ -2,7 +2,7 @@
 @import './colors';
 
 .main {
-  background-color: $blue;
+  background-color: $dark;
   min-height: 100vh;
   height: auto;
 }
@@ -36,7 +36,7 @@
   font-family: $karla;
   font-size: 1.5rem;
   font-weight: 700;
-  color: $dirtwhite;
+  color: $white;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 10px;
@@ -47,8 +47,8 @@
 }
 
 .blogcard {
-  background-color: $dirtwhite;
-  border: 1px solid $dirtwhite;
+  background-color: $white;
+  border: 1px solid $white;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
@@ -67,7 +67,7 @@
 }
 
 .title {
-  color: $violet;
+  color: $orange;
   font-size: 1.3rem;
   font-weight: 900;
   margin: 10px 0;
@@ -76,7 +76,7 @@
 .description {
   color: $black;
   opacity: 0.7;
-  font-family: $poppins;
+  font-family: $karla;
   margin: 10px 0;
   font-size: 0.9rem;
   text-align: start;
@@ -86,7 +86,7 @@
   margin-top: auto;
   color: $black;
   opacity: 0.7;
-  font-family: $poppins;
+  font-family: $karla;
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -95,7 +95,7 @@
   font-weight: bold;
   font-size: 2rem;
   padding: 20px;
-  color: $violet;
+  color: $orange;
   text-align: center;
 }
 
@@ -120,5 +120,5 @@
 }
 
 .redirectIcon:hover {
-  color: $blue;
+  color: $dark;
 }

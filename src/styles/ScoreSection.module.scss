@@ -2,7 +2,7 @@
 @import './colors';
 
 .main {
-    background-color: $blue;
+    background-color: $dark;
     height: auto;
     min-height: 100vh;
 }
@@ -14,12 +14,12 @@
     flex-direction: column;
     height: auto;
     min-height: 100vh;
-    background-color: $blue;
+    background-color: $dark;
 
     .scoreTitle p {
         font-family: $karla;
         font-weight: 600;
-        color: $dirtwhite;
+        color: $white;
         font-size: 1.5rem;
         padding: 0;
     }
@@ -36,15 +36,15 @@
     background: none;
     outline: none;
     cursor: pointer;
-    border: 2px solid $violet;
+    border: 2px solid $orange;
     max-width: 100px;
-    background-color: $violet;
+    background-color: $orange;
 }
 
 .scoreContainer input:nth-child(1):hover {
     background-color: $white;
     border: 2px solid $white;
-    color: $violet;
+    color: $orange;
 }
 
 .chartContainer {

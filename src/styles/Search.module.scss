@@ -14,7 +14,7 @@
         width: 100%;
         max-width: 800px;
         min-width: 200px;
-        font-family: $poppins;
+        font-family: $karla;
 
         .searchQuery {
             display: flex;
@@ -24,12 +24,14 @@
 
             input {
                 font-weight: 600;
-                color: $violet;
+                color: $black;
+                background-color: $white;
             }
 
             input:nth-child(1) {
                 width: auto;
-                padding: 7px 15px;
+                height: auto;
+                padding: 8px 15px;
                 outline: none;
                 border: 1px solid #cccccc;
                 border-radius: 30px;
@@ -38,7 +40,7 @@
 
             input:nth-child(2) {
                 display: inline-block;
-                padding: 7px 15px;
+                padding: 8px 15px;
                 font-size: 0.9rem;
                 letter-spacing: 1px;
                 text-decoration: none;
@@ -47,15 +49,16 @@
                 background: none;
                 outline: none;
                 cursor: pointer;
-                border: 2px solid $violet;
+                border: 2px solid $orange;
                 max-width: 100px;
-                background-color: $violet;
+                background-color: $orange;
             }
 
-            input:nth-child(2):hover {
+            input:nth-child(2):hover,
+            input:nth-child(2):focus {
                 background-color: $white;
                 border: 2px solid $white;
-                color: $violet;
+                color: $orange;
             }
 
             @media (max-width: 400px) {

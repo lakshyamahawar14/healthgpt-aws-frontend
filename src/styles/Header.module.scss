@@ -5,7 +5,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0vh 6vw;
-  background-color: $blue;
+  background-color: $dark;
   height: auto;
   min-height: 10vh;
   position: fixed;
@@ -23,7 +23,7 @@ header {
     right: 0;
     font-size: 1.5rem;
     font-weight: 600;
-    color: $white;
+    color: $orange;
     cursor: pointer;
     z-index: 2;
   }
@@ -44,7 +44,7 @@ header {
   .divLogo p {
     font-family: $karla;
     font-weight: 800;
-    color: $dirtwhite;
+    color: $white;
     padding: 0 5px;
   }
 
@@ -111,13 +111,13 @@ header {
     background-color: transparent;
     outline: none;
     border: none;
-    color: $dirtwhite;
+    color: $white;
     font-weight: 700;
   }
 
   button:hover {
     text-decoration: underline;
-    color: $violet;
+    color: $orange;
   }
 }
 

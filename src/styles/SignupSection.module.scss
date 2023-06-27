@@ -17,19 +17,22 @@
     width: 100%;
     max-width: 600px;
     display: flex;
-    background-color: $white;
+    background-color: $black;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .signup .colleft,
 .signup .colright {
     padding: 30px;
     display: flex;
+    border-top-left-radius: 10px;
 }
 
 .signup .colleft {
     width: 60%;
     clip-path: polygon(0 0, 0% 100%, 90% 0);
-    background-color: $violet;
+    background-color: $orange;
 }
 
 .signup .colright {
@@ -40,7 +43,7 @@
 .signup .signuptext {
     position: relative;
     width: 100%;
-    color: $white;
+    color: $black;
 }
 
 .signup .signuptext h2 {
@@ -58,24 +61,24 @@
 
 .signup .signuptext .btn {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 8px 10px;
     font-size: 0.8rem;
     letter-spacing: 1px;
     text-decoration: none;
     border-radius: 30px;
-    color: $white;
+    color: $black;
     background: none;
     outline: none;
     cursor: pointer;
-    border: 2px solid $white;
+    border: 2px solid $black;
     max-width: 100px;
-    background-color: $violet;
+    background-color: $orange;
 }
 
 .signup .signuptext .btn:hover {
     background-color: $white;
     border: 2px solid $white;
-    color: $violet;
+    color: $orange;
 }
 
 
@@ -93,7 +96,7 @@
 .signup .signupform p {
     margin: 0 0 10px 0;
     text-align: left;
-    color: $violet;
+    color: $orange;
     font-size: 15px;
 }
 
@@ -103,7 +106,7 @@
 }
 
 .signup .signupform p a {
-    color: $blue;
+    color: $dark;
     font-size: 14px;
     text-decoration: none;
 }
@@ -111,10 +114,10 @@
 .signup .signupform label {
     display: block;
     width: 100%;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
     letter-spacing: 0.5px;
     font-weight: 600;
-    color: $violet;
+    color: $orange;
 }
 
 .signup .signupform p:last-child label {
@@ -134,8 +137,10 @@
     padding: 0 10px;
     outline: none;
     border: none;
-    border-bottom: 2px solid #1E2260;
+    border-bottom: 2px solid $orange;
+    border-radius: 10px;
     font-weight: 600;
+    background-color: $white;
 }
 
 .signup .signupform input:nth-child(1) {
@@ -143,30 +148,29 @@
 }
 
 .signup .signupform input:focus {
-    border-color: $violet;
+    border-color: $orange;
 }
 
 .signup .signupform button,
 .signup .signupform input[type="submit"] {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 8px 10px;
     font-size: 0.8rem;
     letter-spacing: 1px;
     text-decoration: none;
     border-radius: 30px;
-    color: $violet;
+    color: $orange;
     background: none;
     outline: none;
     cursor: pointer;
     margin-top: 10px;
-    border: 2px solid $violet;
+    border: 2px solid $orange;
     max-width: 80px;
     height: auto;
-    background-color: $white;
 }
 
 .signup .signupform p {
-    color: $violet;
+    color: $orange;
     font-weight: 800;
     cursor: pointer;
 }
@@ -179,7 +183,7 @@
 .signup .signupform input[type="submit"]:hover,
 .signup .signupform input[type="submit"]:focus {
     color: $white;
-    background-color: $violet;
+    background-color: $orange;
 }
 
 @media (max-width: 575px) {
@@ -221,18 +225,18 @@
     padding-bottom: 8px;
     padding-left: 10px;
     padding-right: 22px;
-    border: 2px solid $dirtwhite;
+    border: 2px solid $white;
     border-radius: 5px;
     outline: none;
     background-color: $white;
     font-size: 0.8rem;
-    font-family: $poppins;
-    color: $violet;
+    font-family: $karla;
+    color: $orange;
 }
 
 .select:hover,
 .select:focus {
-    border: 2px solid $violet;
+    border: 2px solid $orange;
 }
 
 .selectArrow {

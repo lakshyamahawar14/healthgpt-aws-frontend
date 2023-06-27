@@ -1,26 +1,25 @@
 @import './fonts';
 @import './colors';
 
+
+body {
+  font-family: $karla;
+  font-weight: 500;
+  color: $black;
+  background-color: $dark;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .main {
-  background-color: $blue;
+  background-color: $dark;
   height: auto;
   min-height: 100vh;
 }
 
-html {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: $opensans;
-  font-weight: 700;
-  color: $blue;
-  background-color: $blue;
-  margin: 0;
-}
-
 .centered {
-  font-family: $opensans;
+  font-family: $karla;
   font-weight: 700;
   font-size: 2.25rem;
   max-width: 30ch;
@@ -28,7 +27,7 @@ body {
   flex-direction: column;
   text-align: center;
   margin: auto;
-  color: $dirtwhite;
+  color: $white;
   padding: 15vh 5vw;
   padding-bottom: 0;
 
@@ -42,10 +41,9 @@ body {
   }
 
   p {
-    font-family: $poppins;
+    font-family: $karla;
     margin: 3vh 3vw;
     font-size: 2.25rem;
-
   }
 
   img {
@@ -58,7 +56,7 @@ body {
     margin: auto;
     margin-top: 3vh;
     margin-bottom: 3vh;
-    font-family: $opensans;
+    font-family: $karla;
     font-weight: 400;
     font-size: 1rem;
     display: flex;
@@ -75,19 +73,19 @@ body {
   }
 
   button {
-    font-family: $opensans;
+    font-family: $karla;
     font-weight: 700;
     font-size: 1rem;
     padding: 1em;
-    width: 12.5rem;
+    width: 12rem;
     margin: auto;
     margin-top: 2vh;
     margin-bottom: 2vh;
     border-radius: 25px;
     outline: none;
     border: none;
-    color: $white;
-    background-color: $violet;
+    color: $black;
+    background-color: $orange;
     cursor: pointer;
 
     @media (max-width: 500px) {
@@ -98,7 +96,7 @@ body {
 
   button:hover {
     text-decoration: underline;
-    background-color: $black;
+    background-color: $white;
   }
 }
 
@@ -125,12 +123,13 @@ body {
   font-weight: 700;
   text-align: justify;
   font-size: 1rem;
-  color: $black;
+  color: $white;
 }
 
 .blocks span {
   font-weight: 800;
   text-align: center;
+  color: $orange;
 }
 
 #security {
@@ -138,7 +137,7 @@ body {
 }
 
 #blue {
-  background-color: $lightgreen;
+  background-color: $black;
 }
 
 
@@ -187,7 +186,7 @@ body {
   text-align: justify;
   font-size: 1rem;
   line-height: 1.4em;
-  color: $black;
+  color: $white;
 }
 
 .article2 .block2 span {
@@ -195,10 +194,11 @@ body {
   text-align: left;
   font-size: 2.25rem;
   font-weight: 800;
+  color: $orange
 }
 
 .article2 .block2 a {
-  color: $violet;
+  color: $orange;
 }
 
 .article3 {
@@ -239,9 +239,12 @@ body {
 }
 
 .article3 .box1 {
-  font-family: $poppins;
-  background-color: $violet;
-  color: $white;
+  font-family: $karla;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $orange;
+  color: $black;
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
   position: relative;
@@ -249,47 +252,57 @@ body {
 }
 
 .article3 .box2 {
-  font-family: $poppins;
-  background-color: $violet;
-  color: $white;
+  font-family: $karla;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $orange;
+  color: $black;
   grid-column: 2 / span 1;
 }
 
 .article3 .box3 {
-  font-family: $poppins;
-  background-color: $violet;
-  color: $white;
+  font-family: $karla;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $orange;
+  color: $black;
   grid-column: 3 / span 1;
 }
 
 .article3 .box1 p {
   font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.article3 .box1 span .p1 {
+  font-weight: 800;
 }
 
 .article3 .box2 p {
   font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.article3 .box2 span .p1 {
+  font-weight: 800;
 }
 
 .article3 .box3 p {
   font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.article3 .quotes {
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-  z-index: 1;
-  width: 3vw;
-  height: 4vw;
-  position: absolute;
-  top: -3rem;
-  left: -0.5rem;
+.article3 .box3 span .p1 {
+  font-weight: 800;
 }
 
 .article3 div {
   height: auto;
-  background-color: $blue;
+  background-color: $dark;
   padding: 1rem;
-  font-family: $opensans;
+  font-family: $karla;
   font-weight: 400;
   border-radius: 0.5em;
 }

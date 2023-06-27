@@ -19,7 +19,7 @@
             color: $white;
         }
 
-        .logo {
+        .loader {
             display: flex;
             justify-content: flex-start;
             padding-top: 0;
@@ -54,7 +54,7 @@
             color: $white;
         }
 
-        .logo {
+        .loader {
             display: flex;
             justify-content: flex-start;
             padding-top: 0;
@@ -63,5 +63,28 @@
             position: relative;
             width: 50px;
         }
+    }
+}
+
+.loader {
+    width: 50px;
+    opacity: 0;
+    animation: fade 0.5s ease-in-out infinite;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        /* Start with 0 opacity */
+    }
+
+    50% {
+        opacity: 1;
+        /* Fade in to full opacity */
+    }
+
+    100% {
+        opacity: 0;
+        /* Fade out to 0 opacity */
     }
 }

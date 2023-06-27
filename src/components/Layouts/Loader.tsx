@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/Loader.module.scss";
-import logo from "../../assets/images/luxlogobot.svg";
+import loader from "../../assets/images/luxlogobot.svg";
 
 const Loader = React.memo((props: any) => {
   return (
@@ -8,14 +8,13 @@ const Loader = React.memo((props: any) => {
       {props.startTop ? (
         <div id="loader" className={styles.topContainer}>
           <div className={styles.loaderContainer}>
-            <img className={styles.logo} src={logo} alt="" />
+            <img className={styles.loader} src={loader} alt="" />
           </div>
         </div>
       ) : (
         <div id="loader" className={styles.midContainer}>
           <div className={styles.loaderContainer}>
-            <img className={styles.logo} src={logo} alt="" />
-            {/* <p>Loading...</p> */}
+            <img className={styles.loader} src={loader} alt="" />
           </div>
         </div>
       )}

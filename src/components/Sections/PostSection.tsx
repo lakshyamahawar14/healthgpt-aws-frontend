@@ -103,6 +103,12 @@ const PostPage = () => {
     });
   };
 
+  const handleTagClick = (tag: any) => {
+    navigate(
+      `${topPathsArray.forumPath}?search=${encodeURIComponent(tag.slice(1))}`
+    );
+  };
+
   return (
     <>
       <div className={styles.main}>
@@ -124,7 +130,11 @@ const PostPage = () => {
                 catagory:{" "}
                 <div className={styles.tags}>
                   {post.tags.map((tag, index) => (
-                    <span key={index} className={styles.tag}>
+                    <span
+                      key={index}
+                      className={styles.tag}
+                      onClick={() => handleTagClick(tag)}
+                    >
                       {tag}
                     </span>
                   ))}

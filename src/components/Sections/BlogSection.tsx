@@ -7,6 +7,7 @@ import Skipper from "../Layouts/Skipper";
 import { LoggedInstate, blogsSearchQuery } from "../../config/atoms";
 import { useRecoilState } from "recoil";
 import { blogs } from "../../config/atoms";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const BlogPage = () => {
   const [blogsArray, setBlogsArray] = useRecoilState(blogs);
@@ -16,6 +17,8 @@ export const BlogPage = () => {
   const [pageNum, setPageNum] = useState(1);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [searchText, setSearchText] = useRecoilState(blogsSearchQuery);
+  const location = useLocation();
+  const search = new URLSearchParams(location.search).get("search");
 
   const getBlogs = async (searchQuery: any, numberOfResults: any) => {
     try {
@@ -44,7 +47,7 @@ export const BlogPage = () => {
       return () => {};
     }
 
-    if (isLoggedIn) {
+    if (!search && isLoggedIn) {
       let userId = localStorage.getItem("UserId");
       let accessToken = localStorage.getItem("AccessToken");
       getSymptom(userId, accessToken).then((response) => {

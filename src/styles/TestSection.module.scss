@@ -83,24 +83,30 @@
     margin-bottom: 20px;
   }
 
+  .testContainer p:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .testContainer p input[type="submit"] {
     display: inline-block;
-    font-family: $karla;
-    padding: 7px 20px;
+    padding: 8px 15px;
     font-size: 0.9rem;
     letter-spacing: 1px;
     text-decoration: none;
     border-radius: 30px;
     color: $white;
-    background-color: $orange;
+    background: none;
     outline: none;
     cursor: pointer;
     border: 2px solid $orange;
-    max-width: 150px;
-    font-weight: 600;
+    max-width: 100px;
+    background-color: $orange;
   }
 
-  .testContainer p input:hover {
+  .testContainer p input:hover,
+  .testContainer p input:focus {
     color: $orange;
     background-color: $white;
     border: 2px solid $white;

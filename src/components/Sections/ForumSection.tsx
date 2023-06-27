@@ -5,7 +5,7 @@ import Header from "../Layouts/Header";
 import { LoggedInstate, posts } from "../../config/atoms";
 import Loader from "../Layouts/Loader";
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
 import Success from "../Layouts/Success";
 import Error from "../Layouts/Error";
@@ -15,18 +15,19 @@ import Skipper from "../Layouts/Skipper";
 const ForumPage = () => {
   const [postsArray, setPostsArray] = useRecoilState(posts);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
-  const [searchText, setSearchText] = useState("");
   const [searchNum, setSearchNum] = useState(6);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [searchText, setSearchText] = useState("");
   let title = useRef<HTMLInputElement>(null);
   let description = useRef<HTMLTextAreaElement>(null);
   let tags = useRef<HTMLInputElement>(null);
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const search = new URLSearchParams(location.search).get("search");
 
   const getPosts = async (numberOfResults: any) => {
     try {
@@ -43,18 +44,12 @@ const ForumPage = () => {
     if (postsArray.length !== 0) {
       return () => {};
     }
-    getPosts(searchNum).then((response) => {
-      setPostsArray(response);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (postsArray.length > 0) {
-      const timer = setTimeout(() => {}, 1000);
-
-      return () => clearTimeout(timer);
+    if (!search) {
+      getPosts(searchNum).then((response) => {
+        setPostsArray(response);
+      });
     }
-  }, [postsArray]);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -191,6 +186,7 @@ const ForumPage = () => {
   };
 
   const handleOnNext = (props: any) => {
+    setPostsArray([]);
     setSearchNum(searchNum + props);
     setPageNum(pageNum + 1);
     setNext(true);
@@ -200,6 +196,7 @@ const ForumPage = () => {
     if (pageNum === 1) {
       return;
     }
+    setPostsArray([]);
     setSearchNum(searchNum - props);
     setPageNum(pageNum - 1);
     setPrev(true);

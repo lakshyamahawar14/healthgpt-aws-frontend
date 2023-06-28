@@ -1,0 +1,10 @@
+@import "./colors";
+
+.noData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: auto;
+    background-color: transparent;
+}

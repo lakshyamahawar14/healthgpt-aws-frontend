@@ -31,6 +31,23 @@ function App() {
   const resetPosts = useResetRecoilState(posts);
 
   useEffect(() => {
+    const appElement = document.getElementById("app");
+    const loaderElement = document.getElementById("loader");
+    const timer = setTimeout(() => {
+      if (appElement) {
+        appElement.style.opacity = "1";
+        appElement.style.maxHeight = "none";
+        appElement.style.overflow = "none";
+      }
+      if (loaderElement) {
+        loaderElement.style.display = "none";
+      }
+      window.scrollTo(0, 0);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
 
@@ -54,23 +71,6 @@ function App() {
           }
         });
     }
-  }, []);
-
-  useEffect(() => {
-    const appElement = document.getElementById("app");
-    const loaderElement = document.getElementById("loader");
-    const timer = setTimeout(() => {
-      if (appElement) {
-        appElement.style.opacity = "1";
-        appElement.style.maxHeight = "none";
-        appElement.style.overflow = "none";
-      }
-      if (loaderElement) {
-        loaderElement.style.display = "none";
-      }
-      window.scrollTo(0, 0);
-    }, 2000);
-    return () => clearTimeout(timer);
   }, []);
 
   return (

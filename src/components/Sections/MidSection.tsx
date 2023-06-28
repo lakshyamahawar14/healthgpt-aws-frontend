@@ -4,7 +4,7 @@ import profile1 from "../../assets/images/profile-1.jpg";
 import profile2 from "../../assets/images/profile-2.jpg";
 import profile3 from "../../assets/images/profile-3.jpg";
 import ChatBotAnimation from "../../UI/ChatBotAnimation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
 import { LoggedInstate } from "../../config/atoms";
@@ -118,7 +118,7 @@ export const MidSection = (props: any) => {
           </article>
 
           <article className={styles.article3}>
-            <div className={styles.box1}>
+            <div className={`${styles.box1} ${styles.box}`}>
               <p>
                 We have long believed that mental well-being should be treated
                 as seriously as physical health. By accelerating our
@@ -138,7 +138,7 @@ export const MidSection = (props: any) => {
               </span>
             </div>
 
-            <div className={styles.box2}>
+            <div className={`${styles.box2} ${styles.box}`}>
               <p>
                 We are often inundated with information when all we really need
                 is a chance to be listened to. Think of this as a constant
@@ -155,7 +155,7 @@ export const MidSection = (props: any) => {
               </span>
             </div>
 
-            <div className={styles.box3}>
+            <div className={`${styles.box3} ${styles.box}`}>
               <p>
                 These self-help techniques are important because anxiety is
                 common among the population. Unfortunately, anxiety often goes

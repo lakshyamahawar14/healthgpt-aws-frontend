@@ -154,6 +154,7 @@
                         padding: 5px;
                         border-radius: 5px;
                         margin: 5px;
+                        cursor: pointer;
                     }
                 }
 
@@ -240,7 +241,7 @@
                     }
                 }
 
-                p:nth-child(2) {
+                p:last-child {
                     display: flex;
                     justify-content: center;
                     flex-direction: column;
@@ -260,7 +261,7 @@
                         cursor: pointer;
                         border: 2px solid $orange;
                         min-width: 100px;
-                        max-width: 200px;
+                        max-width: 120px;
                         background-color: $orange;
                         margin: 0;
 

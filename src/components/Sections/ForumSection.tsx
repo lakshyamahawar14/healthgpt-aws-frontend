@@ -11,6 +11,7 @@ import Success from "../Layouts/Success";
 import Error from "../Layouts/Error";
 import Search from "../Layouts/Search";
 import Skipper from "../Layouts/Skipper";
+import NoData from "../Layouts/NoData";
 
 const ForumPage = () => {
   const [postsArray, setPostsArray] = useRecoilState(posts);
@@ -22,6 +23,7 @@ const ForumPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [showNoData, setshowNoData] = useState(false);
   let title = useRef<HTMLInputElement>(null);
   let description = useRef<HTMLTextAreaElement>(null);
   let tags = useRef<HTMLInputElement>(null);
@@ -147,6 +149,11 @@ const ForumPage = () => {
     ).then(() => {
       const timer = setTimeout(() => {
         getPosts(searchNum).then((response) => {
+          if (response.length === 0) {
+            setshowNoData(true);
+          } else {
+            setshowNoData(false);
+          }
           setPostsArray(response);
           setSuccessMessage("Post Added Successfully");
         });
@@ -173,6 +180,11 @@ const ForumPage = () => {
         response = response.slice(-6);
         setPrev(false);
       }
+      if (response.length === 0) {
+        setshowNoData(true);
+      } else {
+        setshowNoData(false);
+      }
       setPostsArray(response);
     });
   }, [searchText, next, prev]);
@@ -182,11 +194,13 @@ const ForumPage = () => {
       return;
     }
     setPostsArray([]);
+    setshowNoData(false);
     setSearchText(searchQuery);
   };
 
   const handleOnNext = (props: any) => {
     setPostsArray([]);
+    setshowNoData(false);
     setSearchNum(searchNum + props);
     setPageNum(pageNum + 1);
     setNext(true);
@@ -197,6 +211,7 @@ const ForumPage = () => {
       return;
     }
     setPostsArray([]);
+    setshowNoData(false);
     setSearchNum(searchNum - props);
     setPageNum(pageNum - 1);
     setPrev(true);
@@ -210,128 +225,131 @@ const ForumPage = () => {
           isBlogSearch={false}
           isPostSearch={true}
         />
-        {postsArray.length === 0 ? (
+        {postsArray.length === 0 && !showNoData ? (
           <Loader startTop={true} />
         ) : (
-          postsArray.length > 0 && (
-            <>
-              <div className={styles.forumContainer}>
-                <div className={styles.forumTitle}>
-                  <p>Community Posts</p>
-                </div>
-                <div className={styles.posts}>
-                  {postsArray.length > 0 &&
-                    postsArray.map((post, index) => {
-                      return (
-                        <Link
-                          key={index}
-                          className={styles.postcard}
-                          style={{ textDecoration: "none" }}
-                          to={
-                            isLoggedIn
-                              ? {
-                                  pathname: "/forum/post",
-                                  search: `?url=${encodeURIComponent(
-                                    post.postId
-                                  )}`,
-                                }
-                              : {
-                                  pathname: topPathsArray.loginPath,
-                                }
-                          }
-                        >
-                          <div className={styles.postcardtop}>
-                            <span className={styles.username}>
-                              {post.username}
-                            </span>
-                            <span className={styles.date}>{post.date}</span>
-                          </div>
-                          <div className={styles.title}>{post.title}</div>
-                          <div className={styles.description}>
-                            {truncateDescription(post.description, 50)}
-                          </div>
-
-                          <div className={styles.postcardbottom}>
-                            catagory:{" "}
-                            <div className={styles.tags}>
-                              {post.tags.map((tag, index) => {
-                                return (
-                                  <span key={index} className={styles.tag}>
-                                    {tag}
-                                  </span>
-                                );
-                              })}
+          <>
+            <div className={styles.forumContainer}>
+              <div className={styles.forumTitle}>
+                <p>Community Posts</p>
+              </div>
+              {showNoData && <NoData />}
+              {!showNoData && (
+                <>
+                  <div className={styles.posts}>
+                    {postsArray.length > 0 &&
+                      postsArray.map((post, index) => {
+                        return (
+                          <Link
+                            key={index}
+                            className={styles.postcard}
+                            style={{ textDecoration: "none" }}
+                            to={
+                              isLoggedIn
+                                ? {
+                                    pathname: "/forum/post",
+                                    search: `?url=${encodeURIComponent(
+                                      post.postId
+                                    )}`,
+                                  }
+                                : {
+                                    pathname: topPathsArray.loginPath,
+                                  }
+                            }
+                          >
+                            <div className={styles.postcardtop}>
+                              <span className={styles.username}>
+                                {post.username}
+                              </span>
+                              <span className={styles.date}>{post.date}</span>
                             </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
-                </div>
-                <Skipper
-                  onNext={handleOnNext}
-                  onPrev={handleOnPrev}
-                  page={pageNum}
-                />
-                <div className={styles.addforumTitle}>
-                  <p>Add a Community Post</p>
-                </div>
-                <div className={styles.addforumContainer}>
-                  <div className={styles.addforumCard}>
-                    <p>
-                      {" "}
-                      <label>
-                        Post Title<span>*</span>
-                      </label>{" "}
-                      <input
-                        type="text"
-                        required
-                        name="title"
-                        placeholder="Title here..."
-                        ref={title}
-                      />
-                    </p>
-                    <p>
-                      {" "}
-                      <label>Post Tags</label>{" "}
-                      <input
-                        type="text"
-                        required
-                        name="tags"
-                        placeholder="/general"
-                        ref={tags}
-                      />
-                    </p>
-                    <p>
-                      {" "}
-                      <label>
-                        Description<span>*</span>
-                      </label>{" "}
-                      <textarea
-                        required
-                        name="title"
-                        placeholder="Description here..."
-                        ref={description}
-                      />
-                    </p>
-                    <p>
-                      <input
-                        type="submit"
-                        name="post"
-                        value="Post"
-                        onClick={handlePost}
-                      />
-                      {(errorMessage.length > 0 || successMessage.length > 0) &&
-                        (successMessage.length > 0 ? (
-                          <Success successMessage={successMessage} />
-                        ) : (
-                          <Error errorMessage={errorMessage} />
-                        ))}
-                    </p>
+                            <div className={styles.title}>{post.title}</div>
+                            <div className={styles.description}>
+                              {truncateDescription(post.description, 50)}
+                            </div>
+
+                            <div className={styles.postcardbottom}>
+                              catagory:{" "}
+                              <div className={styles.tags}>
+                                {post.tags.map((tag, index) => {
+                                  return (
+                                    <span key={index} className={styles.tag}>
+                                      {tag}
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
                   </div>
+                  <Skipper
+                    onNext={handleOnNext}
+                    onPrev={handleOnPrev}
+                    page={pageNum}
+                  />
+                </>
+              )}
+              <div className={styles.addforumTitle}>
+                <p>Add a Community Post</p>
+              </div>
+              <div className={styles.addforumContainer}>
+                <div className={styles.addforumCard}>
+                  <p>
+                    {" "}
+                    <label>
+                      Post Title<span>*</span>
+                    </label>{" "}
+                    <input
+                      type="text"
+                      required
+                      name="title"
+                      placeholder="Title here..."
+                      ref={title}
+                    />
+                  </p>
+                  <p>
+                    {" "}
+                    <label>Post Tags</label>{" "}
+                    <input
+                      type="text"
+                      required
+                      name="tags"
+                      placeholder="/general"
+                      ref={tags}
+                    />
+                  </p>
+                  <p>
+                    {" "}
+                    <label>
+                      Description<span>*</span>
+                    </label>{" "}
+                    <textarea
+                      required
+                      name="title"
+                      placeholder="Description here..."
+                      ref={description}
+                    />
+                  </p>
+                  <p>
+                    <input
+                      type="submit"
+                      name="post"
+                      value="Post"
+                      onClick={handlePost}
+                    />
+                    {(errorMessage.length > 0 || successMessage.length > 0) &&
+                      (successMessage.length > 0 ? (
+                        <Success successMessage={successMessage} />
+                      ) : (
+                        <Error errorMessage={errorMessage} />
+                      ))}
+                  </p>
                 </div>
               </div>
-            </>
-          )
+            </div>
+          </>
         )}
       </div>
     </>

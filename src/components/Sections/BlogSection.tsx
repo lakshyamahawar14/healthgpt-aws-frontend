@@ -8,6 +8,7 @@ import { LoggedInstate, blogsSearchQuery } from "../../config/atoms";
 import { useRecoilState } from "recoil";
 import { blogs } from "../../config/atoms";
 import { useLocation, useNavigate } from "react-router-dom";
+import NoData from "../Layouts/NoData";
 
 export const BlogPage = () => {
   const [blogsArray, setBlogsArray] = useRecoilState(blogs);
@@ -17,6 +18,7 @@ export const BlogPage = () => {
   const [pageNum, setPageNum] = useState(1);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [searchText, setSearchText] = useRecoilState(blogsSearchQuery);
+  const [showNoData, setshowNoData] = useState(false);
   const location = useLocation();
   const search = new URLSearchParams(location.search).get("search");
 
@@ -76,6 +78,11 @@ export const BlogPage = () => {
         response = response.slice(-6);
         setPrev(false);
       }
+      if (response.length === 0) {
+        setshowNoData(true);
+      } else {
+        setshowNoData(false);
+      }
       setBlogsArray(response);
     });
   }, [searchText, next, prev]);
@@ -85,11 +92,13 @@ export const BlogPage = () => {
       return;
     }
     setBlogsArray([]);
+    setshowNoData(false);
     setSearchText(searchQuery);
   };
 
   const handleOnNext = (props: any) => {
     setBlogsArray([]);
+    setshowNoData(false);
     setSearchNum(searchNum + props);
     setPageNum(pageNum + 1);
     setNext(true);
@@ -100,6 +109,7 @@ export const BlogPage = () => {
       return;
     }
     setBlogsArray([]);
+    setshowNoData(false);
     setSearchNum(searchNum - props);
     setPageNum(pageNum - 1);
     setPrev(true);
@@ -118,39 +128,44 @@ export const BlogPage = () => {
             isBlogSearch={true}
             isPostSearch={false}
           />
-          {blogsArray.length === 0 ? (
+          {blogsArray.length === 0 && !showNoData ? (
             <Loader startTop={true} />
           ) : (
-            blogsArray.length > 0 && (
-              <>
-                <div id="blogs" className={styles.blogsContainer}>
+            <>
+              <div id="blogs" className={styles.blogsContainer}>
+                <div className={styles.blogsTitle}>
                   <p>Recommended Blogs</p>
-                  <div className={styles.blogs}>
-                    {blogsArray.map((blog, index) => (
-                      <a
-                        key={index}
-                        href={blog.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.blogcard}
-                      >
-                        {/* <img src={'https://www.healthkart.com/connect/wp-content/uploads/2021/09/900x500_banner_HK-Connect_How-to-Improve-Heart-Health-_-Points-To-Keep-In-Mind.jpg'} alt={blog.title} /> */}
-                        <div className={styles.title}>{blog.title}</div>
-                        <div className={styles.description}>
-                          {blog.description}
-                        </div>
-                        <div className={styles.author}>{blog.date || ""}</div>
-                      </a>
-                    ))}
-                  </div>
                 </div>
-                <Skipper
-                  onNext={handleOnNext}
-                  onPrev={handleOnPrev}
-                  page={pageNum}
-                />
-              </>
-            )
+                {showNoData && <NoData />}
+                {!showNoData && (
+                  <>
+                    <div className={styles.blogs}>
+                      {blogsArray.map((blog, index) => (
+                        <a
+                          key={index}
+                          href={blog.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.blogcard}
+                        >
+                          {/* <img src={'https://www.healthkart.com/connect/wp-content/uploads/2021/09/900x500_banner_HK-Connect_How-to-Improve-Heart-Health-_-Points-To-Keep-In-Mind.jpg'} alt={blog.title} /> */}
+                          <div className={styles.title}>{blog.title}</div>
+                          <div className={styles.description}>
+                            {blog.description}
+                          </div>
+                          <div className={styles.author}>{blog.date || ""}</div>
+                        </a>
+                      ))}
+                    </div>
+                    <Skipper
+                      onNext={handleOnNext}
+                      onPrev={handleOnPrev}
+                      page={pageNum}
+                    />
+                  </>
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>

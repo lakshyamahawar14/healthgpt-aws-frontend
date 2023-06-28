@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import {
   LoggedInstate,
   numMessagesState,
   blogs,
   tests,
   posts,
+  blogsSearchQuery,
+  postsSearchQuery,
 } from "../../config/atoms";
 import axios from "axios";
 import logo from "../../assets/images/luxlogobot.svg";
@@ -20,6 +22,11 @@ const Header = React.memo(() => {
   const resetPosts = useResetRecoilState(posts);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [blogsSearchText, setBlogsSearchText] =
+    useRecoilState(blogsSearchQuery);
+  const [postsSearchText, setPostsSearchText] =
+    useRecoilState(postsSearchQuery);
+
   const navigate = useNavigate();
 
   const logOutHandler = () => {
@@ -88,6 +95,30 @@ const Header = React.memo(() => {
     }
   };
 
+  const getSymptom = async (userId: any, accessToken: any) => {
+    try {
+      const res = await axios.get(
+        `http://13.235.81.90:4000/api/v1/db/symptom?userId=${userId}&accessToken=${accessToken}`
+      );
+      return res.data.data.symptom;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      let userId = localStorage.getItem("UserId");
+      let accessToken = localStorage.getItem("AccessToken");
+      getSymptom(userId, accessToken).then((response) => {
+        response = response.toLowerCase().trim();
+        if (response.length > 0 && !response.includes("no")) {
+          setBlogsSearchText(response);
+        }
+      });
+    }
+  }, []);
+
   return (
     <>
       <header>
@@ -130,7 +161,13 @@ const Header = React.memo(() => {
           <div className={styles.topbtn}>
             <Link
               style={{ textDecoration: "none" }}
-              to={topPathsArray.blogPath}
+              to={
+                blogsSearchText.length !== 0
+                  ? `${topPathsArray.blogPath}?search=${encodeURIComponent(
+                      blogsSearchText
+                    )}`
+                  : topPathsArray.blogPath
+              }
               onClick={() => {
                 if (window.innerWidth < 750) {
                   handleMenu();
@@ -143,7 +180,13 @@ const Header = React.memo(() => {
           <div className={styles.topbtn}>
             <Link
               style={{ textDecoration: "none" }}
-              to={topPathsArray.forumPath}
+              to={
+                postsSearchText.length !== 0
+                  ? `${topPathsArray.forumPath}?search=${encodeURIComponent(
+                      postsSearchText
+                    )}`
+                  : topPathsArray.forumPath
+              }
               onClick={() => {
                 if (window.innerWidth < 750) {
                   handleMenu();

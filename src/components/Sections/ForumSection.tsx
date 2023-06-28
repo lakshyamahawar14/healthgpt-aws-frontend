@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import styles from "../../styles/ForumSection.module.scss";
-import Header from "../Layouts/Header";
-import { LoggedInstate, posts } from "../../config/atoms";
+import { LoggedInstate, posts, postsSearchQuery } from "../../config/atoms";
 import Loader from "../Layouts/Loader";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -22,16 +21,16 @@ const ForumPage = () => {
   const [pageNum, setPageNum] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useRecoilState(postsSearchQuery);
   const [showNoData, setshowNoData] = useState(false);
   let title = useRef<HTMLInputElement>(null);
   let description = useRef<HTMLTextAreaElement>(null);
   let tags = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const search = new URLSearchParams(location.search).get("search");
+  const searchUrl = new URLSearchParams(location.search).get("search");
 
-  const getPosts = async (numberOfResults: any) => {
+  const getPosts = async (searchText: any, numberOfResults: any) => {
     try {
       const res = await axios.get(
         `http://13.235.81.90:4500/api/v1/forum/posts?searchQuery=${searchText}&numberOfResults=${numberOfResults}`
@@ -41,21 +40,6 @@ const ForumPage = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    if (postsArray.length !== 0) {
-      return () => {};
-    }
-    if (!search) {
-      getPosts(searchNum).then((response) => {
-        setPostsArray(response);
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const updatePosts = async (
     userId: any,
@@ -148,7 +132,7 @@ const ForumPage = () => {
       tagsArray
     ).then(() => {
       const timer = setTimeout(() => {
-        getPosts(searchNum).then((response) => {
+        getPosts(searchText, searchNum).then((response) => {
           if (response.length === 0) {
             setshowNoData(true);
           } else {
@@ -164,7 +148,7 @@ const ForumPage = () => {
   };
 
   useEffect(() => {
-    if (searchText === "") {
+    if (postsArray.length !== 0) {
       return () => {};
     }
 
@@ -172,7 +156,7 @@ const ForumPage = () => {
       return () => {};
     }
 
-    getPosts(searchNum).then((response) => {
+    getPosts(searchText, searchNum).then((response) => {
       if (next === true) {
         response = response.slice(-6);
         setNext(false);
@@ -188,15 +172,6 @@ const ForumPage = () => {
       setPostsArray(response);
     });
   }, [searchText, next, prev]);
-
-  const handleSearch = (searchQuery: any) => {
-    if (searchQuery === searchText) {
-      return;
-    }
-    setPostsArray([]);
-    setshowNoData(false);
-    setSearchText(searchQuery);
-  };
 
   const handleOnNext = (props: any) => {
     setPostsArray([]);
@@ -217,14 +192,14 @@ const ForumPage = () => {
     setPrev(true);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className={styles.main}>
-        <Search
-          onSearch={handleSearch}
-          isBlogSearch={false}
-          isPostSearch={true}
-        />
+        <Search isBlogSearch={false} isPostSearch={true} />
         {postsArray.length === 0 && !showNoData ? (
           <Loader startTop={true} />
         ) : (

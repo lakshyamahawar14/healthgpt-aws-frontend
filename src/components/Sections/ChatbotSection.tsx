@@ -54,11 +54,6 @@ export const ChatbotPage = React.memo((props: any) => {
     let d: Interaction[] = [];
     let userId = localStorage.getItem("UserId");
     let accessToken = localStorage.getItem("AccessToken");
-    console.log(
-      `http://13.235.81.90:9000/api/v1/gpt/response/turbo?userId=${userId}&userInput=${userInputVal}&accessToken=${accessToken}&numberOfMessages=${
-        msgCount + 1
-      }`
-    );
 
     try {
       const res = await axios.get(

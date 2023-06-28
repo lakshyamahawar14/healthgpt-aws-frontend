@@ -1,35 +1,49 @@
+import axios from "axios";
 import { useRef, useEffect } from "react";
 import styles from "../../styles/Search.module.scss";
 import React from "react";
 import { useRecoilState } from "recoil";
-import { blogsSearchQuery, postsSearchQuery } from "../../config/atoms";
+import {
+  LoggedInstate,
+  blogs,
+  blogsSearchQuery,
+  posts,
+  postsSearchQuery,
+} from "../../config/atoms";
 import { topPathsArray } from "../../config/constant";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Search = React.memo((props: any) => {
   const [blogsSearchText, setBlogsSearchText] =
     useRecoilState(blogsSearchQuery);
   const [postsSearchText, setPostsSearchText] =
     useRecoilState(postsSearchQuery);
+  const [blogsArray, setBlogsArray] = useRecoilState(blogs);
+  const [postsArray, setPostsArray] = useRecoilState(posts);
   let search = useRef<HTMLInputElement>(null);
   const location = useLocation();
   const searchUrl = new URLSearchParams(location.search).get("search");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (searchUrl) {
       search.current!.value = searchUrl;
-      handleSearch();
-    } else {
       if (props.isBlogSearch) {
-        search.current!.value = blogsSearchText;
+        if (searchUrl !== blogsSearchText) {
+          setBlogsArray([]);
+          setBlogsSearchText(searchUrl);
+        }
       } else {
-        search.current!.value = postsSearchText;
+        if (searchUrl !== postsSearchText) {
+          setPostsArray([]);
+          setPostsSearchText(searchUrl);
+        }
       }
     }
   }, []);
 
-  const handleSearch = () => {
-    const searchText = search.current?.value;
+  const handleManualNavigation = () => {
+    const searchText = search.current!.value;
 
     if (!searchText || searchText === "") {
       alert("Please enter the search query");
@@ -37,28 +51,26 @@ const Search = React.memo((props: any) => {
     }
 
     if (props.isBlogSearch) {
-      if (!searchUrl) {
-        const newUrl = `${topPathsArray.blogPath}?search=${encodeURIComponent(
-          searchText
-        )}`;
-        window.history.replaceState(null, "", newUrl);
+      if (searchText === blogsSearchText) {
+        return;
       }
-    } else if (props.isPostSearch) {
-      if (!searchUrl) {
-        const newUrl = `${topPathsArray.forumPath}?search=${encodeURIComponent(
-          searchText
-        )}`;
-        window.history.replaceState(null, "", newUrl);
-      }
-    }
-
-    if (props.isBlogSearch) {
+      setBlogsArray([]);
       setBlogsSearchText(searchText);
+      const newUrl = `${topPathsArray.blogPath}?search=${encodeURIComponent(
+        searchText
+      )}`;
+      navigate(newUrl, { replace: true });
     } else {
+      if (searchText === postsSearchText) {
+        return;
+      }
+      setPostsArray([]);
       setPostsSearchText(searchText);
+      const newUrl = `${topPathsArray.forumPath}?search=${encodeURIComponent(
+        searchText
+      )}`;
+      navigate(newUrl, { replace: true });
     }
-
-    props.onSearch(searchText);
   };
 
   return (
@@ -76,7 +88,7 @@ const Search = React.memo((props: any) => {
               type="submit"
               name="search"
               value="Search"
-              onClick={handleSearch}
+              onClick={handleManualNavigation}
             />
           </div>
         </div>

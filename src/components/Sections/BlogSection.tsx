@@ -7,7 +7,7 @@ import Skipper from "../Layouts/Skipper";
 import { LoggedInstate, blogsSearchQuery } from "../../config/atoms";
 import { useRecoilState } from "recoil";
 import { blogs } from "../../config/atoms";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import NoData from "../Layouts/NoData";
 
 export const BlogPage = () => {
@@ -20,7 +20,7 @@ export const BlogPage = () => {
   const [searchText, setSearchText] = useRecoilState(blogsSearchQuery);
   const [showNoData, setshowNoData] = useState(false);
   const location = useLocation();
-  const search = new URLSearchParams(location.search).get("search");
+  const searchUrl = new URLSearchParams(location.search).get("search");
 
   const getBlogs = async (searchQuery: any, numberOfResults: any) => {
     try {
@@ -33,36 +33,8 @@ export const BlogPage = () => {
     }
   };
 
-  const getSymptom = async (userId: any, accessToken: any) => {
-    try {
-      const res = await axios.get(
-        `http://13.235.81.90:4000/api/v1/db/symptom?userId=${userId}&accessToken=${accessToken}`
-      );
-      return res.data.data.symptom;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    if (blogsArray.length !== 0) {
-      return () => {};
-    }
-
-    if (!search && isLoggedIn) {
-      let userId = localStorage.getItem("UserId");
-      let accessToken = localStorage.getItem("AccessToken");
-      getSymptom(userId, accessToken).then((response) => {
-        response = response.toLowerCase().trim();
-        if (response.length > 0 && !response.includes("no")) {
-          setSearchText(response);
-        }
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (searchText === "") {
+    if (blogsArray.length !== 0 || searchText === "") {
       return () => {};
     }
 
@@ -86,15 +58,6 @@ export const BlogPage = () => {
       setBlogsArray(response);
     });
   }, [searchText, next, prev]);
-
-  const handleSearch = (searchQuery: any) => {
-    if (searchQuery === searchText) {
-      return;
-    }
-    setBlogsArray([]);
-    setshowNoData(false);
-    setSearchText(searchQuery);
-  };
 
   const handleOnNext = (props: any) => {
     setBlogsArray([]);
@@ -123,11 +86,7 @@ export const BlogPage = () => {
     <>
       <div className={styles.main}>
         <div className={styles.blogContainer}>
-          <Search
-            onSearch={handleSearch}
-            isBlogSearch={true}
-            isPostSearch={false}
-          />
+          <Search isBlogSearch={true} isPostSearch={false} />
           {blogsArray.length === 0 && !showNoData ? (
             <Loader startTop={true} />
           ) : (
@@ -140,22 +99,25 @@ export const BlogPage = () => {
                 {!showNoData && (
                   <>
                     <div className={styles.blogs}>
-                      {blogsArray.map((blog, index) => (
-                        <a
-                          key={index}
-                          href={blog.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.blogcard}
-                        >
-                          {/* <img src={'https://www.healthkart.com/connect/wp-content/uploads/2021/09/900x500_banner_HK-Connect_How-to-Improve-Heart-Health-_-Points-To-Keep-In-Mind.jpg'} alt={blog.title} /> */}
-                          <div className={styles.title}>{blog.title}</div>
-                          <div className={styles.description}>
-                            {blog.description}
-                          </div>
-                          <div className={styles.author}>{blog.date || ""}</div>
-                        </a>
-                      ))}
+                      {blogsArray.length > 0 &&
+                        blogsArray.map((blog, index) => (
+                          <a
+                            key={index}
+                            href={blog.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.blogcard}
+                          >
+                            {/* <img src={'https://www.healthkart.com/connect/wp-content/uploads/2021/09/900x500_banner_HK-Connect_How-to-Improve-Heart-Health-_-Points-To-Keep-In-Mind.jpg'} alt={blog.title} /> */}
+                            <div className={styles.title}>{blog.title}</div>
+                            <div className={styles.description}>
+                              {blog.description}
+                            </div>
+                            <div className={styles.author}>
+                              {blog.date || ""}
+                            </div>
+                          </a>
+                        ))}
                     </div>
                     <Skipper
                       onNext={handleOnNext}

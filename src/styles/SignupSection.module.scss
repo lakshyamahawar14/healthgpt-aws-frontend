@@ -1,7 +1,8 @@
 @import './fonts';
 @import './colors';
+@import './typography';
 
-.wrapper {
+.main {
     margin: auto;
     margin: 0 3vw;
     padding-bottom: 5vh;
@@ -59,29 +60,6 @@
     line-height: 22px;
 }
 
-.signup .signuptext .btn {
-    display: inline-block;
-    padding: 8px 10px;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    text-decoration: none;
-    border-radius: 30px;
-    color: $black;
-    background: none;
-    outline: none;
-    cursor: pointer;
-    border: 2px solid $black;
-    max-width: 100px;
-    background-color: $orange;
-}
-
-.signup .signuptext .btn:hover {
-    background-color: $white;
-    border: 2px solid $white;
-    color: $orange;
-}
-
-
 .signup .signupform {
     position: relative;
     width: 100%;
@@ -93,98 +71,25 @@
     font-weight: 700;
 }
 
-.signup .signupform p {
-    margin: 0 0 10px 0;
-    text-align: left;
+.signupButtonContainer {
+    align-items: start;
+}
+
+.loginButton {
+    background-color: $black;
+    color: $white;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 35px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.loginButton:hover {
     color: $orange;
-    font-size: 15px;
-}
-
-.signup .signupform p:last-child {
-    margin: 0;
-    padding-top: 3px;
-}
-
-.signup .signupform p a {
-    color: $dark;
-    font-size: 14px;
-    text-decoration: none;
-}
-
-.signup .signupform label {
-    display: block;
-    width: 100%;
-    margin-bottom: 5px;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    color: $orange;
-}
-
-.signup .signupform p:last-child label {
-    width: 60%;
-    float: left;
-}
-
-.signup .signupform label span {
-    color: $red;
-    padding-left: 2px;
-}
-
-.signup .signupform input {
-    display: block;
-    width: 100%;
-    height: 35px;
-    padding: 0 10px;
-    outline: none;
-    border: none;
-    border-bottom: 2px solid $orange;
-    border-radius: 10px;
-    font-weight: 600;
     background-color: $white;
 }
 
-.signup .signupform input:nth-child(1) {
-    max-width: 100px;
-}
-
-.signup .signupform input:focus {
-    border-color: $orange;
-}
-
-.signup .signupform button,
-.signup .signupform input[type="submit"] {
-    display: inline-block;
-    padding: 8px 10px;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    text-decoration: none;
-    border-radius: 30px;
-    color: $orange;
-    background: none;
-    outline: none;
-    cursor: pointer;
-    margin-top: 10px;
-    border: 2px solid $orange;
-    max-width: 80px;
-    height: auto;
-}
-
-.signup .signupform p {
-    color: $orange;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.signup .signupform p:hover {
-    color: $black;
-}
-
-.signup .signupform button:hover,
-.signup .signupform input[type="submit"]:hover,
-.signup .signupform input[type="submit"]:focus {
-    color: $white;
-    background-color: $orange;
-}
 
 @media (max-width: 575px) {
     .signup .container {
@@ -214,11 +119,6 @@
     }
 }
 
-.selectWrapper {
-    position: relative;
-    display: inline-block;
-}
-
 .select {
     width: 50%;
     padding-top: 8px;
@@ -231,7 +131,8 @@
     background-color: $white;
     font-size: 0.8rem;
     font-family: $karla;
-    color: $orange;
+    color: $black;
+    font-weight: 600;
 }
 
 .select:hover,

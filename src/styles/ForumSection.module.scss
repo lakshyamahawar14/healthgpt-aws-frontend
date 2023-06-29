@@ -1,5 +1,6 @@
 @import './colors';
 @import './fonts';
+@import './typography';
 
 .main {
     padding: 15vh 6vw;
@@ -9,20 +10,6 @@
     .forumContainer {
         height: auto;
         padding-bottom: 5vh;
-
-        p {
-            font-family: $karla;
-            font-size: 1.5rem;
-            color: $white;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-left: 10px;
-            font-weight: 700;
-
-            @media (max-width: 420px) {
-                font-size: 1.3rem;
-            }
-        }
 
         .posts {
             width: 100%;
@@ -44,202 +31,133 @@
             margin: 0 6vw;
         }
 
-        .postsContainer p {
-            font-family: $karla;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: $white;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-left: 10px;
+    }
 
-            @media (max-width: 420px) {
-                font-size: 1.3rem;
-            }
-        }
+    .postcard {
+        background-color: $white;
+        border: 1px solid $white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+            0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 30vh;
 
-        .postcard {
-            background-color: $white;
-            border: 1px solid $white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
+        .postcardtop {
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            min-height: 30vh;
+            width: 100%;
 
-            .postcardtop {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-
-                .username {
-                    color: $black;
-                    font-size: 0.8rem;
-                }
-
-                .date {
-                    color: $black;
-                    opacity: 0.75;
-                    font-size: 0.8rem;
-                    font-style: italic;
-                }
-            }
-
-            .postcardbottom {
-                display: flex;
-                justify-content: space-between;
-                font-size: 0.8rem;
-                align-items: center;
+            .username {
                 color: $black;
-                width: 100%;
+                font-size: 0.8rem;
+            }
 
-                .tags {
-                    font-size: 0.8rem;
-                    color: $white;
-                    border: none;
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    flex-wrap: wrap;
-
-                    .tag {
-                        background-color: $green;
-                        padding: 5px;
-                        border-radius: 5px;
-                        margin: 5px;
-                    }
-                }
-
+            .date {
+                color: $black;
+                opacity: 0.75;
+                font-size: 0.8rem;
+                font-style: italic;
             }
         }
 
-        .postcard:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .title {
-            color: $orange;
-            font-size: 1.3rem;
-            font-weight: 900;
-            margin: 10px 0;
-            text-align: start;
-        }
-
-        .description {
-            color: $black;
-            opacity: 0.9;
-            font-family: $karla;
-            margin: 10px 0;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-align: start;
-            padding: 20px 0;
-        }
-
-        .postcard Link {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .addforumTitle p {
-            font-family: $karla;
-            font-size: 1.5rem;
-            color: $white;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-left: 10px;
-            font-weight: 700;
-
-            @media (max-width: 420px) {
-                font-size: 1.3rem;
-            }
-        }
-
-        .addforumContainer {
+        .postcardbottom {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
             align-items: center;
+            color: $black;
+            width: 100%;
 
-            .addforumCard {
-                max-width: 800px;
+            .tags {
+                font-size: 0.8rem;
+                color: $white;
+                border: none;
                 width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                flex-wrap: wrap;
 
-                p {
-                    font-size: 1.3rem;
-                    margin-top: 0;
-                    margin-bottom: 0;
+                .tag {
+                    background-color: $green;
+                    padding: 5px;
+                    border-radius: 5px;
+                    margin: 5px;
+                }
+            }
 
-                    input,
-                    textarea {
-                        display: block;
-                        width: calc(100% - 30px);
-                        min-width: 200px;
-                        border-radius: 10px;
-                        margin: 10px 0;
-                        height: 35px;
-                        padding: 0 10px;
-                        outline: none;
-                        border: none;
-                        font-weight: 600;
-                        background-color: $white;
-                    }
+        }
+    }
 
-                    textarea {
-                        font-family: $karla;
-                        min-height: 30vh;
-                        padding: 10px;
-                    }
+    .postcard:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-                    label span {
-                        color: $red;
-                        padding-left: 2px;
-                        opacity: 0.75;
-                    }
+    .title {
+        color: $orange;
+        font-size: 1.3rem;
+        font-weight: 900;
+        margin: 10px 0;
+        text-align: start;
+    }
+
+    .description {
+        color: $black;
+        opacity: 0.9;
+        font-family: $karla;
+        margin: 10px 0;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-align: start;
+        padding: 20px 0;
+    }
+
+    .postcard Link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .addforumContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .addforumCard {
+            max-width: 800px;
+            width: 100%;
+
+            .postInputs {
+                margin: 0;
+                padding: 10px 0;
+
+                textarea {
+                    display: block;
+                    width: calc(100% - 30px);
+                    min-width: 200px;
+                    border-radius: 10px;
+                    margin: 10px 0;
+                    height: 35px;
+                    padding: 0 10px;
+                    outline: none;
+                    border: none;
+                    font-weight: 600;
+                    background-color: $white;
                 }
 
-                p:nth-child(4) {
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: column;
-                    align-items: center;
-                    margin: 0;
-                    padding: 0;
-
-                    input[type="submit"] {
-                        display: inline-block;
-                        font-size: 0.9rem;
-                        letter-spacing: 1px;
-                        text-decoration: none;
-                        border-radius: 30px;
-                        color: $white;
-                        background: none;
-                        outline: none;
-                        cursor: pointer;
-                        border: 2px solid $orange;
-                        min-width: 100px;
-                        max-width: 120px;
-                        background-color: $orange;
-                        margin: 0;
-
-                        @media (max-width: 400px) {
-                            width: 75px;
-                            font-size: 0.7rem;
-                        }
-                    }
-
-                    input[type="submit"]:hover {
-                        background-color: $white;
-                        border: 2px solid $white;
-                        color: $orange;
-                    }
+                textarea {
+                    font-family: $karla;
+                    min-height: 30vh;
+                    padding: 10px;
                 }
 
+                input {
+                    width: calc(100% - 30px);
+                }
             }
         }
     }

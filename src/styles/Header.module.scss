@@ -64,6 +64,11 @@ header {
       display: none;
     }
 
+    .logoutContainer {
+      top: 47vh;
+      left: calc(50vw - 50px);
+    }
+
     .divLogo {
       display: flex;
       justify-content: center;
@@ -130,4 +135,33 @@ header {
 
 .topbtn a button {
   cursor: pointer;
+}
+
+.profileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  cursor: pointer;
+
+  img {
+    border-radius: 100%;
+  }
+}
+
+.logoutContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $black;
+  width: 100px;
+  border-radius: 20px;
+  position: absolute;
+  top: 10vh;
+  right: calc(6vw);
+
+  p {
+    color: $red;
+    cursor: pointer;
+  }
 }

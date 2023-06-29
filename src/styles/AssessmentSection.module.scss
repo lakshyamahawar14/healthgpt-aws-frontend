@@ -1,5 +1,6 @@
 @import './fonts';
 @import './colors';
+@import './typography';
 
 .main {
     background-color: $dark;
@@ -22,29 +23,15 @@
     @media (max-width: 350px) {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
-}
 
-.tests::after {
-    content: "";
-    width: 20px;
+    &::after {
+        content: "";
+        width: 20px;
+    }
 }
 
 .testsContainer {
     margin: 0 6vw;
-}
-
-.testsContainer p {
-    font-family: $karla;
-    font-size: 1.5rem;
-    color: $white;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    font-weight: 700;
-
-    @media (max-width: 420px) {
-        font-size: 1.3rem;
-    }
 }
 
 .testcard {
@@ -60,32 +47,9 @@
     flex-direction: column;
     align-items: center;
     min-height: 20vh;
-}
 
-.testcard:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.title {
-    color: $orange;
-    font-size: 1.3rem;
-    font-weight: 900;
-    margin: 10px 0;
-    text-align: center;
-}
-
-.description {
-    color: $black;
-    opacity: 0.9;
-    font-family: $karla;
-    margin: 10px 0;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-align: start;
-}
-
-.testcard Link {
-    text-decoration: none;
-    color: inherit;
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 }

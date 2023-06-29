@@ -45,7 +45,9 @@ const AssessmentPage = () => {
           ) : (
             testsArray.length > 0 && (
               <div className={styles.testsContainer}>
-                <p>General Cognitive Assessment Test</p>
+                <div className={styles.headingsContainers}>
+                  <h1>General Cognitive Assessment Test</h1>
+                </div>
                 <div className={styles.tests}>
                   <Link
                     className={styles.testcard}
@@ -55,13 +57,15 @@ const AssessmentPage = () => {
                       search: `?url=${encodeURIComponent(testsArray[0].url)}`,
                     }}
                   >
-                    <div className={styles.title}>{testsArray[0].title}</div>
-                    <div className={styles.description}>
+                    <div className={styles.titles}>{testsArray[0].title}</div>
+                    <div className={styles.descriptions}>
                       {testsArray[0].description}
                     </div>
                   </Link>
                 </div>
-                <p>Specialized Cognitive Assessment Tests</p>
+                <div className={styles.headingsContainers}>
+                  <h1>Specialized Cognitive Assessment Tests</h1>
+                </div>
                 <div className={styles.tests}>
                   {testsArray.map((test, index) => {
                     if (test.url === "/general") {
@@ -83,8 +87,8 @@ const AssessmentPage = () => {
                               }
                         }
                       >
-                        <div className={styles.title}>{test.title}</div>
-                        <div className={styles.description}>
+                        <div className={styles.titles}>{test.title}</div>
+                        <div className={styles.descriptions}>
                           {test.description}
                         </div>
                       </Link>

@@ -92,8 +92,8 @@ export const BlogPage = () => {
           ) : (
             <>
               <div id="blogs" className={styles.blogsContainer}>
-                <div className={styles.blogsTitle}>
-                  <p>Recommended Blogs</p>
+                <div className={styles.headingsContainers}>
+                  <h1>Recommended Blogs</h1>
                 </div>
                 {showNoData && <NoData />}
                 {!showNoData && (
@@ -109,11 +109,11 @@ export const BlogPage = () => {
                             className={styles.blogcard}
                           >
                             {/* <img src={'https://www.healthkart.com/connect/wp-content/uploads/2021/09/900x500_banner_HK-Connect_How-to-Improve-Heart-Health-_-Points-To-Keep-In-Mind.jpg'} alt={blog.title} /> */}
-                            <div className={styles.title}>{blog.title}</div>
-                            <div className={styles.description}>
+                            <div className={styles.titles}>{blog.title}</div>
+                            <div className={styles.descriptions}>
                               {blog.description}
                             </div>
-                            <div className={styles.author}>
+                            <div className={styles.dates}>
                               {blog.date || ""}
                             </div>
                           </a>

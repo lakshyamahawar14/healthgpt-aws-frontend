@@ -27,14 +27,10 @@ const PostPage = () => {
   const location = useLocation();
   const url = new URLSearchParams(location.search).get("url");
 
-  const getPost = async (
-    userId: string | null,
-    accessToken: string | null,
-    postId: string | null
-  ) => {
+  const getPost = async (postId: string | null) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4500/api/v1/forum/post?userId=${userId}&accessToken=${accessToken}&postId=${postId}`
+        `http://13.235.81.90:4500/api/v1/forum/post?postId=${postId}`
       );
       return res.data.data.post;
     } catch (error) {
@@ -43,15 +39,13 @@ const PostPage = () => {
   };
 
   useEffect(() => {
-    if (!url || !isLoggedIn) {
-      navigate(topPathsArray.loginPath, { replace: true });
+    if (!url) {
+      navigate(topPathsArray.homePath, { replace: true });
     }
 
-    const userId = localStorage.getItem("UserId");
-    const accessToken = localStorage.getItem("AccessToken");
     const postId = url;
 
-    getPost(userId, accessToken, postId).then((response) => {
+    getPost(postId).then((response) => {
       setPost(response);
     });
   }, []);
@@ -80,6 +74,10 @@ const PostPage = () => {
   };
 
   const handlePost = () => {
+    if (!isLoggedIn) {
+      navigate(topPathsArray.loginPath, { replace: true });
+      return;
+    }
     if (comment.current?.value === "") {
       setErrorMessage("Please fill the form");
       return;
@@ -93,7 +91,7 @@ const PostPage = () => {
 
     addComment(userId, accessToken, postId, username, commentText).then(() => {
       const timer = setTimeout(() => {
-        getPost(userId, accessToken, postId).then((response) => {
+        getPost(postId).then((response) => {
           setPost(response);
           setSuccessMessage("Comment Added Successfully");
         });
@@ -116,16 +114,16 @@ const PostPage = () => {
           <Loader startTop={true} />
         ) : (
           <div className={styles.postContainer}>
-            <div className={styles.postSectionTitle}>
-              <p>{post.username}'s Post</p>
+            <div className={styles.headingsContainers}>
+              <h1>{post.username}'s Post</h1>
             </div>
             <div className={styles.postcard}>
               <div className={styles.postcardtop}>
-                <span className={styles.username}>{post.username}</span>
-                <span className={styles.date}>{post.date}</span>
+                <span className={styles.usernames}>{post.username}</span>
+                <span className={styles.dates}>{post.date}</span>
               </div>
-              <div className={styles.title}>{post.title}</div>
-              <div className={styles.description}>{post.description}</div>
+              <div className={styles.titles}>{post.title}</div>
+              <div className={styles.descriptions}>{post.description}</div>
               <div className={styles.postcardbottom}>
                 catagory:{" "}
                 <div className={styles.tags}>
@@ -158,29 +156,33 @@ const PostPage = () => {
                 )}
               </div>
             </div>
-            <div className={styles.addforumTitle}>
-              <p>Add a Community Post</p>
+            <div className={styles.headingsContainers}>
+              <h1>Add a Comment</h1>
             </div>
             <div className={styles.addforumContainer}>
               <div className={styles.addforumCard}>
-                <p>
+                <div
+                  className={`${styles.postInputs} ${styles.inputsContainers}`}
+                >
                   {" "}
-                  <label>
-                    Comment<span>*</span>
+                  <label className={styles.labels}>
+                    Comment<span className={styles.spans}>*</span>
                   </label>{" "}
                   <textarea
                     required
                     name="comment"
                     placeholder="Comment here..."
                     ref={comment}
+                    className={styles.textareas}
                   />
-                </p>
-                <p>
+                </div>
+                <div className={styles.buttonsContainers}>
                   <input
                     type="submit"
                     name="post"
                     value="Post"
                     onClick={handlePost}
+                    className={styles.buttons}
                   />
                   {(errorMessage.length > 0 || successMessage.length > 0) &&
                     (successMessage.length > 0 ? (
@@ -188,7 +190,7 @@ const PostPage = () => {
                     ) : (
                       <Error errorMessage={errorMessage} />
                     ))}
-                </p>
+                </div>
               </div>
             </div>
           </div>

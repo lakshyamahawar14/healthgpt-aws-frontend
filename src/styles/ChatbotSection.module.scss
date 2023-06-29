@@ -126,11 +126,11 @@
 
 .icons {
   position: absolute;
-
   padding: 10px;
   top: 5px;
   right: 21px;
   cursor: pointer;
+  color: $orange;
 
   .fas {
     margin-left: 10px;
@@ -142,10 +142,6 @@
       transition: all 0.3s ease-in;
     }
   }
-}
-
-path {
-  color: $orange;
 }
 
 .cross {
@@ -236,15 +232,15 @@ path {
   font-size: 11pt;
   background: transparent;
   color: $orange;
-}
 
-.chatinput input::placeholder {
-  color: $orange;
-}
+  &::placeholder {
+    color: $orange;
+  }
 
-.chatinput input:focus {
-  color: $orange;
-  outline: 0;
+  &:focus {
+    color: $orange;
+    outline: 0;
+  }
 }
 
 .chatinput button {

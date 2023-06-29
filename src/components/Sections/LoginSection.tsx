@@ -10,6 +10,8 @@ import {
   blogs,
   tests,
   posts,
+  blogsSearchQuery,
+  postsSearchQuery,
 } from "../../config/atoms";
 import Error from "../Layouts/Error";
 import Success from "../Layouts/Success";
@@ -22,6 +24,8 @@ export const LoginPage = React.memo((props: any) => {
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
   const resetPosts = useResetRecoilState(posts);
+  const resetBlogsSearchQuery = useResetRecoilState(blogsSearchQuery);
+  const resetPostsSearchQuery = useResetRecoilState(postsSearchQuery);
 
   let email = useRef<HTMLInputElement>(null);
   let password = useRef<HTMLInputElement>(null);
@@ -39,6 +43,11 @@ export const LoginPage = React.memo((props: any) => {
               setErrorMessage("Invalid Email/Password");
               return;
             }
+            console.log(userCredential.data.data.user.providerData[0].photoURL);
+            localStorage.setItem(
+              "ProfilePic",
+              userCredential.data.data.user.providerData[0].photoURL
+            );
             setSuccessMessage("Logging In...");
             setLoggedIn(true);
             localStorage.setItem("IsLoggedIn", "true");
@@ -56,6 +65,8 @@ export const LoginPage = React.memo((props: any) => {
             resetBlogs();
             resetTests();
             resetPosts();
+            resetBlogsSearchQuery();
+            resetPostsSearchQuery();
 
             const timer = setTimeout(() => {
               navigate(topPathsArray.homePath, { replace: true });
@@ -99,7 +110,7 @@ export const LoginPage = React.memo((props: any) => {
 
   return (
     <>
-      <div className={`${styles.wrapper} ${styles.login}`}>
+      <div className={`${styles.main} ${styles.login}`}>
         <div className={styles.container}>
           <div className={styles.colleft}>
             <div className={styles.logintext}>
@@ -109,7 +120,10 @@ export const LoginPage = React.memo((props: any) => {
                 <br />
                 For Free!
               </p>{" "}
-              <a className={styles.btn} onClick={props.handleRegister}>
+              <a
+                className={`${styles.signupButton}`}
+                onClick={props.handleRegister}
+              >
                 Sign Up
               </a>
             </div>
@@ -117,10 +131,10 @@ export const LoginPage = React.memo((props: any) => {
           <div className={styles.colright}>
             <div className={styles.loginform}>
               <h2>Login</h2>
-              <p>
+              <div className={styles.inputsContainers}>
                 {" "}
-                <label>
-                  Email address<span>*</span>
+                <label className={styles.labels}>
+                  Email address<span className={styles.spans}>*</span>
                 </label>{" "}
                 <input
                   type="text"
@@ -128,26 +142,31 @@ export const LoginPage = React.memo((props: any) => {
                   name="email"
                   placeholder="E-mail"
                   ref={email}
+                  className={styles.inputs}
                 />
-              </p>
-              <p>
+              </div>
+              <div className={styles.inputsContainers}>
                 {" "}
-                <label>
-                  Password<span>*</span>
+                <label className={styles.labels}>
+                  Password<span className={styles.spans}>*</span>
                 </label>{" "}
                 <input
                   ref={password}
                   type="password"
                   name="password"
                   placeholder="Password"
+                  className={styles.inputs}
                 />
-              </p>
-              <p>
+              </div>
+              <div
+                className={`${styles.buttonsContainers} ${styles.loginButtonContainer}`}
+              >
                 <input
                   type="submit"
                   name="login"
                   value="Login"
                   onClick={handleSubmit}
+                  className={styles.buttons}
                 />
                 {(errorMessage.length > 0 || successMessage.length > 0) &&
                   (successMessage.length > 0 ? (
@@ -155,7 +174,7 @@ export const LoginPage = React.memo((props: any) => {
                   ) : (
                     <Error errorMessage={errorMessage} />
                   ))}
-              </p>
+              </div>
               {/* <p> */}{" "}
               <p id={styles.forgotPassword} onClick={handleForgotPassword}>
                 Forgot password?

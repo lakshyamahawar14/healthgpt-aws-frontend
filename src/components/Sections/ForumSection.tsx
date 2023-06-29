@@ -52,7 +52,7 @@ const ForumPage = () => {
     tags: any
   ) => {
     axios
-      .post(`http://13.235.81.90:4000/api/v1/db/posts`, {
+      .post(`http://13.235.81.90:4500/api/v1/forum/post`, {
         userId: userId,
         accessToken: accessToken,
         postObject: {
@@ -205,8 +205,8 @@ const ForumPage = () => {
         ) : (
           <>
             <div className={styles.forumContainer}>
-              <div className={styles.forumTitle}>
-                <p>Community Posts</p>
+              <div className={styles.headingsContainers}>
+                <h1>Community Posts</h1>
               </div>
               {showNoData && <NoData />}
               {!showNoData && (
@@ -219,18 +219,10 @@ const ForumPage = () => {
                             key={index}
                             className={styles.postcard}
                             style={{ textDecoration: "none" }}
-                            to={
-                              isLoggedIn
-                                ? {
-                                    pathname: "/forum/post",
-                                    search: `?url=${encodeURIComponent(
-                                      post.postId
-                                    )}`,
-                                  }
-                                : {
-                                    pathname: topPathsArray.loginPath,
-                                  }
-                            }
+                            to={{
+                              pathname: "/forum/post",
+                              search: `?url=${encodeURIComponent(post.postId)}`,
+                            }}
                           >
                             <div className={styles.postcardtop}>
                               <span className={styles.username}>
@@ -266,15 +258,17 @@ const ForumPage = () => {
                   />
                 </>
               )}
-              <div className={styles.addforumTitle}>
-                <p>Add a Community Post</p>
+              <div className={styles.headingsContainers}>
+                <h1>Add a Community Post</h1>
               </div>
               <div className={styles.addforumContainer}>
                 <div className={styles.addforumCard}>
-                  <p>
+                  <div
+                    className={`${styles.postInputs} ${styles.inputsContainers}`}
+                  >
                     {" "}
-                    <label>
-                      Post Title<span>*</span>
+                    <label className={styles.labels}>
+                      Post Title<span className={styles.spans}>*</span>
                     </label>{" "}
                     <input
                       type="text"
@@ -282,37 +276,45 @@ const ForumPage = () => {
                       name="title"
                       placeholder="Title here..."
                       ref={title}
+                      className={styles.inputs}
                     />
-                  </p>
-                  <p>
+                  </div>
+                  <div
+                    className={`${styles.postInputs} ${styles.inputsContainers}`}
+                  >
                     {" "}
-                    <label>Post Tags</label>{" "}
+                    <label className={styles.labels}>Post Tags</label>{" "}
                     <input
                       type="text"
                       required
                       name="tags"
                       placeholder="/general"
                       ref={tags}
+                      className={styles.inputs}
                     />
-                  </p>
-                  <p>
+                  </div>
+                  <div
+                    className={`${styles.postInputs} ${styles.inputsContainers}`}
+                  >
                     {" "}
-                    <label>
-                      Description<span>*</span>
+                    <label className={styles.labels}>
+                      Description<span className={styles.spans}>*</span>
                     </label>{" "}
                     <textarea
                       required
                       name="title"
                       placeholder="Description here..."
                       ref={description}
+                      className={styles.textareas}
                     />
-                  </p>
-                  <p>
+                  </div>
+                  <div className={styles.buttonsContainers}>
                     <input
                       type="submit"
                       name="post"
                       value="Post"
                       onClick={handlePost}
+                      className={styles.buttons}
                     />
                     {(errorMessage.length > 0 || successMessage.length > 0) &&
                       (successMessage.length > 0 ? (
@@ -320,7 +322,7 @@ const ForumPage = () => {
                       ) : (
                         <Error errorMessage={errorMessage} />
                       ))}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

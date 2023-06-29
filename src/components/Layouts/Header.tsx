@@ -20,12 +20,15 @@ const Header = React.memo(() => {
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
   const resetPosts = useResetRecoilState(posts);
+  const resetBlogsSearchQuery = useResetRecoilState(blogsSearchQuery);
+  const resetPostsSearchQuery = useResetRecoilState(postsSearchQuery);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [blogsSearchText, setBlogsSearchText] =
     useRecoilState(blogsSearchQuery);
   const [postsSearchText, setPostsSearchText] =
     useRecoilState(postsSearchQuery);
+  const [showLogout, setShowLogout] = useState(false);
 
   const navigate = useNavigate();
 
@@ -65,6 +68,8 @@ const Header = React.memo(() => {
     resetBlogs();
     resetTests();
     resetPosts();
+    resetBlogsSearchQuery();
+    resetPostsSearchQuery();
 
     const timer = setTimeout(() => {
       setIsLoggingOut(false);
@@ -118,6 +123,14 @@ const Header = React.memo(() => {
       });
     }
   }, []);
+
+  const handleImageClick = () => {
+    setShowLogout(() => !showLogout);
+  };
+
+  useEffect(() => {
+    console.log(showLogout);
+  }, [showLogout]);
 
   return (
     <>
@@ -197,12 +210,47 @@ const Header = React.memo(() => {
             </Link>
           </div>
           <div className={styles.topbtn}>
-            {isLoggingOut ? (
+            {/* {isLoggingOut ? (
               <button className={styles.btn1}>Logging Out</button>
             ) : isLoggedIn ? (
               <button className={styles.btn1} onClick={logOutHandler}>
                 Log Out
               </button>
+            ) : (
+              <Link
+                to={topPathsArray.loginPath}
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  if (window.innerWidth < 750) {
+                    handleMenu();
+                  }
+                }}
+              >
+                <button className={styles.btn1}>Log In</button>
+              </Link>
+            )} */}
+            {isLoggedIn ? (
+              <>
+                <div className={styles.profileContainer}>
+                  <img
+                    src={localStorage.getItem("ProfilePic") as string}
+                    alt={localStorage.getItem("UserName") as string}
+                    width={50}
+                    onClick={handleImageClick}
+                  />
+                </div>
+                {showLogout && (
+                  <div
+                    className={styles.logoutContainer}
+                    onClick={() => {
+                      logOutHandler();
+                      handleImageClick();
+                    }}
+                  >
+                    <p>Log Out</p>
+                  </div>
+                )}
+              </>
             ) : (
               <Link
                 to={topPathsArray.loginPath}

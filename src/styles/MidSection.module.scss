@@ -1,7 +1,6 @@
 @import './fonts';
 @import './colors';
 
-
 body {
   font-family: $karla;
   font-weight: 500;
@@ -44,6 +43,11 @@ body {
     font-family: $karla;
     margin: 3vh 3vw;
     font-size: 2.25rem;
+
+    @media (max-width: 575px) {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
   }
 
   img {
@@ -63,13 +67,6 @@ body {
     text-align: center;
     max-width: 55ch;
     line-height: 1.5em;
-  }
-
-  @media (max-width: 575px) {
-    p {
-      margin-left: 5px;
-      margin-right: 5px;
-    }
   }
 
   button {
@@ -92,11 +89,11 @@ body {
       font-size: 0.9rem;
       width: 10rem;
     }
-  }
 
-  button:hover {
-    text-decoration: underline;
-    background-color: $white;
+    &:hover {
+      text-decoration: underline;
+      background-color: $white;
+    }
   }
 }
 
@@ -110,44 +107,37 @@ body {
   column-gap: 10vw;
   position: relative;
   min-height: 100vh;
-}
 
-.blocks {
-  display: flex;
-  margin: 2vh 0;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1.4em;
-}
-
-.blocks p {
-  font-weight: 700;
-  text-align: justify;
-  font-size: 1rem;
-  color: $white;
-}
-
-.blocks span {
-  font-weight: 800;
-  text-align: center;
-  color: $orange;
-}
-
-#security {
-  transform: translate(0rem, -0.75rem);
-}
-
-#blue {
-  background-color: $black;
-}
-
-
-@media (max-width: 720px) {
-  .article1 {
+  @media (max-width: 720px) {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .blocks {
+    display: flex;
+    margin: 2vh 0;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.4em;
+
+    p {
+      font-weight: 700;
+      text-align: justify;
+      font-size: 1rem;
+      color: $white;
+    }
+
+    span {
+      font-weight: 800;
+      text-align: center;
+      color: $orange;
+    }
+
+    .img svg {
+      color: $orange;
+    }
   }
 }
 
@@ -162,45 +152,45 @@ body {
   text-align: end;
   align-items: center;
   min-height: 100vh;
-}
 
-@media (max-width: 720px) {
-  .article2 {
+  @media (max-width: 720px) {
     display: flex;
     flex-direction: column;
   }
-}
 
-.article2 .block2 {
-  max-width: 40ch;
-  display: flex;
-  flex-direction: column;
-}
+  .block2 {
+    max-width: 40ch;
+    display: flex;
+    flex-direction: column;
 
-.article2 .block2 .img {
-  margin: 1rem;
-  width: 30vw;
-  min-width: 15em;
-}
+    .img {
+      margin: 1rem;
+      width: 30vw;
+      min-width: 15em;
+      padding-bottom: 50px;
+    }
 
-.article2 .block2 p {
-  font-weight: 700;
-  text-align: justify;
-  font-size: 1rem;
-  line-height: 1.4em;
-  color: $white;
-}
+    p {
+      font-weight: 700;
+      text-align: justify;
+      font-size: 1rem;
+      line-height: 1.4em;
+      color: $white;
+    }
 
-.article2 .block2 span {
-  line-height: 1.2em;
-  text-align: left;
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: $orange
-}
+    span {
+      line-height: 1.2em;
+      text-align: left;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: $orange;
+    }
 
-.article2 .block2 a {
-  color: $orange;
+    a {
+      color: $orange;
+      cursor: pointer;
+    }
+  }
 }
 
 .article3 {
@@ -213,153 +203,107 @@ body {
   min-height: 100vh;
   justify-content: center;
   align-items: center;
-}
 
-.box {
-  min-height: 50vh;
-  display: flex;
-  justify-content: center;
-}
+  .box {
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+  }
 
-@media (max-width: 1000px) {
-  .article3 {
+  @media (max-width: 1000px) {
     display: flex;
     flex-direction: column;
+
+    .box1,
+    .box2,
+    .box3 {
+      margin-bottom: 20px;
+    }
+
+    .box1 span,
+    .box2 span,
+    .box2 span {
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
-  .article3 .box1 {
-    margin-bottom: 20px;
-  }
-
-  .article3 .box2 {
-    margin-bottom: 20px;
-  }
-
-  .article3 .box1 span {
+  .box1,
+  .box2,
+  .box3 {
+    font-family: $karla;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    background-color: $orange;
+    color: $black;
   }
 
-  .article3 .box2 span {
-    justify-content: space-between;
+  .box1 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    position: relative;
+    z-index: 5;
   }
 
-  .article3 .box3 span {
-    justify-content: space-between;
+  .box2 {
+    grid-column: 2 / span 1;
   }
-}
 
-.article3 .box1 {
-  font-family: $karla;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: $orange;
-  color: $black;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-  position: relative;
-  z-index: 5;
-}
-
-.article3 .box2 {
-  font-family: $karla;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: $orange;
-  color: $black;
-  grid-column: 2 / span 1;
-}
-
-.article3 .box3 {
-  font-family: $karla;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: $orange;
-  color: $black;
-  grid-column: 3 / span 1;
-}
-
-.article3 .box1 p {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.article3 .box1 span .p1 {
-  font-weight: 800;
-}
-
-.article3 .box2 p {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.article3 .box2 span .p1 {
-  font-weight: 800;
-}
-
-.article3 .box3 p {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.article3 .box3 span .p1 {
-  font-weight: 800;
-}
-
-.article3 div {
-  height: auto;
-  background-color: $dark;
-  padding: 1rem;
-  font-family: $karla;
-  font-weight: 400;
-  border-radius: 0.5em;
-}
-
-@media (max-width: 720px) {
-  .article3 div {
-    margin-bottom: 1rem;
+  .box3 {
+    grid-column: 3 / span 1;
   }
-}
 
-.article3 div p {
-  font-weight: 400;
-  line-height: 1.5em;
-  font-size: 1rem;
-  text-align: justify;
-}
+  div {
+    height: auto;
+    background-color: $dark;
+    padding: 1rem;
+    font-family: $karla;
+    font-weight: 400;
+    border-radius: 0.5em;
 
-.article3 div span {
-  text-align: start;
-  font-size: 1rem;
-  display: grid;
-  grid-template-columns: 20% 70%;
-  grid-template-rows: 30% 30%;
-  grid-template-areas:
-    "pic p1"
-    "pic p2";
-}
+    @media (max-width: 720px) {
+      margin-bottom: 1rem;
+    }
 
-.article3 div span .p1 {
-  font-weight: 700;
-  font-size: 0.8rem;
-  grid-area: p1;
-}
+    p {
+      font-weight: 600;
+      line-height: 1.5em;
+      font-size: 1rem;
+      text-align: justify;
+    }
 
-.article3 div span .p2 {
-  font-size: 0.8rem;
-  text-align: start;
-  grid-area: p2;
-}
+    span {
+      text-align: start;
+      font-size: 1rem;
+      display: grid;
+      grid-template-columns: 20% 70%;
+      grid-template-rows: 30% 30%;
+      grid-template-areas:
+        "pic p1"
+        "pic p2";
+    }
 
-.article3 div span .pic {
-  grid-area: pic;
-}
+    span .p1 {
+      font-size: 0.9rem;
+      font-weight: 800;
+      grid-area: p1;
+    }
 
-.article3 img {
-  width: 2.5rem;
-  border-radius: 100%;
-  margin-top: 1rem;
+    span .p2 {
+      font-size: 0.8rem;
+      text-align: start;
+      grid-area: p2;
+    }
+
+    span .pic {
+      grid-area: pic;
+    }
+  }
+
+  img {
+    width: 2.5rem;
+    border-radius: 100%;
+    margin-top: 1rem;
+  }
 }

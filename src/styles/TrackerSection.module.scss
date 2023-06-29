@@ -1,5 +1,6 @@
 @import './fonts';
 @import './colors';
+@import './typography';
 
 .main {
     background-color: $dark;
@@ -29,20 +30,6 @@
     width: 20px;
 }
 
-.trackerContainer .trackerTitle p {
-    font-family: $karla;
-    font-size: 1.5rem;
-    color: $white;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    font-weight: 700;
-
-    @media (max-width: 420px) {
-        font-size: 1.3rem;
-    }
-}
-
 .taskcard {
     background-color: $white;
     border: 1px solid $white;
@@ -53,28 +40,17 @@
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     min-height: 20vh;
 
-    label {
-        color: $green;
+    .checkboxContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        label {
+            color: $green;
+        }
     }
-}
-
-.title {
-    color: $orange;
-    font-size: 1.3rem;
-    font-weight: 900;
-    margin: 10px 0;
-    text-align: center;
-}
-
-.description {
-    color: $black;
-    opacity: 0.9;
-    font-family: $karla;
-    margin: 10px 0;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-align: start;
 }

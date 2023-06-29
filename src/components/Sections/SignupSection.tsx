@@ -7,8 +7,10 @@ import { useResetRecoilState, useSetRecoilState } from "recoil";
 import {
   LoggedInstate,
   blogs,
+  blogsSearchQuery,
   numMessagesState,
   posts,
+  postsSearchQuery,
   tests,
 } from "../../config/atoms";
 import Success from "../Layouts/Success";
@@ -22,6 +24,8 @@ export const SignupPage = React.memo((props: any) => {
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
   const resetPosts = useResetRecoilState(posts);
+  const resetBlogsSearchQuery = useResetRecoilState(blogsSearchQuery);
+  const resetPostsSearchQuery = useResetRecoilState(postsSearchQuery);
 
   let email = useRef<HTMLInputElement>(null);
   let userName = useRef<HTMLInputElement>(null);
@@ -77,6 +81,8 @@ export const SignupPage = React.memo((props: any) => {
                 resetBlogs();
                 resetTests();
                 resetPosts();
+                resetBlogsSearchQuery();
+                resetPostsSearchQuery();
 
                 const timer = setTimeout(() => {
                   navigate(topPathsArray.homePath, { replace: true });
@@ -103,7 +109,7 @@ export const SignupPage = React.memo((props: any) => {
 
   return (
     <>
-      <div className={`${styles.wrapper} ${styles.signup}`}>
+      <div className={`${styles.main} ${styles.signup}`}>
         <div className={styles.container}>
           <div className={styles.colleft}>
             <div className={styles.signuptext}>
@@ -112,7 +118,7 @@ export const SignupPage = React.memo((props: any) => {
                 Already have an <br />
                 account?
               </p>{" "}
-              <a className={styles.btn} onClick={props.handleRegister}>
+              <a className={styles.loginButton} onClick={props.handleRegister}>
                 Log In
               </a>
             </div>
@@ -120,9 +126,9 @@ export const SignupPage = React.memo((props: any) => {
           <div className={styles.colright}>
             <div className={styles.signupform}>
               <h2>Sign Up</h2>
-              <p>
-                <label>
-                  Username <span>*</span>
+              <div className={styles.inputsContainers}>
+                <label className={styles.labels}>
+                  Username <span className={styles.spans}>*</span>
                 </label>
                 <input
                   ref={userName}
@@ -130,12 +136,13 @@ export const SignupPage = React.memo((props: any) => {
                   required
                   name="username"
                   placeholder="Username"
+                  className={styles.inputs}
                 />
-              </p>
-              <p>
+              </div>
+              <div className={styles.inputsContainers}>
                 {" "}
-                <label>
-                  Email address<span>*</span>
+                <label className={styles.labels}>
+                  Email address<span className={styles.spans}>*</span>
                 </label>{" "}
                 <input
                   type="text"
@@ -143,12 +150,13 @@ export const SignupPage = React.memo((props: any) => {
                   name="email"
                   placeholder="E-mail"
                   ref={email}
+                  className={styles.inputs}
                 />
-              </p>
-              <p>
+              </div>
+              <div className={styles.inputsContainers}>
                 {" "}
-                <label>
-                  Create Password<span>*</span>
+                <label className={styles.labels}>
+                  Create Password<span className={styles.spans}>*</span>
                 </label>
                 <input
                   required
@@ -156,31 +164,44 @@ export const SignupPage = React.memo((props: any) => {
                   type="password"
                   name="password"
                   placeholder="Create Password"
+                  className={styles.inputs}
                 />
-              </p>
-              <label>
-                Age
-                <span>*</span>
-              </label>
-              <p>
-                <input ref={age} type="text" name="Age" placeholder="Age" />
-              </p>
-              <label>
-                Gender <span>*</span>
-              </label>
-              <p>
-                <select ref={gender} className={styles.select}>
+              </div>
+              <div className={styles.inputsContainers}>
+                <label className={styles.labels}>
+                  Age
+                  <span className={styles.spans}>*</span>
+                </label>
+                <input
+                  ref={age}
+                  type="text"
+                  name="Age"
+                  placeholder="Age"
+                  className={styles.inputs}
+                />
+              </div>
+              <div className={styles.inputsContainers}>
+                <label className={styles.labels}>
+                  Gender <span className={styles.spans}>*</span>
+                </label>
+                <select
+                  ref={gender}
+                  className={`${styles.select} ${styles.inputs}`}
+                >
                   <option value="">Select gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
-              </p>
-              <p>
+              </div>
+              <div
+                className={`${styles.buttonsContainers} ${styles.signupButtonContainer}`}
+              >
                 <input
                   type="submit"
                   name="SignUp"
                   value="Sign Up"
                   onClick={handleSubmit}
+                  className={styles.buttons}
                 />
                 {(errorMessage.length > 0 || successMessage.length > 0) &&
                   (successMessage.length > 0 ? (
@@ -188,7 +209,7 @@ export const SignupPage = React.memo((props: any) => {
                   ) : (
                     <Error errorMessage={errorMessage} />
                   ))}
-              </p>
+              </div>
             </div>
           </div>
         </div>

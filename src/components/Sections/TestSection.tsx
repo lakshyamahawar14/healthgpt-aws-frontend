@@ -14,7 +14,7 @@ const TestPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const location = useLocation();
-  const url = new URLSearchParams(location.search).get("url");
+  const url = new URLSearchParams(location.search).get("url") as string;
   const navigate = useNavigate();
 
   const [test, setTest] = useState<{
@@ -26,7 +26,7 @@ const TestPage = () => {
   const getTest = async (path: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:7000/api/v1/assessment${path}`
+        `http://13.235.81.90:7000/api/v1/assessment/test?url=${path}`
       );
       return res.data.data.test;
     } catch (error) {
@@ -34,13 +34,19 @@ const TestPage = () => {
     }
   };
 
-  const getScore = async (userId: any, accessToken: any, url: any) => {
+  const getScore = async (userId: any, accessToken: any, url: string) => {
     try {
       const res = await axios.get(
         `http://13.235.81.90:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
-      const scoreType = url.slice(1) + "Score";
-      return res.data.data[scoreType];
+      if (url === "/general") {
+        const generalScore = res.data.data.score.scores;
+        if (generalScore === "") {
+          return [{ url: "/general", name: "general", score: -1 }];
+        }
+        return generalScore;
+      }
+      return [res.data.data.score];
     } catch (error) {
       console.log(error);
     }
@@ -54,9 +60,9 @@ const TestPage = () => {
     const accessToken = localStorage.getItem("AccessToken");
 
     if (userId || accessToken) {
-      getScore(userId, accessToken, url).then((response) => {
-        if (response && response[0].score !== -1) {
-          navigate(`score?url=%2F${url?.slice(1)}`, {
+      getScore(userId, accessToken, url).then((score) => {
+        if (score && score[0].score !== -1) {
+          navigate(`/test/score?url=${encodeURIComponent(url)}`, {
             replace: true,
           });
           return () => {};
@@ -70,7 +76,7 @@ const TestPage = () => {
 
   const evaluateScore = async (url: any, responses: any) => {
     try {
-      let requestUrl = `http://13.235.81.90:7000/api/v1/assessment/evaluate`;
+      let requestUrl = `http://13.235.81.90:7000/api/v1/assessment/test/evaluate`;
       if (url === "/general") {
         requestUrl = `http://13.235.81.90:7000/api/v1/assessment/general/evaluate`;
       }
@@ -97,7 +103,7 @@ const TestPage = () => {
         userId: userId,
         accessToken: accessToken,
         url: url,
-        score: score,
+        scoreObj: score,
       });
       return res.data.message;
     } catch (error) {
@@ -118,7 +124,7 @@ const TestPage = () => {
     }
 
     updateScore(userId, accessToken, url, score).then((response) => {
-      navigate(`score?url=%2F${url?.slice(1)}`, {
+      navigate(`/test/score?url=${encodeURIComponent(url)}`, {
         replace: true,
       });
     });
@@ -163,47 +169,42 @@ const TestPage = () => {
             ) : (
               test?.questions && (
                 <>
-                  <div className={styles.testTitle}>
-                    <p>{test?.title}</p>
+                  <div className={styles.headingsContainers}>
+                    <h1>{test?.title}</h1>
                   </div>
                   {test?.questions.map((question, index) => (
                     <div key={index} className={styles.questionContainer}>
                       <p>{question}</p>
                       <div className={styles.optionsContainer}>
-                        <label>
-                          <input
-                            type="radio"
-                            name={`question_${index}`}
-                            value="yes"
-                          />
-                          Yes
-                        </label>
-                        <label>
-                          <input
-                            type="radio"
-                            name={`question_${index}`}
-                            value="no"
-                          />
-                          No
-                        </label>
+                        <label className={styles.labels}>Yes</label>
+                        <input
+                          type="radio"
+                          name={`question_${index}`}
+                          value="yes"
+                        />
+                        <label className={styles.labels}>No</label>
+                        <input
+                          type="radio"
+                          name={`question_${index}`}
+                          value="no"
+                        />
                       </div>
                     </div>
                   ))}
-                  <div className={styles.button}>
-                    <p>
-                      <input
-                        type="submit"
-                        name="evaluate"
-                        value="Evaluate"
-                        onClick={handleSubmit}
-                      />
-                      {(errorMessage.length > 0 || successMessage.length > 0) &&
-                        (successMessage.length > 0 ? (
-                          <Success successMessage={successMessage} />
-                        ) : (
-                          <Error errorMessage={errorMessage} />
-                        ))}
-                    </p>
+                  <div className={styles.buttonsContainers}>
+                    <input
+                      type="submit"
+                      name="evaluate"
+                      value="Evaluate"
+                      onClick={handleSubmit}
+                      className={styles.buttons}
+                    />
+                    {(errorMessage.length > 0 || successMessage.length > 0) &&
+                      (successMessage.length > 0 ? (
+                        <Success successMessage={successMessage} />
+                      ) : (
+                        <Error errorMessage={errorMessage} />
+                      ))}
                   </div>
                 </>
               )

@@ -78,18 +78,24 @@ const Search = React.memo((props: any) => {
       <div className={styles.container}>
         <div className={styles.searchContainer}>
           <div className={styles.searchQuery}>
-            <input
-              type="text"
-              id="search"
-              placeholder="Search here..."
-              ref={search}
-            ></input>
-            <input
-              type="submit"
-              name="search"
-              value="Search"
-              onClick={handleManualNavigation}
-            />
+            <div className={styles.inputsContainers}>
+              <input
+                type="text"
+                id="search"
+                placeholder="Search here..."
+                ref={search}
+                className={styles.inputs}
+              ></input>
+            </div>
+            <div className={styles.buttonsContainers}>
+              <input
+                type="submit"
+                name="search"
+                value="Search"
+                onClick={handleManualNavigation}
+                className={styles.buttons}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -113,7 +113,14 @@ export const MidSection = (props: any) => {
                 Blended with professional human support, Lux provides 24/7
                 high-quality mental health support.
               </p>
-              <a href=""> See how Lux works</a>
+              <a
+                onClick={() =>
+                  navigate(`/forum/post?url=NNlKQM0UeLNwBEhYRLobS9CQYuG21`)
+                }
+              >
+                {" "}
+                See how Lux works
+              </a>
             </div>
           </article>
 

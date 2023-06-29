@@ -17,9 +17,11 @@ import { Bar } from "react-chartjs-2";
 
 const ScorePage = () => {
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
-  const [score, setScore] = useState<{ name: string; score: number }[]>([]);
+  const [score, setScore] = useState<
+    { url: string; name: string; score: number }[]
+  >([]);
   const location = useLocation();
-  const url = new URLSearchParams(location.search).get("url");
+  const url = new URLSearchParams(location.search).get("url") as string;
   const navigate = useNavigate();
   Chart.register(ArcElement);
   Chart.register(CategoryScale);
@@ -31,8 +33,14 @@ const ScorePage = () => {
       const res = await axios.get(
         `http://13.235.81.90:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
-      const scoreType = url.slice(1) + "Score";
-      return res.data.data[scoreType];
+      if (url === "/general") {
+        const generalScore = res.data.data.score.scores;
+        if (generalScore === "") {
+          return [{ url: "/general", name: "general", score: -1 }];
+        }
+        return generalScore;
+      }
+      return [res.data.data.score];
     } catch (error) {
       console.log(error);
     }
@@ -40,21 +48,26 @@ const ScorePage = () => {
 
   useEffect(() => {
     if (!url || !isLoggedIn) {
-      navigate(topPathsArray.loginPath, { replace: true });
+      if (isLoggedIn) {
+        navigate(topPathsArray.homePath, { replace: true });
+      } else {
+        navigate(topPathsArray.loginPath, { replace: true });
+      }
+      return () => {};
     }
 
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
     getScore(userId, accessToken, url).then((score) => {
+      if (!score || (score && score[0].score === -1)) {
+        navigate(`/test?url=${encodeURIComponent(url)}`, {
+          replace: true,
+        });
+        return () => {};
+      }
       setScore(score);
     });
   }, []);
-
-  useEffect(() => {
-    if (score.length === 0) {
-      return () => {};
-    }
-  }, [score]);
 
   const chartData = {
     labels: [...score.map((s) => s.name), "Others"],
@@ -124,7 +137,7 @@ const ScorePage = () => {
   };
 
   const handleClick = () => {
-    navigate(`/tracker?url=%2F${url?.slice(1)}`, { replace: true });
+    navigate(`/tracker?url=${encodeURIComponent(url)}`, { replace: true });
   };
 
   return (
@@ -135,23 +148,24 @@ const ScorePage = () => {
         ) : (
           <>
             <div className={styles.scoreContainer}>
-              <div className={styles.scoreTitle}>
-                <p>
+              <div className={styles.headingsContainers}>
+                <h1>
                   {url
                     ? url.slice(1).charAt(0).toUpperCase() + url.slice(2)
                     : ""}{" "}
                   Test Score
-                </p>
+                </h1>
               </div>
               <div className={styles.chartContainer}>
                 <Bar data={chartData} options={chartOptions} />
               </div>
-              <div>
+              <div className={styles.buttonsContainers}>
                 <input
                   type="submit"
                   name="tracker"
                   value="Tracker"
                   onClick={handleClick}
+                  className={styles.buttons}
                 />
               </div>
             </div>

@@ -18,18 +18,23 @@ const TrackerPage = () => {
     }[]
   >();
 
-  const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const url = new URLSearchParams(location.search).get("url");
+  const url = new URLSearchParams(location.search).get("url") as string;
 
-  const getScore = async (userId: any, accessToken: any, url: any) => {
+  const getScore = async (userId: any, accessToken: any, url: string) => {
     try {
       const res = await axios.get(
         `http://13.235.81.90:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
-      const scoreType = url.slice(1) + "Score";
-      return res.data.data[scoreType];
+      if (url === "/general") {
+        const generalScore = res.data.data.score.scores;
+        if (generalScore === "") {
+          return [{ url: "/general", name: "general", score: -1 }];
+        }
+        return generalScore;
+      }
+      return [res.data.data.score];
     } catch (error) {
       console.log(error);
     }
@@ -72,14 +77,19 @@ const TrackerPage = () => {
 
   useEffect(() => {
     if (!isLoggedIn || !url) {
-      navigate(topPathsArray.loginPath, { replace: true });
+      if (isLoggedIn) {
+        navigate(topPathsArray.homePath, { replace: true });
+      } else {
+        navigate(topPathsArray.loginPath, { replace: true });
+      }
+      return () => {};
     }
     const userId = localStorage.getItem("UserId");
     const accessToken = localStorage.getItem("AccessToken");
 
     if (userId || accessToken) {
       getScore(userId, accessToken, url).then((response) => {
-        if (response && response[0].score === -1) {
+        if (!response || (response && response[0].score === -1)) {
           navigate(`/test?url=%2F${url?.slice(1)}`, {
             replace: true,
           });
@@ -108,31 +118,29 @@ const TrackerPage = () => {
     <>
       <div className={styles.main}>
         <div className={styles.trackerContainer}>
+          <div className={styles.headingsContainers}>
+            <h1>
+              {url ? url.slice(1).charAt(0).toUpperCase() + url.slice(2) : ""}{" "}
+              Tracker
+            </h1>
+          </div>
           {!tasks ? (
             <Loader startTop={true} />
           ) : (
             <>
-              <div className={styles.trackerTitle}>
-                <p>
-                  {url
-                    ? url.slice(1).charAt(0).toUpperCase() + url.slice(2)
-                    : ""}{" "}
-                  Tracker
-                </p>
-              </div>
               <div className={styles.tasks}>
                 {tasks?.map((task, index) => (
                   <div key={index} className={styles.taskcard}>
-                    <p className={styles.title}>{task.title}</p>
-                    <p className={styles.description}>{task.description}</p>
-                    <label>
+                    <p className={styles.titles}>{task.title}</p>
+                    <p className={styles.descriptions}>{task.description}</p>
+                    <div className={styles.checkboxContainer}>
+                      <label>Done</label>
                       <input
                         type="checkbox"
                         checked={task.done}
-                        onChange={() => handleCheckboxChange(task.id)} // Pass the index to the event handler
+                        onChange={() => handleCheckboxChange(task.id)}
                       />
-                      Done
-                    </label>
+                    </div>
                   </div>
                 ))}
               </div>

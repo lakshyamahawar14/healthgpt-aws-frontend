@@ -1,5 +1,6 @@
 @import './fonts';
 @import './colors';
+@import './typography';
 
 .main {
   background-color: $dark;
@@ -13,25 +14,6 @@
   min-height: 100vh;
   box-sizing: border-box;
   background-color: $dark;
-
-  .testTitle {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .testTitle p {
-    font-family: $karla;
-    font-size: 1.5rem;
-    color: $white;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    font-weight: 700;
-
-    @media (max-width: 420px) {
-      font-size: 1.3rem;
-    }
-  }
 
   .testContainer {
     min-height: 90vh;
@@ -73,48 +55,31 @@
     flex-direction: column;
     margin-bottom: 20px;
     height: auto;
-  }
 
-  .questionContainer p {
-    text-align: start;
-    color: $black;
-    font-size: 1rem;
-    margin: 0;
-    margin-bottom: 20px;
-  }
-
-  .testContainer p:last-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .testContainer p input[type="submit"] {
-    display: inline-block;
-    padding: 8px 15px;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-decoration: none;
-    border-radius: 30px;
-    color: $white;
-    background: none;
-    outline: none;
-    cursor: pointer;
-    border: 2px solid $orange;
-    max-width: 100px;
-    background-color: $orange;
-  }
-
-  .testContainer p input:hover,
-  .testContainer p input:focus {
-    color: $orange;
-    background-color: $white;
-    border: 2px solid $white;
-  }
-
-  @media(max-width: 650px) {
-    .questionContainer {
+    @media(max-width: 650px) {
       font-size: 0.8rem;
+    }
+
+    p {
+      text-align: start;
+      color: $black;
+      font-size: 1rem;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  .optionsContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    label:nth-child(1) {
+      color: $green;
+    }
+
+    label:nth-child(3) {
+      color: $red;
     }
   }
 }

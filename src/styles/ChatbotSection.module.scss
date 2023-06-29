@@ -315,3 +315,15 @@ path {
     opacity: 0.5;
   }
 }
+
+.dateContainer {
+  color: $white;
+  opacity: 0.8;
+  font-size: 0.9rem;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 500;
+  padding: 20px 0;
+  border-bottom: 2px solid rgba($white, 0.3);
+  margin: 10px 0;
+}

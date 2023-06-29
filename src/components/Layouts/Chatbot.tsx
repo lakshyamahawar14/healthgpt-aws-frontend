@@ -42,15 +42,6 @@ const Chatbot = React.memo(
     }, [data]);
 
     useEffect(() => {
-      if (chatbotWidth) {
-        console.log(chatbotWidth);
-      }
-      if (chatbotHeight) {
-        console.log(chatbotHeight);
-      }
-    });
-
-    useEffect(() => {
       const appElement = document.getElementById("chatbotapp");
       const loaderElement = document.getElementById("chatbotloader");
       const timer = setTimeout(() => {
@@ -67,18 +58,46 @@ const Chatbot = React.memo(
     }, []);
 
     const cell = data ? (
-      data.map((item) => {
+      data.map((item, index) => {
+        const currentDate = new Date(item.date);
+        const previousItem = data[index - 1];
+        const previousDate = previousItem ? new Date(previousItem.date) : null;
+        const showDate =
+          currentDate.toDateString() !== previousDate?.toDateString();
+
+        let formattedDate = "";
+
+        if (showDate) {
+          const today = new Date();
+          const yesterday = new Date(today);
+          yesterday.setDate(today.getDate() - 1);
+
+          if (currentDate.toDateString() === today.toDateString()) {
+            formattedDate = "Today";
+          } else if (currentDate.toDateString() === yesterday.toDateString()) {
+            formattedDate = "Yesterday";
+          } else {
+            formattedDate = currentDate.toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            });
+          }
+        }
+
         return (
           <div key={item.key}>
+            {showDate && (
+              <div className={styles.dateContainer}>{formattedDate}</div>
+            )}
+
             {item?.userInput?.length && item?.userInput?.length > 0 ? (
               <article className={styles.msgContainer}>
                 <div className={styles.outgoing}>
                   <div className={styles.bubble}>{item.userInput}</div>
                 </div>
               </article>
-            ) : (
-              <></>
-            )}
+            ) : null}
 
             {item?.response?.length && item?.response?.length > 0 ? (
               <article className={styles.msgContainer}>
@@ -100,15 +119,14 @@ const Chatbot = React.memo(
                   </div>
                 </div>
               </article>
-            ) : (
-              <></>
-            )}
+            ) : null}
           </div>
         );
       })
     ) : (
       <></>
     );
+
     return (
       <>
         <div id="chatbox" className={`${styles.chatbox} ${styles.modal}`}>
@@ -171,6 +189,7 @@ export interface Interaction {
   key: number;
   userInput: string;
   response: string;
+  date: string;
 }
 interface PropsForm {
   onClose: any;

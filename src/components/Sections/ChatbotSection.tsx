@@ -76,6 +76,7 @@ export const ChatbotPage = React.memo((props: any) => {
             key: prev.chat[prev.chat.length - 2]?.key
               ? prev.chat[prev.chat.length - 2].key + 1
               : 2,
+            date: "",
           },
         ];
         return { ...prev, chat: d };
@@ -247,6 +248,7 @@ export const ChatbotPage = React.memo((props: any) => {
             key: prev.chat[prev.chat.length - 2]?.key
               ? prev.chat[prev.chat.length - 2].key + 1
               : 2,
+            date: "",
           },
         ];
         return { ...prev, chat: d };
@@ -268,6 +270,7 @@ export const ChatbotPage = React.memo((props: any) => {
             response: "",
             id: 1000000007,
             key: 1000000007,
+            date: "",
           },
         ],
       };

@@ -43,7 +43,7 @@ export const LoginPage = React.memo((props: any) => {
               setErrorMessage("Invalid Email/Password");
               return;
             }
-            console.log(userCredential.data.data.user.providerData[0].photoURL);
+
             localStorage.setItem(
               "ProfilePic",
               userCredential.data.data.user.providerData[0].photoURL

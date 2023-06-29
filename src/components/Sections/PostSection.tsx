@@ -117,7 +117,7 @@ const PostPage = () => {
             <div className={styles.headingsContainers}>
               <h1>{post.username}'s Post</h1>
             </div>
-            <div className={styles.postcard}>
+            <div className={`${styles.cards} ${styles.postcard}`}>
               <div className={styles.postcardtop}>
                 <span className={styles.usernames}>{post.username}</span>
                 <span className={styles.dates}>{post.date}</span>
@@ -126,11 +126,11 @@ const PostPage = () => {
               <div className={styles.descriptions}>{post.description}</div>
               <div className={styles.postcardbottom}>
                 catagory:{" "}
-                <div className={styles.tags}>
+                <div className={styles.tagsContainers}>
                   {post.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className={styles.tag}
+                      className={styles.tags}
                       onClick={() => handleTagClick(tag)}
                     >
                       {tag}
@@ -159,8 +159,8 @@ const PostPage = () => {
             <div className={styles.headingsContainers}>
               <h1>Add a Comment</h1>
             </div>
-            <div className={styles.addforumContainer}>
-              <div className={styles.addforumCard}>
+            <div className={styles.addpostContainer}>
+              <div className={styles.addpostCard}>
                 <div
                   className={`${styles.postInputs} ${styles.inputsContainers}`}
                 >

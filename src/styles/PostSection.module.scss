@@ -7,7 +7,6 @@
     padding-bottom: 0;
     height: auto;
 
-
     .postContainer {
         height: auto;
         padding-bottom: 5vh;
@@ -41,88 +40,39 @@
             color: $black;
         }
 
-        .posts {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-gap: 12px;
-
-            @media (max-width: 350px) {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
-        .posts::after {
-            content: "";
-            width: 20px;
-        }
-
         .postsContainer {
             margin: 0 6vw;
         }
 
-
-        .postcard {
-            background-color: $white;
-            border: 1px solid $white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            text-decoration: none;
+        .postcardtop {
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            min-height: 30vh;
-
-            .postcardtop {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-            }
-
-            .postcardbottom {
-                display: flex;
-                justify-content: space-between;
-                font-size: 0.8rem;
-                align-items: center;
-                width: 100%;
-
-                .tags {
-                    font-size: 0.8rem;
-                    color: $white;
-                    border: none;
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    flex-wrap: wrap;
-
-                    .tag {
-                        background-color: $green;
-                        padding: 5px;
-                        border-radius: 5px;
-                        margin: 5px;
-                        cursor: pointer;
-                    }
-                }
-
-            }
+            width: 100%;
         }
 
-        .postcard Link {
-            text-decoration: none;
-            color: inherit;
+        .postcardbottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            align-items: center;
+            width: 100%;
+
         }
 
-        .addforumContainer {
+        .addpostContainer {
             display: flex;
             justify-content: center;
             align-items: center;
 
-            .addforumCard {
+            .addpostCard {
                 max-width: 800px;
                 width: 100%;
             }
         }
     }
+}
+
+.postcard:hover {
+    transform: none;
+    transition: none;
 }

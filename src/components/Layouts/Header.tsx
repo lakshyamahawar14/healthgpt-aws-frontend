@@ -128,10 +128,6 @@ const Header = React.memo(() => {
     setShowLogout(() => !showLogout);
   };
 
-  useEffect(() => {
-    console.log(showLogout);
-  }, [showLogout]);
-
   return (
     <>
       <header>

@@ -211,13 +211,13 @@ const ForumPage = () => {
               {showNoData && <NoData />}
               {!showNoData && (
                 <>
-                  <div className={styles.posts}>
+                  <div className={styles.cardsContainers}>
                     {postsArray.length > 0 &&
                       postsArray.map((post, index) => {
                         return (
                           <Link
                             key={index}
-                            className={styles.postcard}
+                            className={styles.cards}
                             style={{ textDecoration: "none" }}
                             to={{
                               pathname: "/forum/post",
@@ -225,22 +225,22 @@ const ForumPage = () => {
                             }}
                           >
                             <div className={styles.postcardtop}>
-                              <span className={styles.username}>
+                              <span className={styles.usernames}>
                                 {post.username}
                               </span>
-                              <span className={styles.date}>{post.date}</span>
+                              <span className={styles.dates}>{post.date}</span>
                             </div>
-                            <div className={styles.title}>{post.title}</div>
-                            <div className={styles.description}>
+                            <div className={styles.titles}>{post.title}</div>
+                            <div className={styles.descriptions}>
                               {truncateDescription(post.description, 50)}
                             </div>
 
                             <div className={styles.postcardbottom}>
                               catagory:{" "}
-                              <div className={styles.tags}>
+                              <div className={styles.tagsContainers}>
                                 {post.tags.map((tag, index) => {
                                   return (
-                                    <span key={index} className={styles.tag}>
+                                    <span key={index} className={styles.tags}>
                                       {tag}
                                     </span>
                                   );

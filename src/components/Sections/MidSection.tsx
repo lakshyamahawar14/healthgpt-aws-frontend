@@ -1,8 +1,8 @@
 import styles from "../../styles/MidSection.module.scss";
 import OurStoryIllustration from "../../assets/images/OurStoryIllustration.svg";
-import profile1 from "../../assets/images/profile-1.jpg";
-import profile2 from "../../assets/images/profile-2.jpg";
-import profile3 from "../../assets/images/profile-3.jpg";
+// import profile1 from "../../assets/images/profile-1.jpg";
+// import profile2 from "../../assets/images/profile-2.jpg";
+// import profile3 from "../../assets/images/profile-3.jpg";
 import ChatBotAnimation from "../../UI/ChatBotAnimation";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ export const MidSection = (props: any) => {
             </button>
           </div>
         </section>
-        <section id={styles.blue}>
+        <section className={styles.blackBackground}>
           <article className={styles.article1}>
             <div className={styles.blocks}>
               <div className={styles.img}>
@@ -99,6 +99,8 @@ export const MidSection = (props: any) => {
               </p>
             </div>
           </article>
+        </section>
+        <section className={styles.blackBackground}>
           <article className={styles.article2}>
             <div className={styles.block2}>
               <img className={styles.img} src={OurStoryIllustration} alt="" />
@@ -123,7 +125,8 @@ export const MidSection = (props: any) => {
               </a>
             </div>
           </article>
-
+        </section>
+        {/* <section className={styles.blackBackground}>
           <article className={styles.article3}>
             <div className={`${styles.box1} ${styles.box}`}>
               <p>
@@ -179,7 +182,7 @@ export const MidSection = (props: any) => {
               </span>
             </div>
           </article>
-        </section>
+        </section> */}
       </div>
     </>
   );

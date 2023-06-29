@@ -98,7 +98,7 @@ export const BlogPage = () => {
                 {showNoData && <NoData />}
                 {!showNoData && (
                   <>
-                    <div className={styles.blogs}>
+                    <div className={styles.cardsContainers}>
                       {blogsArray.length > 0 &&
                         blogsArray.map((blog, index) => (
                           <a
@@ -106,7 +106,7 @@ export const BlogPage = () => {
                             href={blog.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={styles.blogcard}
+                            className={`${styles.cards} ${styles.blogcard}`}
                           >
                             {/* <img src={'https://www.healthkart.com/connect/wp-content/uploads/2021/09/900x500_banner_HK-Connect_How-to-Improve-Heart-Health-_-Points-To-Keep-In-Mind.jpg'} alt={blog.title} /> */}
                             <div className={styles.titles}>{blog.title}</div>

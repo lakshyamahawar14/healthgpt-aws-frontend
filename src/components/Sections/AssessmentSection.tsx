@@ -48,9 +48,9 @@ const AssessmentPage = () => {
                 <div className={styles.headingsContainers}>
                   <h1>General Cognitive Assessment Test</h1>
                 </div>
-                <div className={styles.tests}>
+                <div className={styles.cardsContainers}>
                   <Link
-                    className={styles.testcard}
+                    className={styles.cards}
                     style={{ textDecoration: "none" }}
                     to={{
                       pathname: "/test",
@@ -66,7 +66,7 @@ const AssessmentPage = () => {
                 <div className={styles.headingsContainers}>
                   <h1>Specialized Cognitive Assessment Tests</h1>
                 </div>
-                <div className={styles.tests}>
+                <div className={styles.cardsContainers}>
                   {testsArray.map((test, index) => {
                     if (test.url === "/general") {
                       return null;
@@ -74,7 +74,7 @@ const AssessmentPage = () => {
                     return (
                       <Link
                         key={index}
-                        className={styles.testcard}
+                        className={styles.cards}
                         style={{ textDecoration: "none" }}
                         to={
                           isLoggedIn

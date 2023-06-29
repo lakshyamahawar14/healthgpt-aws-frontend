@@ -51,8 +51,15 @@ h1 {
     font-size: 0.8rem;
 }
 
-.svgs {
+svg {
     color: $orange;
+}
+
+.imgs {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .inputs {
@@ -138,7 +145,7 @@ h1 {
     }
 }
 
-.cardsContainer {
+.cardsContainers {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -152,24 +159,41 @@ h1 {
         content: "";
         width: 20px;
     }
+}
 
-    .cards {
-        background-color: $white;
-        border: 1px solid $white;
-        padding: 20px;
+.cards {
+    background-color: $white;
+    border: 1px solid $white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 20vh;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.tagsContainers {
+    font-size: 0.8rem;
+    color: $white;
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    .tags {
+        background-color: $green;
+        padding: 5px;
         border-radius: 5px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-            0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s, box-shadow 0.3s;
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 20vh;
-
-        &:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+        margin: 5px;
     }
 }

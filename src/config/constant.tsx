@@ -1,5 +1,6 @@
 export const topPathsArray = {
   homePath: "/",
+  chatbotPath: "/chat",
   blogPath: "/blog",
   forumPath: "/forum",
   postPath: "/forum/post",

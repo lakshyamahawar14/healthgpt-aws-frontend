@@ -60,7 +60,7 @@ const ScorePage = () => {
     const accessToken = localStorage.getItem("AccessToken");
     getScore(userId, accessToken, url).then((score) => {
       if (!score || (score && score[0].score === -1)) {
-        navigate(`/test?url=${encodeURIComponent(url)}`, {
+        navigate(`${topPathsArray.testPath}?url=${encodeURIComponent(url)}`, {
           replace: true,
         });
         return () => {};
@@ -137,7 +137,9 @@ const ScorePage = () => {
   };
 
   const handleClick = () => {
-    navigate(`/tracker?url=${encodeURIComponent(url)}`, { replace: true });
+    navigate(`${topPathsArray.trackerPath}url=${encodeURIComponent(url)}`, {
+      replace: true,
+    });
   };
 
   return (

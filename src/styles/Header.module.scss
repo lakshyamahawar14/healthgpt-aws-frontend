@@ -158,7 +158,7 @@ header {
   border-radius: 20px;
   position: absolute;
   top: 10vh;
-  right: calc(6vw);
+  right: calc(6vw - 2px);
 
   p {
     color: $red;

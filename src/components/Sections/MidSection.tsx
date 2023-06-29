@@ -36,7 +36,7 @@ export const MidSection = (props: any) => {
               onClick={
                 isLoggedIn
                   ? () => {
-                      props.onShowChat && props.onShowChat();
+                      navigate(topPathsArray.chatbotPath);
                     }
                   : redirectToRegister
               }
@@ -103,7 +103,11 @@ export const MidSection = (props: any) => {
         <section className={styles.blackBackground}>
           <article className={styles.article2}>
             <div className={styles.block2}>
-              <img className={styles.img} src={OurStoryIllustration} alt="" />
+              <img
+                className={styles.img}
+                src={OurStoryIllustration}
+                alt="our_story"
+              />
             </div>
             <div className={styles.block2}>
               {" "}
@@ -117,7 +121,9 @@ export const MidSection = (props: any) => {
               </p>
               <a
                 onClick={() =>
-                  navigate(`/forum/post?url=NNlKQM0UeLNwBEhYRLobS9CQYuG21`)
+                  navigate(
+                    `${topPathsArray.postPath}?url=NNlKQM0UeLNwBEhYRLobS9CQYuG21`
+                  )
                 }
               >
                 {" "}

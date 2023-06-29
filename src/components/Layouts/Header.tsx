@@ -132,7 +132,7 @@ const Header = React.memo(() => {
     <>
       <header>
         <div className={styles.divLogo}>
-          <img className={styles.logo} src={logo} alt="" />
+          <img className={styles.logo} src={logo} alt="lux" />
           <p>LUX</p>
         </div>
         <div id="burger" className={styles.burger} onClick={handleMenu}>

@@ -53,7 +53,7 @@ const AssessmentPage = () => {
                     className={styles.cards}
                     style={{ textDecoration: "none" }}
                     to={{
-                      pathname: "/test",
+                      pathname: `${topPathsArray.testPath}`,
                       search: `?url=${encodeURIComponent(testsArray[0].url)}`,
                     }}
                   >
@@ -79,7 +79,7 @@ const AssessmentPage = () => {
                         to={
                           isLoggedIn
                             ? {
-                                pathname: "/test",
+                                pathname: `${topPathsArray.testPath}`,
                                 search: `?url=${encodeURIComponent(test.url)}`,
                               }
                             : {

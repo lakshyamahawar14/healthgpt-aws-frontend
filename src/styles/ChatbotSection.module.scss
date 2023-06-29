@@ -45,20 +45,15 @@
   }
 }
 
-.bottomref {
-  position: relative;
-  bottom: 0;
-}
-
 .topbar {
-  position: relative;
-  top: 0;
+  position: absolute;
   width: 100%;
-  height: 10%;
-  max-height: 8vh;
+  height: 8%;
+  min-height: 8vh;
   background: $dark;
   border-radius: 10px 10px 0 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 110;
 
   @media (max-width: 575px) {
     border-radius: 0px;
@@ -66,7 +61,8 @@
 }
 
 .middle {
-  position: relative;
+  position: absolute;
+  top: 6vh;
   background: $black;
   width: 100%;
   opacity: 1;
@@ -74,22 +70,31 @@
   font-weight: 500;
   word-spacing: 0.15ch;
   line-height: 2.5ch;
-  height: 80%;
+  padding: 0;
+  margin: 0;
   flex: auto;
-  max-height: calc(100% - 60px);
+  height: 73%;
+  padding-top: 8%;
+  padding-bottom: 8%;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media (max-width: 575px) {
+    height: 79%;
+  }
 }
 
 .bottombar {
-  position: relative;
-  width: 100%;
-  height: 10%;
+  position: absolute;
   bottom: 0;
-  max-height: 8vh;
+  width: 100%;
+  height: 8%;
+  min-height: 8vh;
+  bottom: 0;
   background: $dark;
   border-radius: 0 0 10px 10px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 120;
 
   @media (max-width: 575px) {
     border-radius: 0px;
@@ -126,11 +131,11 @@
 
 .icons {
   position: absolute;
+
   padding: 10px;
   top: 5px;
   right: 21px;
   cursor: pointer;
-  color: $orange;
 
   .fas {
     margin-left: 10px;
@@ -142,6 +147,10 @@
       transition: all 0.3s ease-in;
     }
   }
+}
+
+path {
+  color: $orange;
 }
 
 .cross {
@@ -232,15 +241,15 @@
   font-size: 11pt;
   background: transparent;
   color: $orange;
+}
 
-  &::placeholder {
-    color: $orange;
-  }
+.chatinput input::placeholder {
+  color: $orange;
+}
 
-  &:focus {
-    color: $orange;
-    outline: 0;
-  }
+.chatinput input:focus {
+  color: $orange;
+  outline: 0;
 }
 
 .chatinput button {

@@ -6,7 +6,15 @@ import { IoMdClose } from "react-icons/io";
 import { BsFillSendFill } from "react-icons/bs";
 import Loader from "./Loader";
 const Chatbot = React.memo(
-  ({ onFormChange, onFormSubmit, onFormClear, onClose, data }: PropsForm) => {
+  ({
+    onFormChange,
+    onFormSubmit,
+    onFormClear,
+    onClose,
+    data,
+    chatbotWidth,
+    chatbotHeight,
+  }: PropsForm) => {
     const formRef: any = useRef();
     const userInputRef: any = useRef();
     const handleChange = (event: any) => {
@@ -20,13 +28,43 @@ const Chatbot = React.memo(
     const handleClose = () => {
       onClose();
     };
-    const scrollToBottom = () => {
-      formRef?.current?.scrollIntoView({ behavior: "smooth" });
+
+    const handleScroll = () => {
+      const middleDiv = document.getElementById("middle");
+      middleDiv?.scrollTo({
+        top: middleDiv.scrollHeight,
+        behavior: "smooth",
+      });
     };
 
     useEffect(() => {
-      scrollToBottom();
+      handleScroll();
     }, [data]);
+
+    useEffect(() => {
+      if (chatbotWidth) {
+        console.log(chatbotWidth);
+      }
+      if (chatbotHeight) {
+        console.log(chatbotHeight);
+      }
+    });
+
+    useEffect(() => {
+      const appElement = document.getElementById("chatbotapp");
+      const loaderElement = document.getElementById("chatbotloader");
+      const timer = setTimeout(() => {
+        if (appElement) {
+          appElement.style.opacity = "1";
+          appElement.style.maxHeight = "none";
+          appElement.style.overflow = "none";
+        }
+        if (loaderElement) {
+          loaderElement.style.display = "none";
+        }
+      }, 1500);
+      return () => clearTimeout(timer);
+    }, []);
 
     const cell = data ? (
       data.map((item) => {
@@ -74,49 +112,55 @@ const Chatbot = React.memo(
     return (
       <>
         <div id="chatbox" className={`${styles.chatbox} ${styles.modal}`}>
-          {data.length === 0 ? (
+          <div id="chatbotloader">
             <Loader startTop={false} />
-          ) : (
-            <>
-              <div className={styles.topbar}>
-                <div className={styles.avatar}></div>
-                <div className={styles.name}>LUX</div>
-                <div className={styles.icons}>
-                  <FaPhoneAlt className={styles.fas} />
-                  <FaVideo className={styles.fas} />
-                  <button className={styles.exitbutton} onClick={onClose}>
-                    <IoMdClose className={` ${styles.cross} `} />
+          </div>
+          <div
+            id="chatbotapp"
+            style={{
+              opacity: 0,
+              maxHeight: 0,
+              overflow: "hidden",
+            }}
+          >
+            <div className={styles.topbar}>
+              <div className={styles.avatar}></div>
+              <div className={styles.name}>LUX</div>
+              <div className={styles.icons}>
+                <FaPhoneAlt className={styles.fas} />
+                <FaVideo className={styles.fas} />
+                <button className={styles.exitbutton} onClick={onClose}>
+                  <IoMdClose className={` ${styles.cross} `} />
+                </button>
+              </div>
+            </div>
+            {/* top bar finish, Middle starts */}
+            <div id="middle" className={styles.middle}>
+              {/* <div className={styles.voldemort}> */}
+              {cell}
+              <div className={styles.bottomref}>
+                <div className={styles.outgoing} ref={formRef}></div>
+              </div>
+              {/* </div> */}
+            </div>
+            <div className={`${styles.bottombar} ${styles.chatinput}`}>
+              <form onSubmit={handleSubmit}>
+                <div className={styles.chat}>
+                  <input
+                    type="text"
+                    required
+                    autoComplete="on"
+                    placeholder="Type a message..."
+                    ref={userInputRef}
+                  />
+
+                  <button type="submit">
+                    <BsFillSendFill className={styles.fas} />
                   </button>
                 </div>
-              </div>
-              {/* top bar finish, Middle starts */}
-              <div className={styles.middle}>
-                {/* <div className={styles.voldemort}> */}
-                {cell}
-                <div className={styles.bottomref}>
-                  <div className={styles.outgoing} ref={formRef}></div>
-                </div>
-                {/* </div> */}
-              </div>
-              <div className={`${styles.bottombar} ${styles.chatinput}`}>
-                <form onSubmit={handleSubmit}>
-                  <div className={styles.chat}>
-                    <input
-                      type="text"
-                      required
-                      autoComplete="on"
-                      placeholder="Type a message..."
-                      ref={userInputRef}
-                    />
-
-                    <button type="submit">
-                      <BsFillSendFill className={styles.fas} />
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </>
-          )}
+              </form>
+            </div>
+          </div>
         </div>
       </>
     );
@@ -134,6 +178,8 @@ interface PropsForm {
   onFormSubmit: any;
   onFormClear: any;
   data: Interaction[];
+  chatbotWidth: any;
+  chatbotHeight: any;
 }
 
 export default Chatbot;

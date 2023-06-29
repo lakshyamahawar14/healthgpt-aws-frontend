@@ -62,9 +62,12 @@ const TestPage = () => {
     if (userId || accessToken) {
       getScore(userId, accessToken, url).then((score) => {
         if (score && score[0].score !== -1) {
-          navigate(`/test/score?url=${encodeURIComponent(url)}`, {
-            replace: true,
-          });
+          navigate(
+            `${topPathsArray.scorePath}?url=${encodeURIComponent(url)}`,
+            {
+              replace: true,
+            }
+          );
           return () => {};
         }
         getTest(url).then((res) => {
@@ -124,7 +127,7 @@ const TestPage = () => {
     }
 
     updateScore(userId, accessToken, url, score).then((response) => {
-      navigate(`/test/score?url=${encodeURIComponent(url)}`, {
+      navigate(`${topPathsArray.scorePath}url=${encodeURIComponent(url)}`, {
         replace: true,
       });
     });

@@ -90,7 +90,7 @@ const TrackerPage = () => {
     if (userId || accessToken) {
       getScore(userId, accessToken, url).then((response) => {
         if (!response || (response && response[0].score === -1)) {
-          navigate(`/test?url=%2F${url?.slice(1)}`, {
+          navigate(`${topPathsArray.testPath}?url=%2F${url?.slice(1)}`, {
             replace: true,
           });
           return () => {};

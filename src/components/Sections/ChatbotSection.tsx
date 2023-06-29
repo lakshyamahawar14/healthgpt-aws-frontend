@@ -292,6 +292,8 @@ export const ChatbotPage = React.memo((props: any) => {
         onFormClear={handleFormClear}
         onClose={props.onClose}
         data={userCred.chat}
+        chatbotWidth={80}
+        chatbotHeight={80}
       ></Chatbot>
     </>
   );

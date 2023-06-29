@@ -220,7 +220,7 @@ const ForumPage = () => {
                             className={styles.cards}
                             style={{ textDecoration: "none" }}
                             to={{
-                              pathname: "/forum/post",
+                              pathname: `${topPathsArray.postPath}`,
                               search: `?url=${encodeURIComponent(post.postId)}`,
                             }}
                           >

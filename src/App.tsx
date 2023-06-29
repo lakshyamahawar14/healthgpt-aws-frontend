@@ -22,6 +22,7 @@ import Loader from "./components/Layouts/Loader";
 import PostPage from "./components/Sections/PostSection";
 import { useEffect } from "react";
 import axios from "axios";
+import ChatPage from "./components/Sections/ChatSection";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
@@ -31,8 +32,8 @@ function App() {
   const resetPosts = useResetRecoilState(posts);
 
   useEffect(() => {
-    const appElement = document.getElementById("app");
-    const loaderElement = document.getElementById("loader");
+    const appElement = document.getElementById("mainapp");
+    const loaderElement = document.getElementById("mainloader");
     const timer = setTimeout(() => {
       if (appElement) {
         appElement.style.opacity = "1";
@@ -75,11 +76,11 @@ function App() {
 
   return (
     <>
-      <div id="loader">
+      <div id="mainloader">
         <Loader startTop={false} />
       </div>
       <div
-        id="app"
+        id="mainapp"
         style={{
           opacity: 0,
           maxHeight: 0,
@@ -89,6 +90,7 @@ function App() {
         <Header />
         <Routes>
           <Route path={topPathsArray.homePath} element={<HomePage />} />
+          <Route path={topPathsArray.chatbotPath} element={<ChatPage />} />
           <Route
             path={topPathsArray.assessmentPath}
             element={<AssessmentPage />}

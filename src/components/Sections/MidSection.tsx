@@ -1,18 +1,20 @@
 import styles from "../../styles/MidSection.module.scss";
-import OurStoryIllustration from "../../assets/images/OurStoryIllustration.svg";
+import OurStoryIllustration from "../../assets/images/OurStoryIllustration.png";
 // import profile1 from "../../assets/images/profile-1.jpg";
 // import profile2 from "../../assets/images/profile-2.jpg";
 // import profile3 from "../../assets/images/profile-3.jpg";
-import ChatBotAnimation from "../../UI/ChatBotAnimation";
-import { useEffect } from "react";
+import ChatBotTheme from "../../assets/images/ChatBotTheme.png";
+// import ChatBotAnimation from "../../UI/ChatBotAnimation";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
 import { LoggedInstate } from "../../config/atoms";
 import { useRecoilState } from "recoil";
 import { MdSecurity, MdVerified, MdDevices } from "react-icons/md";
 import { GoCommentDiscussion } from "react-icons/go";
+import React from "react";
 
-export const MidSection = (props: any) => {
+export const MidSection = React.memo((props: any) => {
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
 
   const navigate = useNavigate();
@@ -30,13 +32,26 @@ export const MidSection = (props: any) => {
       <div id="midsection">
         <section className={styles.main}>
           <div className={styles.centered}>
-            <ChatBotAnimation />
+            <div className={styles.chatbotTheme}>
+              {useMemo(
+                () => (
+                  <img
+                    className={styles.img}
+                    src={ChatBotTheme}
+                    alt={"chatbot_theme"}
+                  />
+                ),
+                []
+              )}
+            </div>
+
+            {/* <ChatBotAnimation /> */}
             <p> Mental Health Support For Everyone.</p>
             <button
               onClick={
                 isLoggedIn
                   ? () => {
-                      navigate(topPathsArray.chatbotPath);
+                      navigate(topPathsArray.chatbotPath, { replace: true });
                     }
                   : redirectToRegister
               }
@@ -102,12 +117,17 @@ export const MidSection = (props: any) => {
         </section>
         <section className={styles.blackBackground}>
           <article className={styles.article2}>
-            <div className={styles.block2}>
-              <img
-                className={styles.img}
-                src={OurStoryIllustration}
-                alt="our_story"
-              />
+            <div className={`${styles.block2} ${styles.chatbotTheme}`}>
+              {useMemo(
+                () => (
+                  <img
+                    className={styles.img}
+                    src={OurStoryIllustration}
+                    alt={"our_story"}
+                  />
+                ),
+                []
+              )}
             </div>
             <div className={styles.block2}>
               {" "}
@@ -192,4 +212,4 @@ export const MidSection = (props: any) => {
       </div>
     </>
   );
-};
+});

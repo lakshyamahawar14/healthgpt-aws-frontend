@@ -2,11 +2,11 @@ import { useState } from "react";
 import { LoginPage } from "./LoginSection";
 import { SignupPage } from "./SignupSection";
 import styles from "../../styles/AuthSection.module.scss";
-import Header from "../Layouts/Header";
 import { useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
+import React from "react";
 
-export const AuthPage = (props: any) => {
+export const AuthPage = React.memo((props: any) => {
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -38,4 +38,4 @@ export const AuthPage = (props: any) => {
       </div>
     </>
   );
-};
+});

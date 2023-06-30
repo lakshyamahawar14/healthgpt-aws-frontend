@@ -26,16 +26,11 @@ body {
   text-align: center;
   margin: auto;
   color: $white;
-  padding: 15vh 5vw;
-  padding-bottom: 0;
+  padding: 20vh 5vw;
+  padding-bottom: 5vh;
 
   @media (max-width: 420px) {
-    padding-top: 10vh;
-  }
-
-  svg {
-    height: 50vh;
-    min-width: 250px;
+    padding-top: 15vh;
   }
 
   p {
@@ -44,6 +39,7 @@ body {
     font-size: 2.25rem;
 
     @media (max-width: 575px) {
+      font-size: 2rem;
       margin-left: 5px;
       margin-right: 5px;
     }
@@ -86,7 +82,7 @@ body {
 
     @media (max-width: 500px) {
       font-size: 0.9rem;
-      width: 10rem;
+      width: 8rem;
     }
 
     &:hover {
@@ -99,7 +95,12 @@ body {
 section {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  // min-height: 100vh;
+  min-height: auto;
+
+  @media (max-width: 720px) {
+    min-height: auto;
+  }
 }
 
 .blackBackground {
@@ -140,10 +141,6 @@ section {
     span {
       font-weight: 800;
       text-align: center;
-      color: $orange;
-    }
-
-    svg {
       color: $orange;
     }
   }
@@ -202,5 +199,15 @@ section {
     a:hover {
       color: $white;
     }
+  }
+}
+
+.chatbotTheme {
+  margin-bottom: 35px;
+
+  img {
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
   }
 }

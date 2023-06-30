@@ -1,11 +1,13 @@
 import { MidSection } from "./MidSection";
 import styles from "../../styles/HomeSection.module.scss";
 import Footer from "../Layouts/Footer";
-export const HomePage = (props: any) => {
+import React from "react";
+
+export const HomePage = React.memo((props: any) => {
   return (
     <>
       <MidSection />
       <Footer />
     </>
   );
-};
+});

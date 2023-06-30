@@ -8,6 +8,6 @@ export const topPathsArray = {
   testPath: "/test",
   scorePath: "/test/score",
   trackerPath: "/tracker",
-  loginPath: "/login",
-  signupPath: "/signup",
+  loginPath: "/auth/login",
+  signupPath: "/auth/signup",
 };

@@ -46,7 +46,9 @@ const AssessmentPage = () => {
             testsArray.length > 0 && (
               <div className={styles.testsContainer}>
                 <div className={styles.headingsContainers}>
-                  <h1>General Cognitive Assessment Test</h1>
+                  <h1 className={styles.headings}>
+                    General Cognitive Assessment Test
+                  </h1>
                 </div>
                 <div className={styles.cardsContainers}>
                   <Link
@@ -64,7 +66,9 @@ const AssessmentPage = () => {
                   </Link>
                 </div>
                 <div className={styles.headingsContainers}>
-                  <h1>Specialized Cognitive Assessment Tests</h1>
+                  <h2 className={styles.headings}>
+                    Specialized Cognitive Assessment Tests
+                  </h2>
                 </div>
                 <div className={styles.cardsContainers}>
                   {testsArray.map((test, index) => {

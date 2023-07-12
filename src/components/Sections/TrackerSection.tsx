@@ -119,7 +119,7 @@ const TrackerPage = () => {
       <div className={styles.main}>
         <div className={styles.trackerContainer}>
           <div className={styles.headingsContainers}>
-            <h1>
+            <h1 className={styles.headings}>
               {url ? url.slice(1).charAt(0).toUpperCase() + url.slice(2) : ""}{" "}
               Tracker
             </h1>

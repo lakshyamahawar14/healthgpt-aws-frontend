@@ -127,7 +127,7 @@ const TestPage = () => {
     }
 
     updateScore(userId, accessToken, url, score).then((response) => {
-      navigate(`${topPathsArray.scorePath}url=${encodeURIComponent(url)}`, {
+      navigate(`${topPathsArray.scorePath}?url=${encodeURIComponent(url)}`, {
         replace: true,
       });
     });
@@ -173,7 +173,7 @@ const TestPage = () => {
               test?.questions && (
                 <>
                   <div className={styles.headingsContainers}>
-                    <h1>{test?.title}</h1>
+                    <h1 className={styles.headings}>{test?.title}</h1>
                   </div>
                   {test?.questions.map((question, index) => (
                     <div key={index} className={styles.questionContainer}>

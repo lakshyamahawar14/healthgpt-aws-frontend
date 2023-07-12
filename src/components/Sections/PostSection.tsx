@@ -115,7 +115,7 @@ const PostPage = () => {
         ) : (
           <div className={styles.postContainer}>
             <div className={styles.headingsContainers}>
-              <h1>{post.username}'s Post</h1>
+              <h1 className={styles.headings}>{post.username}'s Post</h1>
             </div>
             <div className={`${styles.cards} ${styles.postcard}`}>
               <div className={styles.postcardtop}>
@@ -157,7 +157,7 @@ const PostPage = () => {
               </div>
             </div>
             <div className={styles.headingsContainers}>
-              <h1>Add a Comment</h1>
+              <h2 className={styles.headings}>Add a Comment</h2>
             </div>
             <div className={styles.addpostContainer}>
               <div className={styles.addpostCard}>

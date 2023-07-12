@@ -125,7 +125,7 @@ export const SignupPage = React.memo((props: any) => {
           </div>
           <div className={styles.colright}>
             <div className={styles.signupform}>
-              <h2>Sign Up</h2>
+              <h1>Sign Up</h1>
               <div className={styles.inputsContainers}>
                 <label className={styles.labels}>
                   Username <span className={styles.spans}>*</span>

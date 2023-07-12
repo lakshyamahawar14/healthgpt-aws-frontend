@@ -46,18 +46,24 @@ export const MidSection = React.memo((props: any) => {
             </div>
 
             {/* <ChatBotAnimation /> */}
-            <p> Mental Health Support For Everyone.</p>
-            <button
-              onClick={
-                isLoggedIn
-                  ? () => {
-                      navigate(topPathsArray.chatbotPath, { replace: true });
-                    }
-                  : redirectToRegister
-              }
-            >
-              Chat with Lux
-            </button>
+            <h1 className={styles.mainheading}>
+              {" "}
+              Mental Health Support For Everyone.
+            </h1>
+            <div className={styles.buttonsContainers}>
+              <button
+                className={styles.buttons}
+                onClick={
+                  isLoggedIn
+                    ? () => {
+                        navigate(topPathsArray.chatbotPath, { replace: true });
+                      }
+                    : redirectToRegister
+                }
+              >
+                Chat with Lux
+              </button>
+            </div>
           </div>
         </section>
         <section className={styles.blackBackground}>

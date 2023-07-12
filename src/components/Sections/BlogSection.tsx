@@ -93,7 +93,7 @@ export const BlogPage = () => {
             <>
               <div id="blogs" className={styles.blogsContainer}>
                 <div className={styles.headingsContainers}>
-                  <h1>Recommended Blogs</h1>
+                  <h1 className={styles.headings}>Recommended Blogs</h1>
                 </div>
                 {showNoData && <NoData />}
                 {!showNoData && (

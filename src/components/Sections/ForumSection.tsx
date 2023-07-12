@@ -156,6 +156,8 @@ const ForumPage = () => {
       return () => {};
     }
 
+    setPostsArray([]);
+
     getPosts(searchText, searchNum).then((response) => {
       if (next === true) {
         response = response.slice(-6);
@@ -206,7 +208,7 @@ const ForumPage = () => {
           <>
             <div className={styles.forumContainer}>
               <div className={styles.headingsContainers}>
-                <h1>Community Posts</h1>
+                <h1 className={styles.headings}>Community Posts</h1>
               </div>
               {showNoData && <NoData />}
               {!showNoData && (
@@ -259,7 +261,7 @@ const ForumPage = () => {
                 </>
               )}
               <div className={styles.headingsContainers}>
-                <h1>Add a Community Post</h1>
+                <h2 className={styles.headings}>Add a Community Post</h2>
               </div>
               <div className={styles.addforumContainer}>
                 <div className={styles.addforumCard}>

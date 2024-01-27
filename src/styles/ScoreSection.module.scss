@@ -1,0 +1,25 @@
+@import './fonts';
+@import './colors';
+@import './typography';
+
+.main {
+    background-color: $dark;
+    height: auto;
+    min-height: 100vh;
+}
+
+.scoreContainer {
+    height: auto;
+    padding: 15vh 6vw;
+    padding-bottom: 5vh;
+}
+
+.chartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3vh auto;
+    height: 50vh;
+    width: 100%;
+    max-width: 600px;
+}

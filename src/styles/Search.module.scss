@@ -1,0 +1,29 @@
+@import './fonts';
+@import './colors';
+@import './typography';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .searchContainer {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        margin-top: 0;
+        width: 100%;
+        max-width: 800px;
+        min-width: 200px;
+        font-family: $karla;
+
+        .searchQuery {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 1vw;
+        }
+    }
+
+
+}

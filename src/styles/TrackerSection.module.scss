@@ -1,0 +1,56 @@
+@import './fonts';
+@import './colors';
+@import './typography';
+
+.main {
+    background-color: $dark;
+    height: auto;
+    min-height: 100vh;
+}
+
+.trackerContainer {
+    height: auto;
+    padding: 15vh 6vw;
+    padding-bottom: 5vh;
+}
+
+.tasks {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 12px;
+
+    @media (max-width: 350px) {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+.tasks::after {
+    content: "";
+    width: 20px;
+}
+
+.taskcard {
+    background-color: $white;
+    border: 1px solid $white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 20vh;
+
+    .checkboxContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        label {
+            color: $green;
+        }
+    }
+}

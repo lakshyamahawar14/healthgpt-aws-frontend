@@ -1,0 +1,19 @@
+@import './fonts';
+@import './colors';
+
+.main {
+  background-color: $dark;
+  height: auto;
+  min-height: 100vh;
+}
+
+.authContainer {
+  margin: auto;
+  font-family: $karla;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $orange;
+  height: auto;
+  padding: 15vh 6vw;
+  padding-bottom: 5vh;
+}

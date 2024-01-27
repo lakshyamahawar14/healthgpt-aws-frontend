@@ -1,0 +1,88 @@
+@import './colors';
+
+.topContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: transparent;
+    margin-top: 50px;
+
+    .loaderContainer {
+        display: flex;
+        justify-content: center;
+        width: auto;
+
+        p {
+            font-size: 1.2rem;
+            color: $white;
+        }
+
+        .loader {
+            display: flex;
+            justify-content: flex-start;
+            padding-top: 0;
+            width: 5vw;
+            max-width: 10vw;
+            position: relative;
+            width: 50px;
+        }
+    }
+}
+
+.midContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $dark;
+
+    .loaderContainer {
+        display: flex;
+        justify-content: center;
+        width: auto;
+
+        p {
+            font-size: 1.2rem;
+            color: $white;
+        }
+
+        .loader {
+            display: flex;
+            justify-content: flex-start;
+            padding-top: 0;
+            width: 5vw;
+            max-width: 10vw;
+            position: relative;
+            width: 50px;
+        }
+    }
+}
+
+.loader {
+    width: 50px;
+    opacity: 0;
+    animation: fade 0.5s ease-in-out infinite;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        /* Start with 0 opacity */
+    }
+
+    50% {
+        opacity: 1;
+        /* Fade in to full opacity */
+    }
+
+    100% {
+        opacity: 0;
+        /* Fade out to 0 opacity */
+    }
+}

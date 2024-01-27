@@ -1,0 +1,12 @@
+@import './fonts';
+@import './colors';
+
+.successContainer {
+    display: block;
+    color: $green;
+    font-family: $karla;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: auto;
+    margin: 5px 0;
+}

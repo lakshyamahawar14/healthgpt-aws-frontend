@@ -1,0 +1,198 @@
+.headings {
+    font-family: $karla;
+    font-size: 1.5rem;
+    color: $white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    font-weight: 700;
+
+    @media (max-width: 420px) {
+        font-size: 1.3rem;
+    }
+}
+
+.headingsContainers {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.titles {
+    color: $orange;
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.descriptions {
+    color: $black;
+    opacity: 0.9;
+    font-family: $karla;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: start;
+}
+
+.authors,
+.dates {
+    margin-top: auto;
+    color: $black;
+    opacity: 0.7;
+    font-family: $karla;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.usernames {
+    color: $black;
+    font-size: 0.8rem;
+}
+
+svg {
+    color: $orange;
+}
+
+.imgs {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.inputs {
+    display: block;
+    width: auto;
+    min-width: 100px;
+    border-radius: 35px;
+    margin: 10px 5px;
+    padding: 0 10px;
+    width: auto;
+    height: 35px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    background-color: $white;
+}
+
+.inputsContainers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttons {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 30px;
+    color: $white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    height: 35px;
+    min-width: 80px;
+    background-color: $orange;
+    margin: 10px 5px;
+    padding: 0;
+
+    @media (max-width: 400px) {
+        font-size: 0.7rem;
+    }
+}
+
+.buttons:hover,
+.buttons:focus {
+    background-color: $white;
+    color: $orange;
+}
+
+.buttonsContainers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.textareas {
+    font-family: $karla;
+    display: block;
+    width: calc(100% - 30px);
+    min-width: 200px;
+    border-radius: 10px;
+    margin: 10px 5px;
+    height: 35px;
+    padding: 0 10px;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    background-color: $white;
+    min-height: 30vh;
+    padding: 10px;
+}
+
+.labels {
+    color: $white;
+    font-size: 1rem;
+
+    .spans {
+        color: $red;
+        padding-left: 2px;
+        opacity: 0.75;
+    }
+}
+
+.cardsContainers {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 12px;
+
+    @media (max-width: 350px) {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    &::after {
+        content: "";
+        width: 20px;
+    }
+}
+
+.cards {
+    background-color: $white;
+    border: 1px solid $white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 20vh;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.tagsContainers {
+    font-size: 0.8rem;
+    color: $white;
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    .tags {
+        background-color: $green;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 5px;
+    }
+}

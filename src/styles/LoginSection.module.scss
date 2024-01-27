@@ -1,0 +1,127 @@
+@import './fonts';
+@import './colors';
+@import './typography';
+
+.main {
+  margin: auto;
+  margin: 0 3vw;
+  padding-bottom: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  height: auto;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  background: $black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.login .colleft,
+.login .colright {
+  padding: 30px;
+  display: flex;
+  border-top-left-radius: 10px;
+}
+
+.login .colleft {
+  width: 60%;
+  clip-path: polygon(0 0, 0% 100%, 90% 0);
+  background-color: $orange;
+}
+
+.login .colright {
+  width: 50%;
+  margin-left: -10%;
+}
+
+.login .logintext {
+  position: relative;
+  width: 100%;
+  color: $black;
+}
+
+.login .logintext h2 {
+  margin: 0 0 15px 0;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.login .logintext p {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.login .loginform {
+  position: relative;
+  width: 100%;
+}
+
+.login .loginform h2 {
+  margin: 0 0 15px 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.login .loginform p {
+  margin: 0;
+  margin-top: 10px;
+  color: $orange;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.loginButtonContainer {
+  align-items: start;
+}
+
+.signupButton {
+  background-color: $black;
+  color: $white;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 35px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.signupButton:hover {
+  color: $orange;
+  background-color: $white;
+}
+
+@media (max-width: 575px) {
+  .login .container {
+    flex-direction: column;
+  }
+
+  .login .colleft {
+    width: 100%;
+    margin: 0;
+    clip-path: none;
+    padding: 0;
+
+    .logintext {
+      margin: 1.5em;
+    }
+  }
+
+  .login .colright {
+    width: 80%;
+    margin: 0;
+    clip-path: none;
+    padding: 0;
+
+    .loginform {
+      margin: 1.5em;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+@import './colors';
+@import './fonts';
+@import './typography';
+
+.footer {
+    background-color: $dark;
+    padding: 20px;
+    color: $white;
+
+    .footerContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        @media (max-width: 620px) {
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .footerColumn {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+            justify-content: center;
+            text-align: center;
+
+            .socialIcons {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                a {
+                    margin: 0 5px;
+                }
+            }
+
+            h3 {
+                font-size: 1rem;
+                font-family: $karla;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                span {
+                    padding: 0 5px;
+                }
+            }
+
+            p {
+                font-family: $karla;
+                font-weight: 400;
+                margin: 0;
+            }
+        }
+    }
+
+    .footerBottom {
+        text-align: center;
+        margin-top: 20px;
+
+        p {
+            font-family: $karla;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .footer .footerContainer .footerColumn {
+        flex-basis: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer .footerContainer .footerColumn {
+        flex-basis: 100%;
+    }
+}

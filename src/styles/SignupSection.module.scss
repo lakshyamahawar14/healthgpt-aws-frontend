@@ -1,0 +1,153 @@
+@import './fonts';
+@import './colors';
+@import './typography';
+
+.main {
+    margin: auto;
+    margin: 0 3vw;
+    padding-bottom: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container {
+    height: auto;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    background-color: $black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.signup .colleft,
+.signup .colright {
+    padding: 30px;
+    display: flex;
+    border-top-left-radius: 10px;
+}
+
+.signup .colleft {
+    width: 60%;
+    clip-path: polygon(0 0, 0% 100%, 90% 0);
+    background-color: $orange;
+}
+
+.signup .colright {
+    width: 50%;
+    margin-left: -10%;
+}
+
+.signup .signuptext {
+    position: relative;
+    width: 100%;
+    color: $black;
+}
+
+.signup .signuptext h2 {
+    margin: 0 0 15px 0;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.signup .signuptext p {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.signup .signupform {
+    position: relative;
+    width: 100%;
+}
+
+.signup .signupform h2 {
+    margin: 0 0 15px 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.signupButtonContainer {
+    align-items: start;
+}
+
+.loginButton {
+    background-color: $black;
+    color: $white;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 35px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.loginButton:hover {
+    color: $orange;
+    background-color: $white;
+}
+
+
+@media (max-width: 575px) {
+    .signup .container {
+        flex-direction: column;
+    }
+
+    .signup .colleft {
+        width: 100%;
+        margin: 0;
+        clip-path: none;
+        padding: 0;
+
+        .signuptext {
+            margin: 1.5em;
+        }
+    }
+
+    .signup .colright {
+        width: 80%;
+        margin: 0;
+        clip-path: none;
+        padding: 0;
+
+        .signupform {
+            margin: 1.5em;
+        }
+    }
+}
+
+.select {
+    width: 50%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 22px;
+    border: 2px solid $white;
+    border-radius: 5px;
+    outline: none;
+    background-color: $white;
+    font-size: 0.8rem;
+    font-family: $karla;
+    color: $black;
+    font-weight: 600;
+}
+
+.select:hover,
+.select:focus {
+    border: 2px solid $orange;
+}
+
+.selectArrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    margin-left: 9px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+}

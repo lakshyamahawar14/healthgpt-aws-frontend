@@ -1,0 +1,19 @@
+@import './fonts';
+@import './colors';
+@import './typography';
+
+.main {
+    background-color: $dark;
+    height: auto;
+    min-height: 100vh;
+}
+
+.assessmentContainer {
+    height: auto;
+    padding-top: 15vh;
+    padding-bottom: 5vh;
+}
+
+.testsContainer {
+    margin: 0 6vw;
+}

@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d3c80512.css",
+    "main.js": "/static/js/main.bed1dc7e.js",
+    "static/js/496.14bf7e15.chunk.js": "/static/js/496.14bf7e15.chunk.js",
+    "static/media/ChatBotTheme.svg": "/static/media/ChatBotTheme.a5276b1233e5910606cb96730a645ce5.svg",
+    "static/media/OurStoryIllustration.png": "/static/media/OurStoryIllustration.c6ee50e8109004a8d206.png",
+    "static/media/luxlogobot.svg": "/static/media/luxlogobot.c381c7f32a61532c0c39f90f3bf71fa9.svg",
+    "index.html": "/index.html",
+    "main.d3c80512.css.map": "/static/css/main.d3c80512.css.map",
+    "main.bed1dc7e.js.map": "/static/js/main.bed1dc7e.js.map",
+    "496.14bf7e15.chunk.js.map": "/static/js/496.14bf7e15.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d3c80512.css",
+    "static/js/main.bed1dc7e.js"
+  ]
+}

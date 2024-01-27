@@ -1,0 +1,54 @@
+@import './colors';
+@import './fonts';
+@import './typography';
+
+.main {
+    padding: 15vh 6vw;
+    padding-bottom: 0;
+    height: auto;
+
+    .forumContainer {
+        height: auto;
+        padding-bottom: 5vh;
+
+        .postsContainer {
+            margin: 0 6vw;
+        }
+
+    }
+
+    .postcardtop {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .postcardbottom {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        align-items: center;
+        color: $black;
+        width: 100%;
+    }
+
+    .addforumContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .addforumCard {
+            max-width: 800px;
+            width: 100%;
+
+            .postInputs {
+                margin: 0;
+                padding: 10px 0;
+
+                input {
+                    width: calc(100% - 30px);
+                }
+            }
+        }
+    }
+}

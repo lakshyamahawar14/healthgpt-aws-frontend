@@ -1,0 +1,10 @@
+@import './colors';
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $orange;
+    border-radius: 2px;
+}

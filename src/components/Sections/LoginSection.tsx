@@ -3,7 +3,7 @@ import styles from "../../styles/LoginSection.module.scss";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import {
   LoggedInstate,
   numMessagesState,
@@ -17,7 +17,7 @@ import Error from "../Layouts/Error";
 import Success from "../Layouts/Success";
 
 export const LoginPage = React.memo((props: any) => {
-  const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const setLoggedIn = useSetRecoilState(LoggedInstate);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const resetMessages = useResetRecoilState(numMessagesState);
@@ -36,7 +36,7 @@ export const LoginPage = React.memo((props: any) => {
       try {
         axios
           .get(
-            `http://13.235.81.90:5000/api/v1/auth/login?email=${email.current?.value}&password=${password.current?.value}`
+            `http://localhost:5000/api/v1/auth/login?email=${email.current?.value}&password=${password.current?.value}`
           )
           .then((userCredential) => {
             if (userCredential.data.status === "failure") {
@@ -90,7 +90,7 @@ export const LoginPage = React.memo((props: any) => {
       try {
         axios
           .get(
-            `http://13.235.81.90:5000/api/v1/auth/reset?email=${email.current.value}`
+            `http://localhost:5000/api/v1/auth/reset?email=${email.current.value}`
           )
           .then(() => {
             alert("Password Reset Link sent to your registered email!");

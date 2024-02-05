@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styles from "../../styles/ForumSection.module.scss";
 import { LoggedInstate, posts, postsSearchQuery } from "../../config/atoms";
 import Loader from "../Layouts/Loader";
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
 import Success from "../Layouts/Success";
 import Error from "../Layouts/Error";
@@ -14,26 +14,26 @@ import NoData from "../Layouts/NoData";
 
 const ForumPage = () => {
   const [postsArray, setPostsArray] = useRecoilState(posts);
-  const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const isLoggedIn= useRecoilValue(LoggedInstate);
   const [searchNum, setSearchNum] = useState(6);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [searchText, setSearchText] = useRecoilState(postsSearchQuery);
+  const searchText = useRecoilValue(postsSearchQuery);
   const [showNoData, setshowNoData] = useState(false);
   let title = useRef<HTMLInputElement>(null);
   let description = useRef<HTMLTextAreaElement>(null);
   let tags = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  const location = useLocation();
-  const searchUrl = new URLSearchParams(location.search).get("search");
+  // const location = useLocation();
+  // const searchUrl = new URLSearchParams(location.search).get("search");
 
   const getPosts = async (searchText: any, numberOfResults: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4500/api/v1/forum/posts?searchQuery=${searchText}&numberOfResults=${numberOfResults}`
+        `http://localhost:4500/api/v1/forum/posts?searchQuery=${searchText}&numberOfResults=${numberOfResults}`
       );
       return res.data.data.communityposts;
     } catch (error) {
@@ -52,7 +52,7 @@ const ForumPage = () => {
     tags: any
   ) => {
     axios
-      .post(`http://13.235.81.90:4500/api/v1/forum/post`, {
+      .post(`http://localhost:4500/api/v1/forum/post`, {
         userId: userId,
         accessToken: accessToken,
         postObject: {
@@ -173,7 +173,7 @@ const ForumPage = () => {
       }
       setPostsArray(response);
     });
-  }, [searchText, next, prev]);
+  }, [searchText, next, prev, postsArray.length, pageNum, setPostsArray, searchNum]);
 
   const handleOnNext = (props: any) => {
     setPostsArray([]);

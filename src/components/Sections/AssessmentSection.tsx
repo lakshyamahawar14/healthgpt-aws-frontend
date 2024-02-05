@@ -2,19 +2,19 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "../../styles/AssessmentSection.module.scss";
 import { LoggedInstate, tests } from "../../config/atoms";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect } from "react";
 import Loader from "../Layouts/Loader";
 import { topPathsArray } from "../../config/constant";
 
 const AssessmentPage = () => {
   const [testsArray, setTestsArray] = useRecoilState(tests);
-  const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const isLoggedIn = useRecoilValue(LoggedInstate);
 
   const getTests = async () => {
     try {
       const res = await axios.get(
-        "http://13.235.81.90:7000/api/v1/assessment/"
+        "http://localhost:7000/api/v1/assessment/"
       );
       return res.data.data.tests;
     } catch (error) {
@@ -28,7 +28,7 @@ const AssessmentPage = () => {
         setTestsArray(response);
       });
     }
-  }, [testsArray]);
+  }, [setTestsArray, testsArray]);
 
   useEffect(() => {
     if (testsArray.length > 0) {

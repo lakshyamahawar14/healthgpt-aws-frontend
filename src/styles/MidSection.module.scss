@@ -50,6 +50,7 @@ body {
   button {
     width: 10rem;
     height: 50px;
+    color: $black;
 
     @media (max-width: 500px) {
       font-size: 0.9rem;

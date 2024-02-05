@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/TestSection.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { LoggedInstate } from "../../config/atoms";
 import Loader from "../Layouts/Loader";
 import Success from "../Layouts/Success";
 import Error from "../Layouts/Error";
 
 const TestPage = () => {
-  const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const isLoggedIn = useRecoilValue(LoggedInstate);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const location = useLocation();
@@ -26,7 +26,7 @@ const TestPage = () => {
   const getTest = async (path: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:7000/api/v1/assessment/test?url=${path}`
+        `http://localhost:7000/api/v1/assessment/test?url=${path}`
       );
       return res.data.data.test;
     } catch (error) {
@@ -37,7 +37,7 @@ const TestPage = () => {
   const getScore = async (userId: any, accessToken: any, url: string) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
+        `http://localhost:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
       if (url === "/general") {
         const generalScore = res.data.data.score.scores;
@@ -75,13 +75,13 @@ const TestPage = () => {
         });
       });
     }
-  }, []);
+  }, [isLoggedIn, navigate, url]);
 
   const evaluateScore = async (url: any, responses: any) => {
     try {
-      let requestUrl = `http://13.235.81.90:7000/api/v1/assessment/test/evaluate`;
+      let requestUrl = `http://localhost:7000/api/v1/assessment/test/evaluate`;
       if (url === "/general") {
-        requestUrl = `http://13.235.81.90:7000/api/v1/assessment/general/evaluate`;
+        requestUrl = `http://localhost:7000/api/v1/assessment/general/evaluate`;
       }
       const res = await axios.get(requestUrl, {
         params: {
@@ -102,7 +102,7 @@ const TestPage = () => {
     score: any
   ) => {
     try {
-      const res = await axios.post(`http://13.235.81.90:4000/api/v1/db/score`, {
+      const res = await axios.post(`http://localhost:4000/api/v1/db/score`, {
         userId: userId,
         accessToken: accessToken,
         url: url,

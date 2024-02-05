@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { topPathsArray } from "../../config/constant";
-import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import {
   LoggedInstate,
   numMessagesState,
@@ -23,11 +23,11 @@ const Header = React.memo(() => {
   const resetBlogsSearchQuery = useResetRecoilState(blogsSearchQuery);
   const resetPostsSearchQuery = useResetRecoilState(postsSearchQuery);
   const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const setIsLoggingOut = useSetRecoilState(LoggedInstate);
   const [blogsSearchText, setBlogsSearchText] =
     useRecoilState(blogsSearchQuery);
-  const [postsSearchText, setPostsSearchText] =
-    useRecoilState(postsSearchQuery);
+  const postsSearchText =
+    useRecoilValue(postsSearchQuery);
   const [showLogout, setShowLogout] = useState(false);
 
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const Header = React.memo(() => {
     try {
       axios
         .get(
-          `http://13.235.81.90:5000/api/v1/auth/signout?userId=${userId}&accessToken=${accessToken}`
+          `http://localhost:5000/api/v1/auth/signout?userId=${userId}&accessToken=${accessToken}`
         )
         .then(() => {
           setLoggedIn(false);
@@ -103,7 +103,7 @@ const Header = React.memo(() => {
   const getSymptom = async (userId: any, accessToken: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4000/api/v1/db/symptom?userId=${userId}&accessToken=${accessToken}`
+        `http://localhost:4000/api/v1/db/symptom?userId=${userId}&accessToken=${accessToken}`
       );
       return res.data.data.symptom;
     } catch (error) {
@@ -122,7 +122,7 @@ const Header = React.memo(() => {
         }
       });
     }
-  }, []);
+  }, [isLoggedIn, setBlogsSearchText]);
 
   const handleImageClick = () => {
     setShowLogout(() => !showLogout);

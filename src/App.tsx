@@ -10,7 +10,7 @@ import TrackerPage from "./components/Sections/TrackerSection";
 import "./styles/_scrollbar.scss";
 import ForumPage from "./components/Sections/ForumSection";
 import Header from "./components/Layouts/Header";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import {
   LoggedInstate,
   blogs,
@@ -25,7 +25,7 @@ import axios from "axios";
 import ChatPage from "./components/Sections/ChatSection";
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const setLoggedIn = useSetRecoilState(LoggedInstate);
   const resetMessages = useResetRecoilState(numMessagesState);
   const resetBlogs = useResetRecoilState(blogs);
   const resetTests = useResetRecoilState(tests);
@@ -55,7 +55,7 @@ function App() {
     if (userId) {
       axios
         .get(
-          `http://13.235.81.90:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
+          `http://localhost:5000/api/v1/auth/login/verify?userId=${userId}&accessToken=${accessToken}`
         )
         .then((response) => {
           if (response.data.status === "failure") {
@@ -72,7 +72,7 @@ function App() {
           }
         });
     }
-  }, []);
+  }, [resetBlogs, resetMessages, resetPosts, resetTests, setLoggedIn]);
 
   return (
     <>

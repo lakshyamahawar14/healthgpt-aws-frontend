@@ -4,10 +4,9 @@ import styles from "../../styles/BlogSection.module.scss";
 import Search from "../Layouts/Search";
 import Loader from "../Layouts/Loader";
 import Skipper from "../Layouts/Skipper";
-import { LoggedInstate, blogsSearchQuery } from "../../config/atoms";
-import { useRecoilState } from "recoil";
+import { blogsSearchQuery } from "../../config/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { blogs } from "../../config/atoms";
-import { useLocation } from "react-router-dom";
 import NoData from "../Layouts/NoData";
 
 export const BlogPage = () => {
@@ -16,16 +15,16 @@ export const BlogPage = () => {
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
   const [pageNum, setPageNum] = useState(1);
-  const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
-  const [searchText, setSearchText] = useRecoilState(blogsSearchQuery);
+  // const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const searchText = useRecoilValue(blogsSearchQuery);
   const [showNoData, setshowNoData] = useState(false);
-  const location = useLocation();
-  const searchUrl = new URLSearchParams(location.search).get("search");
+  // const location = useLocation();
+  // const searchUrl = new URLSearchParams(location.search).get("search");
 
   const getBlogs = async (searchQuery: any, numberOfResults: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:8000/api/v1/news/news?searchQuery=${searchQuery}&numberOfResults=${numberOfResults}`
+        `http://localhost:8000/api/v1/news/news?searchQuery=${searchQuery}&numberOfResults=${numberOfResults}`
       );
       return res.data.data.articles;
     } catch (error) {
@@ -57,7 +56,7 @@ export const BlogPage = () => {
       }
       setBlogsArray(response);
     });
-  }, [searchText, next, prev]);
+  }, [searchText, next, prev, blogsArray.length, pageNum, searchNum, setBlogsArray]);
 
   const handleOnNext = (props: any) => {
     setBlogsArray([]);

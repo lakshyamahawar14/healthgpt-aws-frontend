@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import styles from "../../styles/TrackerSection.module.scss";
 import { LoggedInstate } from "../../config/atoms";
 import { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import axios from "axios";
 import Loader from "../Layouts/Loader";
 
 const TrackerPage = () => {
-  const [isLoggedIn, setLoggedIn] = useRecoilState(LoggedInstate);
+  const isLoggedIn = useRecoilValue(LoggedInstate);
   const [tasks, setTasks] = useState<
     {
       id: number;
@@ -25,7 +25,7 @@ const TrackerPage = () => {
   const getScore = async (userId: any, accessToken: any, url: string) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
+        `http://localhost:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
       if (url === "/general") {
         const generalScore = res.data.data.score.scores;
@@ -43,7 +43,7 @@ const TrackerPage = () => {
   const getTasks = async (userId: any, accessToken: any, url: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:7000/api/v1/assessment/tasks?userId=${userId}&accessToken=${accessToken}&url=${url}`
+        `http://localhost:7000/api/v1/assessment/tasks?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
       return res.data.data.tasks;
     } catch (error) {
@@ -60,7 +60,7 @@ const TrackerPage = () => {
   ) => {
     try {
       const res = await axios.post(
-        `http://13.235.81.90:7000/api/v1/assessment/tasks`,
+        `http://localhost:7000/api/v1/assessment/tasks`,
         {
           userId: userId,
           accessToken: accessToken,
@@ -100,7 +100,7 @@ const TrackerPage = () => {
         });
       });
     }
-  }, []);
+  }, [isLoggedIn, navigate, url]);
 
   const handleCheckboxChange = (taskId: number) => {
     setTasks((prevTasks: any) => {

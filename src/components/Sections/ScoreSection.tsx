@@ -31,7 +31,7 @@ const ScorePage = () => {
   const getScore = async (userId: any, accessToken: any, url: any) => {
     try {
       const res = await axios.get(
-        `http://13.235.81.90:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
+        `http://localhost:4000/api/v1/db/score?userId=${userId}&accessToken=${accessToken}&url=${url}`
       );
       if (url === "/general") {
         const generalScore = res.data.data.score.scores;

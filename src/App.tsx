@@ -10,7 +10,7 @@ import TrackerPage from "./components/Sections/TrackerSection";
 import "./styles/_scrollbar.scss";
 import ForumPage from "./components/Sections/ForumSection";
 import Header from "./components/Layouts/Header";
-import { useResetRecoilState, useSetRecoilState } from "recoil";
+import { useResetRecoilState,useSetRecoilState } from "recoil";
 import {
   LoggedInstate,
   blogs,
